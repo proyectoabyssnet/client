@@ -4,10 +4,27 @@
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 		<title>Proyecto Abyss</title>
 		<link href='http://fonts.googleapis.com/css?family=Aladin' rel='stylesheet' type='text/css'>
+	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'></script>
+	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
+
 	<script>
 		var stop;
 		window.onload = function(){
 			startMenu();
+			$('#popup').show('bounce', { times:3 }, 300);
+			$('.showpop').hide();
+			$('.hide').click(function(){
+				$('#popup').slideUp();
+				$('span.showpop').fadeIn('slow');
+				return false;
+			});
+			
+			$('a.showpoplink').click(function(){
+				$('#popup').show('bounce', { times:3 }, 300);
+				$('.showpop').hide();
+				return false;
+			});
+
 			document.addEventListener("keyup", onKeyup, false);
 		}
 		function loadimage(url){
@@ -86,6 +103,9 @@
 						break;
 				};
 			};
+			
+
+
 	</script>
 	<style>
 	* {
@@ -130,10 +150,65 @@
 		z-index: 1;
 		width: 100%;
 	}
+
+	#popup {
+		top: 0;
+		width: 100%;
+		padding: 20px;
+		background: url(img/ui/c_bar_bg.jpg) left bottom repeat-x;
+		display: block;
+		position: fixed;
+				z-index: 1;
+	}
+	#popup p {
+		margin-left: 15px;
+		text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+		font-size: 13pt;&nbsp; &nbsp;&nbsp;
+		color: #34332d;
+	}	
+	a.hide {
+		color: #34332d;
+		text-decoration: none;
+		font-family: 'ArrowFont';
+		-webkit-transform:rotate(-90deg);
+		font-size: 30px;
+		position: absolute;
+		z-index: 1;
+		text-shadow: -1px 0px 1px rgba(255,255,255,0.8);
+		margin-top: -10px;
+	}
+	a.hide:hover {
+		color: #c44f21;
+	}
+	span.showpop {
+		display: block;
+		position: fixed;
+		-webkit-transform:rotate(90deg);
+		margin-top: -70px;
+	}
+	a.showpoplink:hover {
+		color: #c44f21;
+	}
+	img {
+		float: left;
+		padding: 10px 20px 10px 20px;
+	}
+
+
 	</style>
 	
 	</head>
 	<body>
+	<div id=popup>
+	<span class=hide>
+		<a href=# class=hide>C</a>
+	</span>
+	<p>Hello! I'm a cute little bar. This is a popup.</p>
+	</div>
+	<span class=showpop>
+		<a href=# class=showpoplink>C</a>
+	</span>
+
 	<div id="zposition">
 	<div id="text"></div>
 	</div>
