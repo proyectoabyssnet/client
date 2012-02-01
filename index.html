@@ -5,8 +5,10 @@
 		<title>Proyecto Abyss</title>
 		<link href='http://fonts.googleapis.com/css?family=Aladin' rel='stylesheet' type='text/css'>
 	<script>
+		var stop;
 		window.onload = function(){
 			startMenu();
+			document.addEventListener("keyup", onKeyup, false);
 		}
 		function loadimage(url){
 			var can = document.getElementById('canvas');
@@ -63,8 +65,33 @@
 		function goPage(url){
 			window.location=url;
 		};
+		
+			
+			// Keyboard controls
+			function onKeyup(e) {
+				switch (e.keyCode) {
+					case 65: // a
+						break;
+					case 83: // s
+						stop = (stop) ? false : true;
+						var audio = document.getElementById('audio');
+						if (!stop) {
+							audio.play();
+						} else {
+							audio.pause();
+						};
+						break;
+					case 86: // v
+						audio.volume = (audio.volume > 0) ? 0 : 100;
+						break;
+				};
+			};
 	</script>
 	<style>
+	* {
+		margin: 0;
+		padding: 0;
+	}
 	body{
 		background-color: black;
 	}
@@ -96,10 +123,13 @@
  		color: orange;
  		
  	}
- 	.itemselected{
- 	
- 	}
- 	
+	#audio {
+		bottom: 0;
+		display: none;
+		position: absolute;
+		z-index: 1;
+		width: 100%;
+	}
 	</style>
 	
 	</head>
@@ -108,9 +138,8 @@
 	<div id="text"></div>
 	</div>
 	<canvas id="canvas"></canvas>
-	<script>
-	
-	</script>
-	
+	<audio id="audio" src='audio/14 - Mattias Westlund - Departures.ogg' controls autoplay></audio>
+
+
 	</body>
 </html>
