@@ -6,6 +6,7 @@
 	<script>
 		window.onload = function(){
 			loadimage('img/ui/StartMenu/Menu_02.png');
+			startMenu();
 		}
 		function loadimage(url){
 			var can = document.getElementById('canvas');
@@ -18,6 +19,21 @@
 			}
 			img.src = url;
 		} 
+		function startMenu(){
+		
+			var text = document.getElementById('text');
+			text.innerHTML= "<div id=\"menugame\">" +
+			"<p class=\"item\" onmouseover=\"javascript:loadimage('img/ui/StartMenu/Menu_02_1.png')\" onclick=\"javascript:opcionesMenu()\">Jugar</p>" +
+			"<p class=\"item\" onmouseover=\"javascript:loadimage('img/ui/StartMenu/Menu_02_2.png')\">Opciones</p>" + 
+			"<p class=\"item\" onmouseover=\"javascript:loadimage('img/ui/StartMenu/Menu_02_3.png')\">Créditos</p>" +
+			"</div>";
+			
+		};
+		function opcionesMenu(){
+			loadimage('img/ui/StartMenu/Menu_01.png');
+			var text = document.getElementById('text');
+				text.innerHTML= "";
+		};
 	</script>
 	<style>
 	body{
@@ -56,12 +72,7 @@
 	</head>
 	<body>
 	<div id="zposition">
-
-	<div id="menugame">	
-		<p class="item" onmouseover="javascript:loadimage('img/ui/StartMenu/Menu_02_1.png')">Jugar</p>
-		<p class="item" onmouseover="javascript:loadimage('img/ui/StartMenu/Menu_02_2.png')">Opciones</p>
-		<p class="item" onmouseover="javascript:loadimage('img/ui/StartMenu/Menu_02_3.png')">Acerca de</p>
-	</div>
+	<div id="text"></div>
 	</div>
 	<canvas id="canvas"></canvas>
 	<script>
