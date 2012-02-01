@@ -5,7 +5,6 @@
 		<title></title>
 	<script>
 		window.onload = function(){
-			loadimage('img/ui/StartMenu/Menu_02.png');
 			startMenu();
 		}
 		function loadimage(url){
@@ -20,17 +19,43 @@
 			img.src = url;
 		} 
 		function startMenu(){
-		
+			loadimage('img/ui/StartMenu/Menu_02.png');
 			var text = document.getElementById('text');
 			text.innerHTML= "<div id=\"menugame\">" +
 			"<p class=\"item\" onmouseover=\"javascript:loadimage('img/ui/StartMenu/Menu_02_1.png')\" onclick=\"javascript:opcionesMenu()\">Jugar</p>" +
 			"<p class=\"item\" onmouseover=\"javascript:loadimage('img/ui/StartMenu/Menu_02_2.png')\">Opciones</p>" + 
-			"<p class=\"item\" onmouseover=\"javascript:loadimage('img/ui/StartMenu/Menu_02_3.png')\">Créditos</p>" +
+			"<p class=\"item\" onmouseover=\"javascript:loadimage('img/ui/StartMenu/Menu_02_3.png')\" onclick=\"javascript:creditosMenu()\">Créditos</p>" +
 			"</div>";
 			
 		};
+		function creditosMenu(){
+			loadimage('img/ui/StartMenu/Menu_01.png');
+			var text = document.getElementById('text');
+			text.innerHTML= "<div id=\"menucreditos\"><center>" +
+			"<h1>IDEA</h1>" +
+			"<p>Eleazar Robaina Espinosa</p>" + 
+			"<p>Alain Medina Cabrera</p>" +
+			"<h1>Diseño</h1>" +
+			"<h1>Programación</h1>" +
+			"<p></p>" +
+			"<h1>Sonido</h1>" +
+			"<h1>Animaciones y efectos </h1>" +
+			"<h1>Agradecimientos</h1>" +
+			"<center></div>";
+			
+		};		
 		function opcionesMenu(){
 			loadimage('img/ui/StartMenu/Menu_01.png');
+			var text = document.getElementById('text');
+				text.innerHTML= "<div id=\"menugame\">" +
+			"<p class=\"item\">Individual</p>" +
+			"<p class=\"item\" onclick=\"javascript:multijugadorMenu()\">Multijugador</p>" + 
+			"<p class=\"item\" onclick=\"javascript:startMenu()\">Volver</p>" +
+			"</div>";
+		};
+		
+		function multijugadorMenu(){
+			
 			var text = document.getElementById('text');
 				text.innerHTML= "";
 		};
@@ -50,9 +75,12 @@
 		position: absolute;
 	}
 	#menugame{
-	
-	position: relative;
+		position: relative;
 		margin-top: 30em;
+	}
+	#menucreditos{
+		position: relative;
+		margin-left: 27em;
 	}
 	.item{
 		margin: 100px 50px;
