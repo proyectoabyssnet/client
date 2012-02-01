@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<title></title>
+	<script>
+		window.onload = function(){
+			loadimage('img/ui/StartMenu/Menu_02.png');
+		}
+		function loadimage(url){
+			var can = document.getElementById('canvas');
+			var ctx = can.getContext('2d');
+			var img = new Image();
+			img.onload = function(){
+			can.width = img.width;
+			can.height = img.height;
+			ctx.drawImage(img, 0, 0, img.width, img.height);
+			}
+			img.src = url;
+		} 
+	</script>
+	<style>
+	body{
+		background-color: black;
+	}
+	#canvas{
+		padding: 0 0 0 0;
+		display: inline-block;
+		z-index: 0;
+		position: absolute;
+	}	
+	#zposition{
+		z-index: 1;
+		position: absolute;
+	}
+	#menugame{
+	
+	position: relative;
+		margin-top: 30em;
+	}
+	.item{
+		margin: 100px 50px;
+		text-shadow: #6374AB 10px -9px 2px;
+		font-size: 190%;
+ 	}
+ 	.item:hover{
+ 		color: orange;
+ 		font-size: 210%;
+ 	}
+ 	.itemselected{
+ 	
+ 	}
+ 	
+	</style>
+	
+	</head>
+	<body>
+	<div id="zposition">
+
+	<div id="menugame">	
+		<p class="item" onmouseover="javascript:loadimage('img/ui/StartMenu/Menu_02_1.png')">Jugar</p>
+		<p class="item" onmouseover="javascript:loadimage('img/ui/StartMenu/Menu_02_2.png')">Opciones</p>
+		<p class="item" onmouseover="javascript:loadimage('img/ui/StartMenu/Menu_02_3.png')">Acerca de</p>
+	</div>
+	</div>
+	<canvas id="canvas"></canvas>
+	<script>
+	
+	</script>
+	
+	</body>
+</html>
