@@ -3,8 +3,6 @@
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 		<title>Proyecto Abyss</title>
-		<link href='http://fonts.googleapis.com/css?family=Aladin' rel='stylesheet' type='text/css'>
-
 
 	<script>
 		var stop;
@@ -18,48 +16,13 @@
 			var ctx = can.getContext('2d');
 			var img = new Image();
 			img.onload = function(){
-			can.width = img.width;
-			can.height = img.height;
+			can.width = 400;
+			can.height = 300;
 			ctx.drawImage(img, 0, 0, 400, 300);
 			}
 			img.src = url;
 		} 
-		function startMenu(){
-			loadimage('img/ui/StartMenu/Menu_02.png');
-			var text = document.getElementById('text');
-			text.innerHTML= "<div id=\"menugame\">" +
-			"<p class=\"item\" onmouseover=\"javascript:loadimage('img/ui/StartMenu/Menu_02_1.png')\" onclick=\"javascript:opcionesMenu()\">Jugar</p>" +
-			"<p class=\"item\" onmouseover=\"javascript:loadimage('img/ui/StartMenu/Menu_02_2.png')\">Opciones</p>" + 
-			"<p class=\"item\" onmouseover=\"javascript:loadimage('img/ui/StartMenu/Menu_02_3.png')\" onclick=\"javascript:creditosMenu()\">Créditos</p>" +
-			"</div>";
-			
-		};
-		function creditosMenu(){
-			loadimage('img/ui/StartMenu/Menu_01.png');
-			var text = document.getElementById('text');
-			text.innerHTML= "<div id=\"menucreditos\"><center>" +
-			"<h1>IDEA</h1>" +
-			"<p>Eleazar Robaina Espinosa</p>" + 
-			"<p>Alain Medina Cabrera</p>" +
-			"<h1>Diseño</h1>" +
-			"<h1>Programación</h1>" +
-			"<p></p>" +
-			"<h1>Sonido</h1>" +
-			"<h1>Animaciones y efectos </h1>" +
-			"<h1>Agradecimientos</h1>" +
-			"<center></div>";
-			
-		};		
-		function opcionesMenu(){
-			loadimage('img/ui/StartMenu/Menu_01.png');
-			var text = document.getElementById('text');
-				text.innerHTML= "<div id=\"menugame\">" +
-			"<p class=\"item\" onclick=\"javascript:goPage(\'game.html\')\">Individual</p>" +
-			"<p class=\"item\" onclick=\"javascript:multijugadorMenu()\">Multijugador</p>" + 
-			"<p class=\"item\" onclick=\"javascript:startMenu()\">Volver</p>" +
-			"</div>";
-		};
-		
+	
 		function multijugadorMenu(){
 			
 			var text = document.getElementById('text');
@@ -68,8 +31,7 @@
 		function goPage(url){
 			window.location=url;
 		};
-		
-			
+					
 			// Keyboard controls
 			function onKeyup(e) {
 				switch (e.keyCode) {
@@ -90,8 +52,6 @@
 				};
 			};
 			
-
-
 	</script>
 	<style>
 	* {
@@ -102,61 +62,31 @@
 		background-color: black;
 	}
 	#canvas{
-		padding: 0 0 0 0;
 		display: inline-block;
-		left: 10em;
-		top:5em;
-		z-index: 0;
-		position: absolute;
+		/*left: 10em;
+		top:5em;*/		
 	}	
 	#zposition{
-		z-index: 1;
-		position: absolute;
-	}
-	#menugame{
+		top:5em;
 		position: relative;
-		margin-top: 30em;
+		margin-left:auto;
+		margin-right:auto;
+		width:60%;		
 	}
-	#menucreditos{
-		position: relative;
-		margin-left: 27em;
-	}
-	.item{
-		margin: 100px 50px;
-		text-shadow: #6374AB 10px -9px 2px;
-		font-size: 190%;
-		font-family: aladin;
- 	}
- 	.item:hover{
- 		color: orange;
- 		
- 	}
 	#audio {
 		bottom: 0;
 		display: none;
-		position: absolute;
-		z-index: 1;
 		width: 100%;
 	}
-	#imgpresentacion{
-		min-height: 200px;
-		min-width: 200px;	
-		max-height: 400px;
-		max-width: 400px;
-	
-	}
 	#credenciales{
+		margin: 0em 0em 0em 5em;
 		padding: 1em 1em 1em 1em;
 		background-color: orange;
-		left: 40em;
-		top: 6em; 
-		position: absolute;
-		z-index: 1;
+		display: inline-block;
 	}
 	#btregistrar{
 		left: 56em;
 		top: 27em;
-		position: absolute;
 	}
 	</style>
 	
@@ -164,27 +94,26 @@
 	<body>
 	
 	<div id="zposition">
-	<div id="text"></div>
-	</div>
-	<div id="imgpresentacion"><canvas id="canvas"></canvas></div>
 	
-	<div id="credenciales">
-		<h2>Credenciales de la cuenta</h2>
-		</br>
-		<form align="center">
-		<p>Nombre de usuario</p>	
-		<input type="text" value="" name="name" tabindex="1"/>
-		<p>Contraseña</p>
-		<input type="password" value="" name="name" tabindex="2"/> </br>
-		<p align="left" style="margin:1em 3em 0em 3.2em">
-		<input type="checkbox" value="yes" name="remember"/> Recordar </p></br>
-			
-		<input type="submit" value=" Iniciar sesión " name="Iniciar sesión"/>
-		</form>
+		<canvas id="canvas"></canvas>
+	
+		<div id="credenciales">
+			<h2>Credenciales de la cuenta</h2>
+			</br>
+			<form align="center">
+				<p>Nombre de usuario</p>	
+				<input type="text" value="" name="name" tabindex="1"/>
+				<p>Contraseña</p>
+				<input type="password" value="" name="name" tabindex="2"/> </br>
+				<p align="left" style="margin:1em 3em 0em 3.2em">
+				<input type="checkbox" value="yes" name="remember"/> Recordar </p></br>
+					
+				<input type="submit" value=" Iniciar sesión " name="Iniciar sesión"/>
+			</form>
+		</div>
+		<button id="btregistrar">Nueva cuenta</button>
+		<audio id="audio" src='audio/14 - Mattias Westlund - Departures.ogg' controls ></audio>
 	</div>
-	<button id="btregistrar">Nueva cuenta</button>
-	<audio id="audio" src='audio/14 - Mattias Westlund - Departures.ogg' controls ></audio>
-
 
 	</body>
 </html>
