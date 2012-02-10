@@ -71,7 +71,7 @@
 		position: relative;
 		margin-left:auto;
 		margin-right:auto;
-		width:60%;		
+		width:70%;		
 	}
 	#audio {
 		bottom: 0;
@@ -79,14 +79,15 @@
 		width: 100%;
 	}
 	#credenciales{
-		margin: 0em 0em 0em 5em;
+
 		padding: 1em 1em 1em 1em;
 		background-color: orange;
 		display: inline-block;
+		float: right;
 	}
 	#btregistrar{
-		left: 56em;
-		top: 27em;
+		float: right;
+		margin: 20em -14.2em 0em 0em;
 	}
 	</style>
 	
@@ -100,7 +101,8 @@
 		<div id="credenciales">
 			<h2>Credenciales de la cuenta</h2>
 			</br>
-			<form align="center">
+			<form>
+				<center>
 				<p>Nombre de usuario</p>	
 				<input type="text" value="" name="name" tabindex="1"/>
 				<p>Contraseña</p>
@@ -109,10 +111,11 @@
 				<input type="checkbox" value="yes" name="remember"/> Recordar </p></br>
 					
 				<input type="submit" value=" Iniciar sesión " name="Iniciar sesión"/>
+				</center>
 			</form>
 		</div>
 		<button id="btregistrar">Nueva cuenta</button>
-		<audio id="audio" src='audio/14 - Mattias Westlund - Departures.ogg' controls ></audio>
+
 	</div>
 
 	</body>
