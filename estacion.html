@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<title>Proyecto Abyss</title>
+
+	<script>
+		var stop;
+		window.onload = function(){
+		
+			
+		//	document.addEventListener("keyup", onKeyup, false);
+		}
+	
+		function goPage(url){
+			window.location=url;
+		};
+					
+			// Keyboard controls
+			function onKeyup(e) {
+				switch (e.keyCode) {
+					case 65: // a
+						break;
+					case 83: // s
+						stop = (stop) ? false : true;
+						var audio = document.getElementById('audio');
+						if (!stop) {
+							audio.play();
+						} else {
+							audio.pause();
+						};
+						break;
+					case 86: // v
+						audio.volume = (audio.volume > 0) ? 0 : 100;
+						break;
+				};
+			};
+			
+	</script>
+	<style>
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	body{
+		background-color: green;
+	}
+	section { width:490px; margin-left:auto; margin-right:auto;}
+        section:first-of-type { padding:5px; background:#ddd; border-radius:5px;
+                   border:1px solid #CCC; margin-top:10px; overflow:hidden; position:relative; }
+        #input { border-radius:2px; border:1px solid #ccc;
+                 margin-top:10px; padding:5px; width:390px;  }
+        #status { width:88px; display:block; float:left; margin-top:15px; }
+        
+        
+        section:first-of-type {  }
+        .viewport { z-index:1; overflow: hidden; position: relative; height:160px; }
+		.overview { list-style:none; position:absolute; left:0; top:0; /*width:100%;*/ }
+		.scrollbar { position:absolute; left:490px; }
+		div.hover .thumb { background-color:#C9E8ED !important; opacity:1 !important; }
+		.track { z-index:2; position: relative; }
+		.thumb { /*display:none;*/ opacity:0.2; cursor:pointer; overflow:hidden; position:absolute; top:0; left:0; border-radius:7px; background-color:black; }
+		.thumb:hover { background-color:#98D1DC !important; opacity:1 !important; }
+		.thumb .end { overflow:hidden; height:5px; width:7px; }
+		.disable { display:none !important; }
+		.disable * { display:none; }
+
+	#zposition{
+		top:5em;
+		position: relative;
+		margin-left:auto;
+		margin-right:auto;
+		width:90%;		
+	}
+	#audio {
+		bottom: 0;
+		display: none;
+		width: 100%;
+	}
+	.botongrande{
+		padding: 3em 3em 3em 3em;
+		font-size: 20px;
+		display: inline-block;
+	}
+	#Modalidad{
+		background-color: #c56b82;	
+		border: 1px solid #000;
+		float: right;
+		margin: 3px;
+		min-width: 80%;
+		min-height: 200px;
+	}
+	#Chat{
+		background-color: #c56b82;
+		display: inline-block;
+		width: 40%		
+	}
+	.center{
+		width: 55%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.blockinline{
+		display: block;
+	}
+	 li {
+        width: 45%;
+        min-height: 250px;
+        border: 1px solid #000;
+         display: -moz-inline-stack;
+        display: inline-block;
+        vertical-align: top;
+        margin: 5px;
+        zoom: 1;
+        *display: inline;
+    }
+	</style>
+	
+	</head>
+	<body>
+	
+	<div id="zposition">
+		<div class="center">
+			<button class="botongrande">Jugar</button>
+			<button class="botongrande">Datos del usuario</button>
+		</div>
+	<ul>
+    <li>
+        <h4>Modalidades de juego</h4>
+        <div id="Modalidad"></div>
+	      <button class="blockinline">Solitario</button>
+			<button class="blockinline">Multijugador</button>
+			<button class="blockinline">Observador</button>
+			<button class="blockinline">Otros</button>
+			
+    </li>
+     <li>
+        <h4>Chat</h4>
+         <section>
+	       		<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+				<div class="viewport">
+		            <div class="overview" id="content">
+		            </div>
+				</div>
+			</section>
+	    
+	        <section>
+	            <span id="status">Connecting...</span>
+	            <input type="text" id="input" disabled="disabled" />
+	        </section>
+    </li>
+		
+	<ul>
+		<!--
+	<div id="Modalidad">
+		<h1>Modalidades de juego</h1>
+	
+		<button></button>
+			<div id="content1Selec"></div>
+	 </div>
+	 <div id="Chat">
+		<h1>chat</h1>
+	 </div>
+	-->
+	
+
+	</div>
+
+	</body>
+</html>
