@@ -23,10 +23,22 @@
 			img.src = url;
 		} 
 	
-		function multijugadorMenu(){
-			
-			var text = document.getElementById('text');
-				text.innerHTML= "";
+		function formularioRegistro(){
+
+			var credenciales = document.getElementById('credenciales');
+					credenciales.innerHTML = "<h2>Registro de la cuenta</h2>"+
+					"</br>"+
+				"<form action=\"http://localhost:3000/register\" method=\"post\">"+
+					"<center>"+
+					"<p>Nombre de usuario</p>"+
+					"<input type=\"text\" name=\"username\" tabindex=\"1\"/>"+
+					"<p>Contraseña</p>"+
+					"<input type=\"password\" name=\"password\" tabindex=\"2\"/> </br>"+
+					"<p>E-mail</p>"+
+					"<input type=\"text\" name=\"email\" tabindex=\"3\"/> </br> </br>" +
+					"<input type=\"submit\" value=\" Registrar \" />"+
+					"</center>"+
+				"</form>"	;
 		};
 		function goPage(url){
 			window.location=url;
@@ -101,20 +113,22 @@
 		<div id="credenciales">
 			<h2>Credenciales de la cuenta</h2>
 			</br>
-			<form action="http://www.deviper.com:3000/login" method="post">
+			<form action="http://localhost:3000/login" method="post">
 				<center>
 				<p>Nombre de usuario</p>	
 				<input type="text" value="" name="username" tabindex="1"/>
 				<p>Contraseña</p>
 				<input type="password" value="" name="password" tabindex="2"/> </br>
+
 				<p align="left" style="margin:1em 3em 0em 3.2em">
 				<input type="checkbox" value="yes" name="remember"/> Recordar </p></br>
-					
+				
 				<input type="submit" value=" Iniciar sesión " name="Iniciar sesión"/>
+
 				</center>
 			</form>
 		</div>
-		<button id="btregistrar">Nueva cuenta</button>
+		<button id="btregistrar" onclick="javascript:formularioRegistro()"> Nueva cuenta </button>
 
 	</div>
 
