@@ -27,6 +27,9 @@ function initGame(director) {
 	var scene_1 = director.createScene()
 		.setFillStyle('#000');
 	
+	/* CREATE ALL GAME OBJECTS */
+	
+	
 	// Create six squares (actors) 
 	for (var i=0; i < 6; i++) {
 		
@@ -91,8 +94,7 @@ var mouseMoveHandler = function(mouseEvent) {
 	
 	if (logInfo) {
 		logInfo.innerHTML = actor.name;
-	}
-	
+	}	
 }
 
 
@@ -118,7 +120,6 @@ function loadImages(director) {
 			}
 		}
 	);	
-
 }
 
 
