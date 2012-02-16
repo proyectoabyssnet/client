@@ -14,4 +14,5 @@ function Card(name) {
 		
 		console.log("Using card " + this.name);
 	}
+	
 }
