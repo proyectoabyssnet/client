@@ -6,7 +6,7 @@ function Card(name) {
 
 	/* PROPERTIES */
 	
-	this.name = name || "";
+	
 	
 	/* METHODS */
 	
@@ -16,3 +16,5 @@ function Card(name) {
 	}
 	
 }
+
+Card.prototype = new UIWidget;

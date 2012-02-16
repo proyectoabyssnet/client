@@ -5,12 +5,6 @@ function Panel(name, x, y, width, height) {
 
 	/* PROPERTIES */
 	
-	this.name = name || "empty";
-	this.x = x || 0;
-	this.y = y || 0;
-	this.width = width || 0;
-	this.height = height || 0;
-	
 	// Panel of 1 row x 1 column as default
 	this.rowsCount = 1;
 	this.columnsCount = 1;
@@ -29,4 +23,4 @@ function Panel(name, x, y, width, height) {
 	}
 }
 
-Panel.prototype = new Widget;
+Panel.prototype = new UIWidget;

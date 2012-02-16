@@ -1,8 +1,8 @@
 /*
-* WIDGET OBJECT
+* USER INTERFACE WIDGET OBJECT
 */
 
-function Widget() {
+function UIWidget() {
 
 	this.id = "";
 	this.x = 0;

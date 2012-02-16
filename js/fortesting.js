@@ -35,8 +35,17 @@ function Engineer(projects) {
 
 Engineer.prototype = new WorkerBee; // Inherits from WorkerBee
 
-// TESTING EXAMPLES
+function Object() {
+	this.name = "object";
+}
 
-var eng1 = new Engineer(["p1","p3"]);
-console.log(eng1.department);
-console.log(eng1.projects);
+function Box() {
+	this.dimensions = [0,0,0];
+}
+
+Box.prototype = new Object;
+
+// TESTING EXAMPLES
+var box1 = new Box();
+console.log(box1.name);
+
