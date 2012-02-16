@@ -7,11 +7,16 @@ function init() {
 
 	var canvasObject = document.getElementById('canvas1');
 	
+	if (!canvasObject) {		
+		alert("Could not found canvas object");
+		return;
+	}
+	
 	// Create Director and assign canvas object
 	var director = new CAAT.Director()
 		.initialize(800,600, canvasObject)
 		.setClear(false);
-		
+
 	// Load resources (images,...)
 	loadImages(director);
 }
@@ -82,7 +87,12 @@ function initGame(director) {
 var mouseMoveHandler = function(mouseEvent) {
 	
 	var actor = mouseEvent.source;	
-	document.getElementById('info').innerHTML = actor.name;
+	var logInfo = document.getElementById('logInfo');
+	
+	if (logInfo) {
+		logInfo.innerHTML = actor.name;
+	}
+	
 }
 
 
