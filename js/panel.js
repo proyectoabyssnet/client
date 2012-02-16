@@ -1,15 +1,19 @@
 /*
 * PANEL OBJECT
 */
-function Panel(name, x, y, width, height) {
+function Panel(id) {
 
 	/* PROPERTIES */
+	
+	// Pass arguments to parent object
+	this.base = UIWidget;
+	this.base(id);
 	
 	// Panel of 1 row x 1 column as default
 	this.rowsCount = 1;
 	this.columnsCount = 1;
 	
-	// Property to contain other Actors (cards,..)
+	// Panel contains other objects
 	this.container = new CAAT.ActorContainer()
 		.setBounds(this.x, this.y, this.width, this.height);
 		
@@ -23,4 +27,4 @@ function Panel(name, x, y, width, height) {
 	}
 }
 
-Panel.prototype = new UIWidget;
+Panel.prototype = new UIWidget; // Inherits from UIWidget
