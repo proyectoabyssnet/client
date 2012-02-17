@@ -7,7 +7,7 @@ function EquipedCardsPanel(id) {
 	/* PROPERTIES */
 	
 	this.MAX_SLOTS = 5;
-	this.SLOT_PADDING = 5; // Vertical separation between slots
+	this.SLOT_PADDING = 2; // Vertical separation between slots
 	
 	// Call constructor with parameters
 	this.base = Panel;
@@ -24,6 +24,11 @@ function EquipedCardsPanel(id) {
 		
 		var nextSlotY = this.container.y;
 		
+		// Get first image to read it's size
+		var image = director.getImage(this.slotBackgroundImages[0]).width;
+		var defaultImageWidth = image.width;
+		var defaultImageHeight = image.height;
+		
 		for(var slotIndex = 0; slotIndex < 5; slotIndex++) {
 			
 			var newSlot = new SlotElement(); // Can contain 4 cards
@@ -31,7 +36,8 @@ function EquipedCardsPanel(id) {
 			newSlot.container.setBounds(
 					this.container.x,
 					nextSlotY,
-					178,88
+					defaultImageWidth,
+					defaultImageHeight
 					)
 				.setFillStyle("#fbff87")
 				.setBackgroundImage(

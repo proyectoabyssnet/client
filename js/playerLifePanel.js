@@ -24,13 +24,13 @@ function PlayerLifePanel() {
 		var centerX = this.container.width / 2;
 		var centerY = this.container.height / 2;
 		var paddingCorrection = 5;
-		var step = 0.5;
+		var step = 0.5; // Distance between life images
 		var width = this.container.width;
 		var height = this.container.height;
 		var radius = 45;
 		
 		
-		for(var lifeImageIndex = 0; lifeImageIndex < 5; lifeImageIndex++) {
+		for(var i = 0; i < 5; i++) {
 			
 			var positionX = centerX + Math.cos(step) * radius - paddingCorrection;
 			var positionY = centerY + Math.sin(step) * radius - paddingCorrection;
@@ -47,15 +47,15 @@ function PlayerLifePanel() {
 	
 	this.setPlayerImage = function(director, imageName) {
 		
-		var image = director.getImage(imageName);		
-		var playerAvatarPosition = [this.container.x, this.container.y + 20];
-		console.log(playerAvatarPosition);
+		var image = director.getImage(imageName);	
+		var xPosition = this.container.x + image.width / 2;
+		var yPosition = this.container.y + image.height / 2;
 		
 		// Add player image as an Actor
 		this.playerAvatar = new CAAT.Actor()
-			.setBounds(1, 1, playerAvatarPosition[0], playerAvatarPosition[1])
+			.setBounds(1, 1, xPosition, yPosition)
 			.setBackgroundImage(image)
-			.setAlpha(0.50);
+			.setAlpha(1);
 		
 		this.container.addChild(this.playerAvatar);		
 	}
