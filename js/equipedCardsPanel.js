@@ -12,14 +12,29 @@ function EquipedCardsPanel(id) {
 	this.base = Panel;
 	this.base(id);
 	
-	this.cards = []; // Equiped cards array
+	this.slots = []; // Slots containing cards
 	
 	/* METHODS */
 	
-	this.addCard = function(card) {
+	this.initSlots = function() {
 		
-		this.cards.push(card.name);
-		this.container.addChild(card);
+		var slotAir = new SlotElement();
+		slotAir.container.setBounds(
+				this.container.x,
+				this.container.y,
+				178,88
+				)
+			.setFillStyle("#fbff87");
+		
+		slotAir.name = "slot air";
+		
+		this.addSlot(slotAir);
+	}
+	
+	this.addSlot = function(slot) {
+		
+		this.slots.push(slot.name);
+		this.container.addChild(slot.container);
 	}
 }
 

@@ -29,59 +29,18 @@ function initGame(director) {
 	
 	/* CREATE ALL GAME OBJECTS */
 
-		
-	// Create six squares (actors) 
-	for (var i=0; i < 6; i++) {
-		
-		// 80x80 rectangles
-		var s = 80;
-		
-		// Containers can contain other actors
-		var _c1_container = new CAAT.ActorContainer().
-			setBounds(i*100+10, 20, s, s).
-			setRotation( Math.PI*2*Math.random()).
-			setFillStyle('#ff0').
-			enableDrag();
-					
-		
-		_c1_container.name = 'rectangle' + i;
-		_c1_container.mouseMove = mouseMoveHandler;
-		
-		scene_1.addChild(_c1_container);
+	var equipedCards = new EquipedCardsPanel();
+	equipedCards.container.setBounds(10,10,100,400)
+		.setId("equiped_cards_panel")
+		.setFillStyle("#ff0000");
+	
+	equipedCards.container.name = "Equiped Cards Panel";
+	equipedCards.container.mouseMove = mouseMoveHandler;
+	equipedCards.initSlots();
 	
 		
-		// White square acting as a container
-		var _c1_container_child = new CAAT.Actor()
-		        .setBounds(s/2,s/2,s/4,s/4)
-		        .setRotation( Math.PI*2*Math.random() )
-		        .setFillStyle('#00ff00')
-		        .enableDrag();			           
+	scene_1.addChild(equipedCards.container);
 
-		_c1_container_child.mouseDblClick = function( mouseEvent ) {
-			this.setScale(1.2, 1.2);
-		}
-		
-		// FOR TESTING BACKGROUND IMAGES ***
-		if (i % 2 == 0) {
-		
-			var lifeImage = new CAAT.SpriteImage()
-				.initialize(director.getImage('stars'), 1, 6);
-			
-			_c1_container_child.setBackgroundImage(
-				lifeImage.getRef(), 
-				true
-			).setSpriteIndex(3);				
-		}		
-		
-		// Add this container as a child of the previous created
-		_c1_container.addChild(_c1_container_child);
-				
-		// Create button
-		var button1 = createButton(director);
-		scene_1.addChild(button1);
-		
-		
-	}
 
 	CAAT.loop(60);
 }
@@ -141,3 +100,57 @@ function createButton(director) {
 	return button;
 }
 
+/* TO BE DELETED */
+function testingCAAT(scene_1) {
+	
+	// Create six squares (actors) 
+	for (var i=0; i < 6; i++) {
+		
+		// 80x80 rectangles
+		var s = 80;
+		
+		// Containers can contain other actors
+		var _c1_container = new CAAT.ActorContainer().
+			setBounds(i*100+10, 20, s, s).
+			setRotation( Math.PI*2*Math.random()).
+			setFillStyle('#ff0').
+			enableDrag();
+					
+		_c1_container.name = 'rectangle' + i;
+		_c1_container.mouseMove = mouseMoveHandler;
+		
+		scene_1.addChild(_c1_container);
+		
+		// White square acting as a container
+		var _c1_container_child = new CAAT.Actor()
+		        .setBounds(s/2,s/2,s/4,s/4)
+		        .setRotation( Math.PI*2*Math.random() )
+		        .setFillStyle('#00ff00')
+		        .enableDrag();			           
+
+		_c1_container_child.mouseDblClick = function( mouseEvent ) {
+			this.setScale(1.2, 1.2);
+		}
+		
+		// FOR TESTING BACKGROUND IMAGES ***
+		if (i % 2 == 0) {
+		
+			var lifeImage = new CAAT.SpriteImage()
+				.initialize(director.getImage('stars'), 1, 6);
+			
+			_c1_container_child.setBackgroundImage(
+				lifeImage.getRef(), 
+				true
+			).setSpriteIndex(3);				
+		}		
+		
+		// Add this container as a child of the previous created
+		_c1_container.addChild(_c1_container_child);
+				
+		// Create button
+		var button1 = createButton(director);
+		scene_1.addChild(button1);
+		
+		
+	}	
+}
