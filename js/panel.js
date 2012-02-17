@@ -5,12 +5,14 @@ function Panel(id) {
 
 	/* PROPERTIES */
 	this.hasVisibleTitle = false;
+	this.titleFont = "14px sans-serif";
+	this.titleColor = "#00ffff";
 	
     this.title = new CAAT.TextActor().
-        setFont("40px sans-serif").
+        setFont(this.titleFont).
         setText("panel_title").
         setTextAlign("left").
-        //setTextFillStyle(gradient).
+        setFillStyle(this.titleColor).
         setTextBaseline("bottom");
             	
 	// Panel of 1 row x 1 column as default

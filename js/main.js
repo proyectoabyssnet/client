@@ -84,6 +84,8 @@ function createCardsOnHandPanel(director) {
 		.setAlpha(0.50)
 		.setId("cards_on_hand_panel");
 	
+	cardsOnHand.setTitle("Cards on hand");
+	
 	return cardsOnHand.container;
 }
 
