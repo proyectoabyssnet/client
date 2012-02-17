@@ -51,9 +51,4 @@ Box.prototype.showLifeTime = function() {
 }
 
 // TESTING EXAMPLES
-var box1 = new Box();
-box1.position = [30,45];
-console.log(box1.name);
-box1.name = "NewName";
-console.log("Name " + box1.name);
-box1.showLifeTime();
+

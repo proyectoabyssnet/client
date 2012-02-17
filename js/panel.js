@@ -14,17 +14,9 @@ function Panel(id) {
 	this.columnsCount = 1;
 	
 	// Panel contains other objects
-	this.container = new CAAT.ActorContainer()
-		.setBounds(this.x, this.y, this.width, this.height);
+	this.container = new CAAT.ActorContainer();
 		
 	/* METHODS */
 	
-	this.addItem = function(item, row, column) {
-	
-		item.setBounds(row, column, item.width, item.height);
-		
-		this.container.addChild( item );
-	}
 }
 
-Panel.prototype = new UIWidget; // Inherits from UIWidget

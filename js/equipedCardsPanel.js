@@ -2,11 +2,15 @@
 * EQUIPED CARDS PANEL OBJECT
 */
 
-function EquipedCardsWidget(name, x, y, width, height) {
+function EquipedCardsWidget(id) {
+	
+	/* PROPERTIES */
+	
+	this.MAX_CARDS = 20;
 	
 	// Call constructor with parameters
 	this.base = Panel;
-	this.base(name, x, y, width, height);
+	this.base(id);
 	
 	this.cards = []; // Equiped cards
 }
@@ -14,8 +18,8 @@ function EquipedCardsWidget(name, x, y, width, height) {
 EquipedCardsWidget.prototype = new Panel;
 EquipedCardsWidget.prototype.addCard = function(card) {
 
-	this.addItem(card); 
 	this.cards.push(card.name); // Store in card list
+	this.container.addChild(card);
 }
 
 
