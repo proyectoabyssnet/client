@@ -7,16 +7,18 @@ function PlayerLifePanel() {
 	
 	this.LIFE_SLOTS = 5;
 	this.container = new CAAT.ActorContainer();
+	this.bgImage = "lifePanelBg";
 	
 	/* METHODS */
 	
-	this.init = function(x, y, width, height) {
+	this.init = function(director, x, y, width, height) {
 		
 		this.container.setBounds(x, y, width, height)
-		.setFillStyle("#ff0000");		
+		.setFillStyle("#ff0000")
+		.setBackgroundImage(director.getImage(this.bgImage));		
 	}
 	
-	this.setPlayerImage = function(imageName, director) {
+	this.setPlayerImage = function(director, imageName) {
 		
 		this.container.setBackgroundImage(
 					director.getImage(imageName)

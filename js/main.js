@@ -27,8 +27,19 @@ function initGame(director) {
 	var scene_1 = director.createScene()
 		.setFillStyle('#000');
 	
-	/* CREATE ALL GAME OBJECTS */
+	/* CREATE GAME UI */
+	var equipedCardsPanel = createEquipedCardsPanel(director);
+	var playerLifePanel = createPlayerLifePanel(director);
+		
+	// Add objects to scene
+	scene_1.addChild(equipedCardsPanel);
+	scene_1.addChild(playerLifePanel);
 
+	CAAT.loop(60);
+}
+
+function createEquipedCardsPanel(director) {
+	
 	// Equiped cards panel
 	var equipedCards = new EquipedCardsPanel();
 	equipedCards.container.setBounds(10,10,100,400)
@@ -39,19 +50,19 @@ function initGame(director) {
 	equipedCards.container.mouseMove = mouseMoveHandler;
 	equipedCards.initSlots(director);
 	
+	return equipedCards.container;
+}
+
+function createPlayerLifePanel(director) {
+	
 	// Player life panel
 	var playerLifePanel = new PlayerLifePanel();
 	
-	playerLifePanel.init(10, 500, 100, 100);
-	playerLifePanel.setPlayerImage("player-image", director);
-		
-	// Add objects to scene
-	scene_1.addChild(equipedCards.container);
-	scene_1.addChild(playerLifePanel.container);
-
-	CAAT.loop(60);
+	playerLifePanel.init(director, 10, 500, 100, 100);
+	playerLifePanel.setPlayerImage(director, "player-image");	
+	
+	return playerLifePanel.container;
 }
-
 
 var mouseMoveHandler = function(mouseEvent) {
 	
@@ -77,8 +88,8 @@ function loadImages(director) {
 			{id:'card-mascot-elements',		url:'img/card-mascot-elements.png'},
 			{id:'button',					url:'img/buttons.png'},
 			{id:'stars',					url:'img/stars.png'},
-			{id:'player-image',				url:'img/player-image.png'},
-			
+			{id:'player-image',				url:'img/player-image.jpg'},
+			{id:'life-panel-bg',			url:'img/lifePanelBg.png'}			
 		],
 		function(counter,images) {
 			
