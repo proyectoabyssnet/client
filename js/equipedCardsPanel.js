@@ -14,6 +14,8 @@ function EquipedCardsPanel(id) {
 	
 	this.cards = []; // Equiped cards array
 	
+	/* METHODS */
+	
 	this.addCard = function(card) {
 		
 		this.cards.push(card.name);

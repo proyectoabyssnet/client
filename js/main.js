@@ -28,8 +28,8 @@ function initGame(director) {
 		.setFillStyle('#000');
 	
 	/* CREATE ALL GAME OBJECTS */
-	
-	
+
+		
 	// Create six squares (actors) 
 	for (var i=0; i < 6; i++) {
 		
@@ -43,7 +43,7 @@ function initGame(director) {
 			setFillStyle('#ff0').
 			enableDrag();
 					
-					
+		
 		_c1_container.name = 'rectangle' + i;
 		_c1_container.mouseMove = mouseMoveHandler;
 		
@@ -75,7 +75,7 @@ function initGame(director) {
 		
 		// Add this container as a child of the previous created
 		_c1_container.addChild(_c1_container_child);
-		
+				
 		// Create button
 		var button1 = createButton(director);
 		scene_1.addChild(button1);

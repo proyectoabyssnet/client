@@ -6,7 +6,8 @@ function Card(name) {
 
 	/* PROPERTIES */
 	
-	
+	this.atk = 0;
+	this.def = 0;
 	
 	/* METHODS */
 	
@@ -16,5 +17,3 @@ function Card(name) {
 	}
 	
 }
-
-Card.prototype = new UIWidget;

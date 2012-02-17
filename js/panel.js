@@ -5,6 +5,8 @@ function Panel(id) {
 
 	/* PROPERTIES */
 	
+	this.title = "";
+	
 	// Panel of 1 row x 1 column as default
 	this.rowsCount = 1;
 	this.columnsCount = 1;
