@@ -42,6 +42,9 @@ function initGame(director) {
 	CAAT.loop(60);
 }
 
+/* END INIT GAME */
+
+
 function createEquipedCardsPanel(director) {
 	
 	// Equiped cards panel
@@ -62,7 +65,7 @@ function createPlayerLifePanel(director) {
 	var playerLifePanel = new PlayerLifePanel();
 	
 	playerLifePanel.init(director, 10, 500, 207, 207);
-	playerLifePanel.setPlayerImage(director, "player-image");	
+	//playerLifePanel.setPlayerImage(director, "player-image");	
 	
 	return playerLifePanel.container;
 }
@@ -135,7 +138,9 @@ function createButton(director) {
 	return button;
 }
 
-/* TO BE DELETED */
+/* 
+ * TO BE DELETED (ONLY FOR TESTING PURPOSES) 
+ */
 function testingCAAT(scene_1) {
 	
 	// Create six squares (actors) 
