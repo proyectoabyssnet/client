@@ -13,10 +13,14 @@ function EquipedCardsPanel(id) {
 	this.base = Panel;
 	this.base(id);
 	this.slots = []; // Slots containing cards
-	
+	this.slotBackgroundImages = ["card-mascot-elements",
+	                             "card-air-elements",
+	                             "card-water-elements",
+	                             "card-land-elements",
+	                             "card-fire-elements"];
 	/* METHODS */
 	
-	this.initSlots = function() {
+	this.initSlots = function(director) {
 		
 		var nextSlotY = this.container.y;
 		
@@ -29,7 +33,10 @@ function EquipedCardsPanel(id) {
 					nextSlotY,
 					178,88
 					)
-				.setFillStyle("#fbff87");
+				.setFillStyle("#fbff87")
+				.setBackgroundImage(
+						director.getImage(this.slotBackgroundImages[slotIndex])
+						);
 			
 			newSlot.name = "slot" + slotIndex;
 			

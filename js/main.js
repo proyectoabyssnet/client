@@ -36,7 +36,7 @@ function initGame(director) {
 	
 	equipedCards.container.name = "Equiped Cards Panel";
 	equipedCards.container.mouseMove = mouseMoveHandler;
-	equipedCards.initSlots();
+	equipedCards.initSlots(director);
 	
 		
 	scene_1.addChild(equipedCards.container);
@@ -67,6 +67,7 @@ function loadImages(director) {
 			{id:'card-fire-elements',		url:'img/card-fire-elements.png'},
 			{id:'card-land-elements',		url:'img/card-land-elements.png'},				
 			{id:'card-air-elements',		url:'img/card-air-elements.png'},
+			{id:'card-mascot-elements',		url:'img/card-mascot-elements.png'},
 			{id:'button',					url:'img/buttons.png'},
 			{id:'stars',					url:'img/stars.png'}			
 		],
