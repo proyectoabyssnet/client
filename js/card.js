@@ -23,5 +23,6 @@ function Card(name) {
 				director.getImage(imageName)
 		);
 	}
+    
 	
 }

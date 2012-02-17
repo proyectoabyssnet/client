@@ -66,6 +66,7 @@ function createPlayerLifePanel(director) {
 	
 	playerLifePanel.init(director, 10, 500, 207, 207);
 	playerLifePanel.setPlayerImage(director, "player-image");	
+	playerLifePanel.initLifeImages(director);
 	playerLifePanel.container.setId("player_life_panel");
 	
 	return playerLifePanel.container;

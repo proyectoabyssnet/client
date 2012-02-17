@@ -19,11 +19,25 @@ function PlayerLifePanel() {
 		.setBackgroundImage(director.getImage(this.bgImage));		
 	}
 	
-	this.initLifeImage = function(director) {
+	this.initLifeImages = function(director) {
+		
+		var centerX = this.container.width / 2;
+		var centerY = this.container.height / 2;
+		var step = 0.5;
+		
 		
 		for(var lifeImageIndex = 0; lifeImageIndex < 5; lifeImageIndex++) {
 			
+			var positionX = centerX + Math.cos(step) * 90 - this.container.width / 2;
+			var positionY = centerY + Math.sin(step) * 90 - this.container.height / 2;
 			
+			var lifeImage = new CAAT.Actor()
+				.setBounds(positionX, positionY, 26, 24)
+				.setBackgroundImage(director.getImage("life"));
+				
+			this.container.addChild(lifeImage);
+			
+			step += -0.5;
 		}
 	}
 	
