@@ -3,6 +3,7 @@ window.onload = init;
 /*
 *	INIT MAIN OBJECTS
 */
+
 function init() {
 
 	var canvasObject = document.getElementById('canvas1');
@@ -21,13 +22,14 @@ function init() {
 	loadImages(director);
 }
 
+/* INIT GAME */
 
 function initGame(director) {
 
 	var scene_1 = director.createScene()
 		.setFillStyle('#000');
 	
-	/* CREATE GAME UI */
+	/* CREATE GAME UI OBJECTS */
 	var equipedCardsPanel = createEquipedCardsPanel(director);
 	var playerLifePanel = createPlayerLifePanel(director);
 		
@@ -43,8 +45,7 @@ function createEquipedCardsPanel(director) {
 	// Equiped cards panel
 	var equipedCards = new EquipedCardsPanel();
 	equipedCards.container.setBounds(10,10,100,400)
-		.setId("equiped_cards_panel")
-		.setFillStyle("#ff0000");
+		.setId("equiped_cards_panel");
 	
 	equipedCards.container.name = "Equiped Cards Panel";
 	equipedCards.container.mouseMove = mouseMoveHandler;
