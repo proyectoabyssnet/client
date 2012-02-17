@@ -7,7 +7,8 @@ function PlayerLifePanel() {
 	
 	this.LIFE_SLOTS = 5;
 	this.container = new CAAT.ActorContainer();
-	this.bgImage = "lifePanelBg";
+	this.bgImage = "life-panel-bg";
+	this.playerAvatar = "";
 	
 	/* METHODS */
 	
@@ -18,11 +19,23 @@ function PlayerLifePanel() {
 		.setBackgroundImage(director.getImage(this.bgImage));		
 	}
 	
+	this.initLifeImage = function(director) {
+		
+		for(var lifeImageIndex = 0; lifeImageIndex < 5; lifeImageIndex++) {
+			
+			
+		}
+	}
+	
 	this.setPlayerImage = function(director, imageName) {
 		
-		this.container.setBackgroundImage(
+		this.playerAvatar = new CAAT.Actor()
+			.setBounds(this.container.x, this.container.y, 100, 100)
+			.setBackgroundImage(
 					director.getImage(imageName)
-		);
+					);
+		
+		this.container.addChild(this.playerAvatar);		
 	}
 
 }

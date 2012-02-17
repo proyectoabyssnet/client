@@ -32,11 +32,13 @@ function initGame(director) {
 	/* CREATE GAME UI OBJECTS */
 	var equipedCardsPanel = createEquipedCardsPanel(director);
 	var playerLifePanel = createPlayerLifePanel(director);
-		
+	var cardsOnHandPanel = createCardsOnHandPanel(director);
+	
 	// Add objects to scene
 	scene_1.addChild(equipedCardsPanel);
 	scene_1.addChild(playerLifePanel);
-
+	scene_1.addChild(cardsOnHandPanel);
+	
 	CAAT.loop(60);
 }
 
@@ -59,11 +61,22 @@ function createPlayerLifePanel(director) {
 	// Player life panel
 	var playerLifePanel = new PlayerLifePanel();
 	
-	playerLifePanel.init(director, 10, 500, 100, 100);
+	playerLifePanel.init(director, 10, 500, 207, 207);
 	playerLifePanel.setPlayerImage(director, "player-image");	
 	
 	return playerLifePanel.container;
 }
+
+function createCardsOnHandPanel(director) {
+
+	var cardsOnHand = new CardsOnHandPanel();
+	
+	cardsOnHand.container.setBounds(214, 500, 300, 500)
+		.setFillStyle("#ff0000");
+	
+	return cardsOnHand.container;
+}
+
 
 var mouseMoveHandler = function(mouseEvent) {
 	
