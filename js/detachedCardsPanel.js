@@ -1,8 +1,7 @@
 /*
-* EQUIPED CARDS PANEL OBJECT
-*/
-
-function EquipedCardsPanel(id) {
+ * DETACHED CARDS PANEL
+ */
+function DetachedCardsPanel(id) {
 	
 	/* PROPERTIES */
 	
@@ -22,4 +21,3 @@ function EquipedCardsPanel(id) {
 }
 
 EquipedCardsPanel.prototype = new Panel;
-
