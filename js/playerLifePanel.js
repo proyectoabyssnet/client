@@ -23,15 +23,17 @@ function PlayerLifePanel() {
 		
 		var centerX = this.container.width / 2;
 		var centerY = this.container.height / 2;
+		var paddingCorrection = 5;
 		var step = 0.5;
 		var width = this.container.width;
 		var height = this.container.height;
+		var radius = 45;
 		
 		
 		for(var lifeImageIndex = 0; lifeImageIndex < 5; lifeImageIndex++) {
 			
-			var positionX = centerX + Math.cos(step) * 90;
-			var positionY = centerY + Math.sin(step) * 90;
+			var positionX = centerX + Math.cos(step) * radius - paddingCorrection;
+			var positionY = centerY + Math.sin(step) * radius - paddingCorrection;
 			
 			var lifeImage = new CAAT.Actor()
 				.setBounds(positionX, positionY, 26, 24)
