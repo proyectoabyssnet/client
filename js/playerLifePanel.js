@@ -36,7 +36,8 @@ function PlayerLifePanel() {
 		// Add player image as an Actor
 		this.playerAvatar = new CAAT.Actor()
 			.setBounds(1, 1, playerAvatarPosition[0], playerAvatarPosition[1])
-			.setBackgroundImage(image);
+			.setBackgroundImage(image)
+			.setAlpha(0.50);
 		
 		this.container.addChild(this.playerAvatar);		
 	}

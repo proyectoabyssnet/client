@@ -76,7 +76,8 @@ function createCardsOnHandPanel(director) {
 	var cardsOnHand = new CardsOnHandPanel();
 	
 	cardsOnHand.container.setBounds(214, 500, 500, 200)
-		.setFillStyle("#ff0000")
+		.setFillStyle("#00ff00")
+		.setAlpha(0.50)
 		.setId("cards_on_hand_panel");
 	
 	return cardsOnHand.container;
@@ -108,7 +109,8 @@ function loadImages(director) {
 			{id:'button',					url:'img/buttons.png'},
 			{id:'stars',					url:'img/stars.png'},
 			{id:'player-image',				url:'img/player-image.jpg'},
-			{id:'life-panel-bg',			url:'img/lifePanelBg.png'}			
+			{id:'life-panel-bg',			url:'img/lifePanelBg.png'},
+			{id:'life',						url:'img/life.png'}				
 		],
 		function(counter,images) {
 			
