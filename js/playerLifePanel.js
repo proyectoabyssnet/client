@@ -29,11 +29,13 @@ function PlayerLifePanel() {
 	
 	this.setPlayerImage = function(director, imageName) {
 		
-		var image = director.getImage(imageName);
+		var image = director.getImage(imageName);		
+		var playerAvatarPosition = [this.container.x, this.container.y + 20];
+		console.log(playerAvatarPosition);
 		
 		// Add player image as an Actor
 		this.playerAvatar = new CAAT.Actor()
-			.setBounds(1, 1, 100, 100)
+			.setBounds(1, 1, playerAvatarPosition[0], playerAvatarPosition[1])
 			.setBackgroundImage(image);
 		
 		this.container.addChild(this.playerAvatar);		

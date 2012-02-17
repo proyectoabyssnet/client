@@ -66,6 +66,7 @@ function createPlayerLifePanel(director) {
 	
 	playerLifePanel.init(director, 10, 500, 207, 207);
 	playerLifePanel.setPlayerImage(director, "player-image");	
+	playerLifePanel.setId("player_life_panel");
 	
 	return playerLifePanel.container;
 }
@@ -74,8 +75,9 @@ function createCardsOnHandPanel(director) {
 
 	var cardsOnHand = new CardsOnHandPanel();
 	
-	cardsOnHand.container.setBounds(214, 500, 300, 500)
-		.setFillStyle("#ff0000");
+	cardsOnHand.container.setBounds(214, 500, 500, 200)
+		.setFillStyle("#ff0000")
+		.setId("cards_on_hand_panel");
 	
 	return cardsOnHand.container;
 }
@@ -87,7 +89,7 @@ var mouseMoveHandler = function(mouseEvent) {
 	var logInfo = document.getElementById('logInfo');
 	
 	if (logInfo) {
-		logInfo.innerHTML = actor.name;
+		logInfo.innerHTML = actor.id;
 	}	
 }
 

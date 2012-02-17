@@ -4,6 +4,8 @@
 function Panel(id) {
 
 	/* PROPERTIES */
+	this.title = "";
+	this.hasVisibleTitle = false;
 	
 	// Panel of 1 row x 1 column as default
 	this.rowsCount = 1;
@@ -14,5 +16,9 @@ function Panel(id) {
 		
 	/* METHODS */
 	
+	this.setTitleVisible = function(value) {
+		
+		this.hasVisibleTitle = value;
+	}
 }
 
