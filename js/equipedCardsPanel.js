@@ -26,7 +26,7 @@ function EquipedCardsPanel(id) {
 		
 		for(var slotIndex = 0; slotIndex < 5; slotIndex++) {
 			
-			var newSlot = new SlotElement();
+			var newSlot = new SlotElement(); // Can contain 4 cards
 			
 			newSlot.container.setBounds(
 					this.container.x,

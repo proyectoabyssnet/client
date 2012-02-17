@@ -64,11 +64,12 @@ function createPlayerLifePanel(director) {
 	// Player life panel
 	var playerLifePanel = new PlayerLifePanel();
 	
-	playerLifePanel.init(director, 10, 500, 207, 207);
+	playerLifePanel.init(director, 10, 600-207, 207, 207);
 	playerLifePanel.setPlayerImage(director, "player-image");	
 	playerLifePanel.initLifeImages(director);
-	playerLifePanel.container.setId("player_life_panel");
-	
+	playerLifePanel.container.setId("player_life_panel")
+		.enableDrag();
+		
 	return playerLifePanel.container;
 }
 
@@ -125,24 +126,6 @@ function loadImages(director) {
 	);	
 }
 
-
-function createButton(director) {
-	
-	var buttonSprite = new CAAT.SpriteImage()
-		.initialize(director.getImage('button'), 5, 1);
-	
-	var button = new CAAT.Actor().setAsButton(
-		
-		buttonSprite.getRef(), 0, 1, 3, 2, function(button) {
-			
-			console.log('button pressed');	
-		}
-	)
-	.setLocation(100,300);
-	
-	return button;
-}
-
 /* 
  * TO BE DELETED (ONLY FOR TESTING PURPOSES) 
  */
@@ -190,11 +173,7 @@ function testingCAAT(scene_1) {
 		}		
 		
 		// Add this container as a child of the previous created
-		_c1_container.addChild(_c1_container_child);
-				
-		// Create button
-		var button1 = createButton(director);
-		scene_1.addChild(button1);
+		_c1_container.addChild(_c1_container_child);			
 		
 		
 	}	
