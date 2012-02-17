@@ -76,7 +76,7 @@ function createCardsOnHandPanel(director) {
 
 	var cardsOnHand = new CardsOnHandPanel();
 	
-	cardsOnHand.container.setBounds(214, 500, 500, 200)
+	cardsOnHand.container.setBounds(230, 500, 500, 200)
 		.setFillStyle("#00ff00")
 		.setAlpha(0.50)
 		.setId("cards_on_hand_panel");

@@ -39,7 +39,7 @@ function PlayerLifePanel() {
 				
 			this.container.addChild(lifeImage);
 			
-			step += -0.5;
+			step += -0.4;
 		}
 	}
 	
