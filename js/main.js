@@ -104,11 +104,12 @@ function loadImages(director) {
 	// Preload images
 	new CAAT.ImagePreloader().loadImages(
 		[
-			{id:'card1',		url:'img/card1.jpg'},
-			{id:'card2',		url:'img/card2.jpg'},
-			{id:'life',			url:'img/life.png'},				
-			{id:'stars',		url:'img/stars.png'},
-			{id:'button',		url:'img/buttons.png'}
+			{id:'card-water-elements',		url:'img/card-water-elements.png'},
+			{id:'card-fire-elements',		url:'img/card-fire-elements.png'},
+			{id:'card-land-elements',		url:'img/card-land-elements.png'},				
+			{id:'card-air-elements',		url:'img/card-air-elements.png'},
+			{id:'button',					url:'img/buttons.png'},
+			{id:'stars',					url:'img/stars.png'}			
 		],
 		function(counter,images) {
 			

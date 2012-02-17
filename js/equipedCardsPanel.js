@@ -13,14 +13,13 @@ function EquipedCardsWidget(id) {
 	this.base(id);
 	
 	this.cards = []; // Equiped cards
+	
+	this.addCard = function(card) {
+		
+		this.cards.push(card.name);
+		this.container.addChild(card);
+	}
 }
 
 EquipedCardsWidget.prototype = new Panel;
-EquipedCardsWidget.prototype.addCard = function(card) {
-
-	this.cards.push(card.name); // Store in card list
-	this.container.addChild(card);
-}
-
-
 
