@@ -29,6 +29,7 @@ function initGame(director) {
 	
 	/* CREATE ALL GAME OBJECTS */
 
+	// Equiped cards panel
 	var equipedCards = new EquipedCardsPanel();
 	equipedCards.container.setBounds(10,10,100,400)
 		.setId("equiped_cards_panel")
@@ -38,9 +39,15 @@ function initGame(director) {
 	equipedCards.container.mouseMove = mouseMoveHandler;
 	equipedCards.initSlots(director);
 	
+	// Player life panel
+	var playerLifePanel = new PlayerLifePanel();
+	
+	playerLifePanel.init(10, 500, 100, 100);
+	playerLifePanel.setPlayerImage("player-image", director);
 		
+	// Add objects to scene
 	scene_1.addChild(equipedCards.container);
-
+	scene_1.addChild(playerLifePanel.container);
 
 	CAAT.loop(60);
 }
@@ -69,7 +76,9 @@ function loadImages(director) {
 			{id:'card-air-elements',		url:'img/card-air-elements.png'},
 			{id:'card-mascot-elements',		url:'img/card-mascot-elements.png'},
 			{id:'button',					url:'img/buttons.png'},
-			{id:'stars',					url:'img/stars.png'}			
+			{id:'stars',					url:'img/stars.png'},
+			{id:'player-image',				url:'img/player-image.png'},
+			
 		],
 		function(counter,images) {
 			
