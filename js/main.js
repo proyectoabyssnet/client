@@ -55,6 +55,7 @@ function createEquipedCardsPanel(director) {
 	equipedCards.container.name = "Equiped Cards Panel";
 	equipedCards.container.mouseMove = mouseMoveHandler;
 	equipedCards.initSlots(director);
+	equipedCards.setTitle("Equiped cards");
 	
 	return equipedCards.container;
 }
@@ -67,6 +68,7 @@ function createPlayerLifePanel(director) {
 	playerLifePanel.init(director, 10, 600-100, 100, 100);
 	playerLifePanel.setPlayerImage(director, "player-image");	
 	playerLifePanel.initLifeImages(director);
+	playerLifePanel.setTitle("Player life");
 	playerLifePanel.container.setId("player_life_panel")
 		.enableDrag();
 		

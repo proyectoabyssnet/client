@@ -29,7 +29,7 @@ function PlayerLifePanel() {
 		var height = this.container.height;
 		var radius = 45;
 		
-		
+		// Create five actors representing player lifes
 		for(var i = 0; i < 5; i++) {
 			
 			var positionX = centerX + Math.cos(step) * radius - paddingCorrection;
