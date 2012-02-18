@@ -14,12 +14,6 @@ function Card() {
 	this.bigImage = "";
 	
 	/* METHODS */
-
-	this.container.mouseMove = function(mouseEvent) {
-	
-		var actor = mouseEvent.source;
-		console.log(actor.id);
-	}
 	
 	this.use = function() {
 		

@@ -31,29 +31,28 @@ function initGame(director) {
 	
 	/* CREATE GAME UI OBJECTS */
 	var equipedCardsPanel = createEquipedCardsPanel(director);
+	scene_1.addChild(equipedCardsPanel.container);
+	
 	var playerLifePanel = createPlayerLifePanel(director);
+	scene_1.addChild(playerLifePanel.container);
+	
 	var cardsOnHandPanel = createCardsOnHandPanel(director);
+	scene_1.addChild(cardsOnHandPanel.container);
 	
 	// Create cards
 	var card1 = new Card();
-	card1.container.setId("card1_small");
+	card1.container.setId("card1_small").enableDrag();
 	card1.setImage(director, "card1-small");
-	card1.container.enableDrag();
+
 	
 	var card2 = new Card();
 	card2.container.setId("card2_small").enableDrag();
 	card2.setImage(director, "card2-small");
 	card2.container.enableDrag();
-	card2.container.setLocation(400,300);
-	//scene_1.addChild(card2.container);
 	
 	cardsOnHandPanel.addCard(card1);
 	cardsOnHandPanel.addCard(card2);
 	
-	// Add objects to scene
-	scene_1.addChild(equipedCardsPanel.container);
-	scene_1.addChild(playerLifePanel.container);
-	scene_1.addChild(cardsOnHandPanel.container);
 	
 	CAAT.loop(60);
 }
@@ -79,10 +78,10 @@ function createPlayerLifePanel(director) {
 	
 	// Player life panel
 	var playerLifePanel = new PlayerLifePanel();
-	var canvas = director.ctx;
+	var canvasWidth = director.canvas.width;
+	var canvasHeight = director.canvas.height;
 
-
-	playerLifePanel.init(director, 10, 600-100, 100, 100); // SHOULD BE CHANGED!!!
+	playerLifePanel.init(director, 10, canvasHeight-100, 100, 100); // SHOULD BE CHANGED!!!
 	playerLifePanel.setPlayerImage(director, "player-image");	
 	playerLifePanel.initLifeImages(director);
 	playerLifePanel.setTitle("Player life");

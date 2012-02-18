@@ -4,10 +4,12 @@
 function Panel(id) {
 
 	/* PROPERTIES */
+	
 	this.hasVisibleTitle = false;
 	this.titleFont = "14px sans-serif";
 	this.titleColor = "#fdff47";
 	
+	// Panel title
     this.title = new CAAT.TextActor().
         setFont(this.titleFont).
         setText("panel_title").
