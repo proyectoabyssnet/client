@@ -39,6 +39,12 @@ function initGame(director) {
 	card1.container.setId("card1_small");
 	card1.setImage(director, "card1-small");
 	
+	var card2 = new Card();
+	card2.container.setId("card2_small");
+	card2.setImage(director, "card2-small");
+	card2.container.setLocation(300,300).enableDrag();
+	scene_1.addChild(card2.container);
+	
 	cardsOnHandPanel.addCard(card1);
 	
 	// Add objects to scene
@@ -70,7 +76,8 @@ function createPlayerLifePanel(director) {
 	
 	// Player life panel
 	var playerLifePanel = new PlayerLifePanel();
-	
+	var ctx = document.getElementById("canvas1").getContext("2d");
+
 	playerLifePanel.init(director, 10, 600-100, 100, 100); // SHOULD BE CHANGED!!!
 	playerLifePanel.setPlayerImage(director, "player-image");	
 	playerLifePanel.initLifeImages(director);
