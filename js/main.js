@@ -36,17 +36,19 @@ function initGame(director) {
 	
 	// Create cards
 	var card1 = new Card();
-	card1.container.setId("card1_small");//.enableDrag();
+	card1.container.setId("card1_small");
 	card1.setImage(director, "card1-small");
+	card1.container.enableDrag();
 	
 	var card2 = new Card();
 	card2.container.setId("card2_small").enableDrag();
 	card2.setImage(director, "card2-small");
 	card2.container.enableDrag();
 	card2.container.setLocation(400,300);
-	scene_1.addChild(card2.container);
+	//scene_1.addChild(card2.container);
 	
 	cardsOnHandPanel.addCard(card1);
+	cardsOnHandPanel.addCard(card2);
 	
 	// Add objects to scene
 	scene_1.addChild(equipedCardsPanel.container);
@@ -94,7 +96,6 @@ function createCardsOnHandPanel(director) {
 	var cardsOnHand = new CardsOnHandPanel("cards_on_hand_panel");
 	
 	cardsOnHand.container.setBounds(230, 500, 500, 200)
-		.setFillStyle("#00ff00")
 		.setAlpha(0.50);
 	
 	cardsOnHand.setTitle("Cards on hand");
@@ -131,7 +132,9 @@ function loadImages(director) {
 			{id:'life-panel-bg',			url:'img/lifePanelBg.png'},
 			{id:'life',						url:'img/life.png'},
 			{id:'card1-small',				url:'img/card1-small.jpg'},
-			{id:'card2-small',				url:'img/card2-small.jpg'}									
+			{id:'card2-small',				url:'img/card2-small.jpg'},
+			{id:'card1-big',				url:'img/card1.jpg'},
+			{id:'card2-big',				url:'img/card2.jpg'}												
 		],
 		function(counter,images) {
 			

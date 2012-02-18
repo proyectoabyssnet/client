@@ -11,6 +11,7 @@ function Card() {
 	this.def = 0;
 	this.elementType = "";
 	this.container = new CAAT.Actor();
+	this.bigImage = "";
 	
 	/* METHODS */
 
@@ -28,6 +29,10 @@ function Card() {
 	this.setImage = function(director, imageName) {
 		
 		var image = director.getImage(imageName);
+		
+		// Get image name to show the full detailed image
+		// p.e.: card-small.jpg -> card.jpg is the detailed image		
+		this.bigImage = imageName.substring(0, imageName.indexOf("-"));
 		
 		this.container.setBackgroundImage(image)
 			.setSize(image.width, image.height);
