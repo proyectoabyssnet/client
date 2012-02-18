@@ -34,10 +34,18 @@ function initGame(director) {
 	var playerLifePanel = createPlayerLifePanel(director);
 	var cardsOnHandPanel = createCardsOnHandPanel(director);
 	
+	// Create cards
+	var card1 = new Card();
+	card1.container.setId("card1_small");
+	card1.setImage(director, "card1-small");
+	card1.container.enableDrag();
+	
+	cardsOnHandPanel.addCard(card1);
+	
 	// Add objects to scene
-	scene_1.addChild(equipedCardsPanel);
-	scene_1.addChild(playerLifePanel);
-	scene_1.addChild(cardsOnHandPanel);
+	scene_1.addChild(equipedCardsPanel.container);
+	scene_1.addChild(playerLifePanel.container);
+	scene_1.addChild(cardsOnHandPanel.container);
 	
 	CAAT.loop(60);
 }
@@ -57,7 +65,7 @@ function createEquipedCardsPanel(director) {
 	equipedCards.initSlots(director);
 	equipedCards.setTitle("Equiped cards");
 	
-	return equipedCards.container;
+	return equipedCards;
 }
 
 function createPlayerLifePanel(director) {
@@ -65,28 +73,27 @@ function createPlayerLifePanel(director) {
 	// Player life panel
 	var playerLifePanel = new PlayerLifePanel();
 	
-	playerLifePanel.init(director, 10, 600-100, 100, 100);
+	playerLifePanel.init(director, 10, 600-100, 100, 100); // SHOULD BE CHANGED!!!
 	playerLifePanel.setPlayerImage(director, "player-image");	
 	playerLifePanel.initLifeImages(director);
 	playerLifePanel.setTitle("Player life");
 	playerLifePanel.container.setId("player_life_panel")
 		.enableDrag();
 		
-	return playerLifePanel.container;
+	return playerLifePanel;
 }
 
 function createCardsOnHandPanel(director) {
 
-	var cardsOnHand = new CardsOnHandPanel();
+	var cardsOnHand = new CardsOnHandPanel("cards_on_hand_panel");
 	
 	cardsOnHand.container.setBounds(230, 500, 500, 200)
 		.setFillStyle("#00ff00")
-		.setAlpha(0.50)
-		.setId("cards_on_hand_panel");
+		.setAlpha(0.50);
 	
 	cardsOnHand.setTitle("Cards on hand");
-	
-	return cardsOnHand.container;
+		
+	return cardsOnHand;
 }
 
 
@@ -116,7 +123,9 @@ function loadImages(director) {
 			{id:'stars',					url:'img/stars.png'},
 			{id:'player-image',				url:'img/player-image.jpg'},
 			{id:'life-panel-bg',			url:'img/lifePanelBg.png'},
-			{id:'life',						url:'img/life.png'}				
+			{id:'life',						url:'img/life.png'},
+			{id:'card1-small',				url:'img/card1-small.jpg'},
+			{id:'card2-small',				url:'img/card2-small.jpg'}									
 		],
 		function(counter,images) {
 			

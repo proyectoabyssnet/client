@@ -2,7 +2,7 @@
 * CARD
 */
 
-function Card(name) {
+function Card() {
 
 	/* PROPERTIES */
 	
@@ -14,7 +14,7 @@ function Card(name) {
 	
 	this.use = function() {
 		
-		console.log("Using card " + this.name);
+		console.log("Using card " + this.container.id);
 	}
 	
 	this.setImage = function(director, imageName) {
@@ -23,6 +23,5 @@ function Card(name) {
 				director.getImage(imageName)
 		);
 	}
-    
-	
+    	
 }

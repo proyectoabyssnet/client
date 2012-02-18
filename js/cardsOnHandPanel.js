@@ -17,16 +17,17 @@ function CardsOnHandPanel(id) {
 	
 	this.addCard = function(card) {
 		
-		this.cardsOnHand.push(card.name);
-		this.container.addChild(card);
+		this.cardsOnHand.push(card.container.id);
+		console.log("There are " + this.cardsOnHand + " on hand");
+		this.container.addChild(card.container);
 	}
 	
-	this.detachCard = function(cardIndex) {
+	this.detachCard = function(cardId) {
 		
 		
 	}
 	
-	this.equipCard = function(cardIndex) {
+	this.equipCard = function(cardId) {
 		
 		
 	}
