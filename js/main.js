@@ -60,7 +60,6 @@ function createEquipedCardsPanel(director) {
 		.setId("equiped_cards_panel");
 	
 	equipedCards.container.name = "Equiped Cards Panel";
-	equipedCards.container.mouseMove = mouseMoveHandler;
 	equipedCards.initSlots(director);
 	equipedCards.setTitle("Equiped cards");
 	

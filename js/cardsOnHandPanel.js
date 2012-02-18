@@ -18,7 +18,7 @@ function CardsOnHandPanel(id) {
 	this.addCard = function(card) {
 		
 		this.cardsOnHand.push(card.container.id);
-		card.container.enableDrag();
+		//card.container.enableDrag();
 		this.container.addChild(card.container);
 	}
 	

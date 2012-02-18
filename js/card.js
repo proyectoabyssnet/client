@@ -8,6 +8,7 @@ function Card() {
 	
 	this.atk = 0;
 	this.def = 0;
+	this.elementType = "";
 	this.container = new CAAT.Actor();
 	
 	/* METHODS */
@@ -22,6 +23,12 @@ function Card() {
 		this.container.setBackgroundImage(
 				director.getImage(imageName)
 		);
+	}
+	
+	// Fire, land, air, water,...
+	this.setCardType = function(elementType) {
+		
+		this.elementType = elementType;
 	}
     	
 }
