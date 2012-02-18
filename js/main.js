@@ -36,8 +36,15 @@ function initGame(director) {
 	
 	// Create cards
 	var card1 = new Card();
-	card1.container.setId("card1_small").enableDrag();
+	card1.container.setId("card1_small");//.enableDrag();
 	card1.setImage(director, "card1-small");
+	
+	var card2 = new Card();
+	card2.container.setId("card2_small").enableDrag();
+	card2.setImage(director, "card2-small");
+	card2.container.enableDrag();
+	card2.container.setLocation(400,300);
+	scene_1.addChild(card2.container);
 	
 	cardsOnHandPanel.addCard(card1);
 	
@@ -70,7 +77,8 @@ function createPlayerLifePanel(director) {
 	
 	// Player life panel
 	var playerLifePanel = new PlayerLifePanel();
-	var ctx = document.getElementById("canvas1").getContext("2d");
+	var canvas = director.ctx;
+
 
 	playerLifePanel.init(director, 10, 600-100, 100, 100); // SHOULD BE CHANGED!!!
 	playerLifePanel.setPlayerImage(director, "player-image");	
@@ -94,7 +102,7 @@ function createCardsOnHandPanel(director) {
 	return cardsOnHand;
 }
 
-
+/*
 var mouseMoveHandler = function(mouseEvent) {
 	
 	var actor = mouseEvent.source;	
@@ -104,7 +112,7 @@ var mouseMoveHandler = function(mouseEvent) {
 		logInfo.innerHTML = actor.id;
 	}	
 }
-
+*/
 
 /* PRELOAD IMAGES */
 function loadImages(director) {
