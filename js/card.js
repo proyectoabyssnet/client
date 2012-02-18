@@ -20,9 +20,10 @@ function Card() {
 	
 	this.setImage = function(director, imageName) {
 		
-		this.container.setBackgroundImage(
-				director.getImage(imageName)
-		);
+		var image = director.getImage(imageName);
+		
+		this.container.setBackgroundImage(image)
+			.setSize(image.width, image.height);
 	}
 	
 	// Fire, land, air, water,...

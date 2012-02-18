@@ -36,14 +36,8 @@ function initGame(director) {
 	
 	// Create cards
 	var card1 = new Card();
-	card1.container.setId("card1_small");
+	card1.container.setId("card1_small").enableDrag();
 	card1.setImage(director, "card1-small");
-	
-	var card2 = new Card();
-	card2.container.setId("card2_small");
-	card2.setImage(director, "card2-small");
-	card2.container.setLocation(300,300).enableDrag();
-	scene_1.addChild(card2.container);
 	
 	cardsOnHandPanel.addCard(card1);
 	
