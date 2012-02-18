@@ -38,7 +38,6 @@ function initGame(director) {
 	var card1 = new Card();
 	card1.container.setId("card1_small");
 	card1.setImage(director, "card1-small");
-	card1.container.enableDrag();
 	
 	cardsOnHandPanel.addCard(card1);
 	
@@ -77,8 +76,7 @@ function createPlayerLifePanel(director) {
 	playerLifePanel.setPlayerImage(director, "player-image");	
 	playerLifePanel.initLifeImages(director);
 	playerLifePanel.setTitle("Player life");
-	playerLifePanel.container.setId("player_life_panel")
-		.enableDrag();
+	playerLifePanel.container.setId("player_life_panel");
 		
 	return playerLifePanel;
 }
