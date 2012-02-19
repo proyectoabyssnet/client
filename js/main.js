@@ -113,10 +113,12 @@ function createAtkDefPanel(director) {
 	
 	var atkDefPanel = new AtkDefPanel("atk_def_panel");
 	
-	atkDefPanel.container.setLocation(200, director.canvas.height - 100)
+	atkDefPanel.setTitle("Atk / Def");
+	atkDefPanel.container.setLocation(130, director.canvas.height - 100)
 		.setSize(100,200)
 		.setAlpha(0.5);
 		
+	
 	return atkDefPanel;
 }
 

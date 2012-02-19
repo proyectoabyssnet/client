@@ -8,6 +8,7 @@ function Panel(id) {
 	this.hasVisibleTitle = false;
 	this.titleFont = "14px sans-serif";
 	this.titleColor = "#fdff47";
+	this.defaultBackgroundcolor = "#967551";
 	
 	// Panel title
     this.title = new CAAT.TextActor().
@@ -23,7 +24,7 @@ function Panel(id) {
 	
 	// Panel contains other objects
 	this.container = new CAAT.ActorContainer()
-		.setFillStyle("#967551");
+		.setFillStyle(this.defaultBackgroundcolor);
 	
 	/* METHODS */
 	
