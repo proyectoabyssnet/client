@@ -12,7 +12,16 @@ function EquipedCardsPanel(id) {
 	// Call constructor with parameters
 	this.base = Panel;
 	this.base(id);
-	this.slots = []; // Slots containing cards
+	
+	// Slots containing cards
+	this.slots = new Array(
+				[0,0], // 
+				[0,0],
+				[0,0],
+				[0,0],
+				[0,0]
+	); 
+	
 	this.slotBackgroundImages = ["card-mascot-elements",
 	                             "card-air-elements",
 	                             "card-water-elements",
@@ -31,7 +40,7 @@ function EquipedCardsPanel(id) {
 		
 		for(var slotIndex = 0; slotIndex < 5; slotIndex++) {
 			
-			var newSlot = new Slot(); // Can contain 4 cards
+			var newSlot = new Slot(2,2); // 2 cells, max. of 2 cards per cell
 			
 			newSlot.container.setBounds(
 					this.container.x,

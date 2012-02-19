@@ -22,7 +22,8 @@ function Panel(id) {
 	this.columnsCount = 1;
 	
 	// Panel contains other objects
-	this.container = new CAAT.ActorContainer();
+	this.container = new CAAT.ActorContainer()
+		.setFillStyle("#967551");
 	
 	/* METHODS */
 	

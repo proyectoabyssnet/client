@@ -39,6 +39,10 @@ function initGame(director) {
 	var cardsOnHandPanel = createCardsOnHandPanel(director);
 	scene_1.addChild(cardsOnHandPanel.container);
 	
+	var atkDefPanel = createAtkDefPanel(director);
+	scene_1.addChild(atkDefPanel.container);
+	
+	
 	// Create cards
 	var card1 = new Card();
 	card1.container.setId("card1_small").enableDrag();
@@ -64,7 +68,9 @@ function createEquipedCardsPanel(director) {
 	
 	// Equiped cards panel
 	var equipedCards = new EquipedCardsPanel();
-	equipedCards.container.setBounds(10,10,100,400)
+	equipedCards.container.setLocation(10,10)
+		.setSize(100,400)
+		.setAlpha(0.5)
 		.setId("equiped_cards_panel");
 	
 	equipedCards.container.name = "Equiped Cards Panel";
@@ -81,7 +87,7 @@ function createPlayerLifePanel(director) {
 	var canvasWidth = director.canvas.width;
 	var canvasHeight = director.canvas.height;
 
-	playerLifePanel.init(director, 10, canvasHeight-100, 100, 100); // SHOULD BE CHANGED!!!
+	playerLifePanel.init(director, 10, canvasHeight-100, 100, 100); 
 	playerLifePanel.setPlayerImage(director, "player-image");	
 	playerLifePanel.initLifeImages(director);
 	playerLifePanel.setTitle("Player life");
@@ -92,27 +98,27 @@ function createPlayerLifePanel(director) {
 
 function createCardsOnHandPanel(director) {
 
-	var cardsOnHand = new CardsOnHandPanel("cards_on_hand_panel");
+	var cardsOnHandPanel = new CardsOnHandPanel("cards_on_hand_panel");
 	
-	cardsOnHand.container.setBounds(230, 500, 500, 200)
-		.setAlpha(0.50);
+	cardsOnHandPanel.container.setLocation(230, 500)
+		.setSize(500, 200)
+		.setAlpha(0.5);
 	
-	cardsOnHand.setTitle("Cards on hand");
+	cardsOnHandPanel.setTitle("Cards on hand");
 		
-	return cardsOnHand;
+	return cardsOnHandPanel;
 }
 
-/*
-var mouseMoveHandler = function(mouseEvent) {
+function createAtkDefPanel(director) {
 	
-	var actor = mouseEvent.source;	
-	var logInfo = document.getElementById('logInfo');
+	var atkDefPanel = new AtkDefPanel("atk_def_panel");
 	
-	if (logInfo) {
-		logInfo.innerHTML = actor.id;
-	}	
+	atkDefPanel.container.setLocation(200, director.canvas.height - 100)
+		.setSize(100,200)
+		.setAlpha(0.5);
+		
+	return atkDefPanel;
 }
-*/
 
 /* PRELOAD IMAGES */
 function loadImages(director) {
@@ -130,6 +136,7 @@ function loadImages(director) {
 			{id:'player-image',				url:'img/player-image.jpg'},
 			{id:'life-panel-bg',			url:'img/lifePanelBg.png'},
 			{id:'life',						url:'img/life.png'},
+			{id:'slot-bg',					url:'img/slot-bg.jpg'},
 			{id:'card1-small',				url:'img/card1-small.jpg'},
 			{id:'card2-small',				url:'img/card2-small.jpg'},
 			{id:'card1-big',				url:'img/card1.jpg'},
@@ -147,55 +154,3 @@ function loadImages(director) {
 	);	
 }
 
-/* 
- * TO BE DELETED (ONLY FOR TESTING PURPOSES) 
- */
-function testingCAAT(scene_1) {
-	
-	// Create six squares (actors) 
-	for (var i=0; i < 6; i++) {
-		
-		// 80x80 rectangles
-		var s = 80;
-		
-		// Containers can contain other actors
-		var _c1_container = new CAAT.ActorContainer().
-			setBounds(i*100+10, 20, s, s).
-			setRotation( Math.PI*2*Math.random()).
-			setFillStyle('#ff0').
-			enableDrag();
-					
-		_c1_container.name = 'rectangle' + i;
-		_c1_container.mouseMove = mouseMoveHandler;
-		
-		scene_1.addChild(_c1_container);
-		
-		// White square acting as a container
-		var _c1_container_child = new CAAT.Actor()
-		        .setBounds(s/2,s/2,s/4,s/4)
-		        .setRotation( Math.PI*2*Math.random() )
-		        .setFillStyle('#00ff00')
-		        .enableDrag();			           
-
-		_c1_container_child.mouseDblClick = function( mouseEvent ) {
-			this.setScale(1.2, 1.2);
-		}
-		
-		// FOR TESTING BACKGROUND IMAGES ***
-		if (i % 2 == 0) {
-		
-			var lifeImage = new CAAT.SpriteImage()
-				.initialize(director.getImage('stars'), 1, 6);
-			
-			_c1_container_child.setBackgroundImage(
-				lifeImage.getRef(), 
-				true
-			).setSpriteIndex(3);				
-		}		
-		
-		// Add this container as a child of the previous created
-		_c1_container.addChild(_c1_container_child);			
-		
-		
-	}	
-}
