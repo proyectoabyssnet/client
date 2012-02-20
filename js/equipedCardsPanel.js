@@ -58,19 +58,20 @@ function EquipedCardsPanel(id) {
 						);
 			
 			slotElement.setId("slot_element_" + element);
-
-			// Create cells containing cards
+			
+			// Create 2 cells at nextSlotY position
 			var cells = this.createCells(2, nextSlotY);
-						
+			
 			// Add cells to slot element
-			slotElement.addChild(cells[0].container); // Left cell
-			slotElement.addChild(cells[1].container); // Right cell
+//			slotElement.addChild(cells[0].container); // Left cell
+//			slotElement.addChild(cells[1].container); // Right cell
+//			console.log(slotElement.y);
 			
 			// Add slot element to panel
 			this.addSlotElement(slotElement);							
 			
-			// Calculate next slot Y position
-			nextSlotY += 88 + this.SLOT_PADDING;
+			// Calculate Y position for next slot element
+			nextSlotY += defaultImageHeight + this.SLOT_PADDING;
 		}
 	}
 	
@@ -81,7 +82,7 @@ function EquipedCardsPanel(id) {
 	}
 	
 	this.createCells = function(numberOfCells, slotElementYPosition) {
-	
+				
 		// Array containing cells
 		var cells = [];
 		
