@@ -74,7 +74,7 @@ function createEquipedCardsPanel(director) {
 		.setId("equiped_cards_panel");
 	
 	equipedCards.container.name = "Equiped Cards Panel";
-	equipedCards.initSlots(director);
+	equipedCards.initElementSlots(director);
 	equipedCards.setTitle("Equiped cards");
 	
 	return equipedCards;

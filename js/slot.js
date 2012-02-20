@@ -1,16 +1,11 @@
 /*
-* SLOT ELEMENT
+* SLOT TO CONTAIN CARD/s
 */
-function Slot(numberOfCells, numberOfCardsPerCell) {
+function Slot(numberOfCardsPerCell) {
 	
 	/* PROPERTIES */
 	
-	this.numberOfCells = numberOfCells; // Number of cells containing cards
 	this.maxNumberOfCardsPerCell = numberOfCardsPerCell;
-	
-	// Cell container 1 or 2 cards (maybe more)	
-	this.cells = new Array(numberOfCells); 
-	
 	this.container = new CAAT.ActorContainer();
 	
 	/* METHODS */
@@ -19,11 +14,6 @@ function Slot(numberOfCells, numberOfCardsPerCell) {
 		
 		this.container.setBounds(x,y,width,height);
 
-	}
-	
-	this.addCard = function(card) {
-		
-		this.cells.push(card);
 	}
 	
 }
