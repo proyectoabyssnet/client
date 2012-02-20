@@ -7,19 +7,23 @@ function Slot(numberOfCells, numberOfCardsPerCell) {
 	
 	this.numberOfCells = numberOfCells; // Number of cells containing cards
 	this.maxNumberOfCardsPerCell = numberOfCardsPerCell;
-	this.cards = [];
-	this.container = new CAAT.Actor();
+	
+	// Cell container 1 or 2 cards (maybe more)	
+	this.cells = new Array(numberOfCells); 
+	
+	this.container = new CAAT.ActorContainer();
 	
 	/* METHODS */
 	
 	this.init = function(x,y,width,height) {
 		
 		this.container.setBounds(x,y,width,height);
+
 	}
 	
 	this.addCard = function(card) {
 		
-		this.cards.push(card.id);
+		this.cells.push(card);
 	}
 	
 }

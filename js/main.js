@@ -17,7 +17,7 @@ function init() {
 	var director = new CAAT.Director()
 		.initialize(800,600, canvasObject)
 		.setClear(false);
-
+	
 	// Load resources (images,...)
 	loadImages(director);
 }
@@ -42,7 +42,7 @@ function initGame(director) {
 	var atkDefPanel = createAtkDefPanel(director);
 	scene_1.addChild(atkDefPanel.container);
 	
-	
+		
 	// Create cards
 	var card1 = new Card();
 	card1.container.setId("card1_small").enableDrag();
@@ -102,7 +102,7 @@ function createCardsOnHandPanel(director) {
 	
 	cardsOnHandPanel.container.setLocation(230, 500)
 		.setSize(500, 200)
-		.setAlpha(0.5);
+		.setAlpha(0.50);
 	
 	cardsOnHandPanel.setTitle("Cards on hand");
 		
@@ -116,7 +116,7 @@ function createAtkDefPanel(director) {
 	atkDefPanel.setTitle("Atk / Def");
 	atkDefPanel.container.setLocation(130, director.canvas.height - 100)
 		.setSize(100,200)
-		.setAlpha(0.5);
+		.setAlpha(0.50);
 		
 	
 	return atkDefPanel;

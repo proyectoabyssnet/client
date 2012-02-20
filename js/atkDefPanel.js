@@ -31,6 +31,7 @@ function AtkDefPanel(id) {
 	
 		this.container.addChild(this.atkLabel);
 		this.container.addChild(this.defLabel);
+		
 	}
 	
 	// Draw images depending on value
