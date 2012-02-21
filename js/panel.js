@@ -11,12 +11,12 @@ function Panel(id) {
 	this.defaultBackgroundcolor = "#967551";
 	
 	// Panel title
-    this.title = new CAAT.TextActor().
-        setFont(this.titleFont).
-        setText("panel_title").
-        setTextAlign("left").
-        setFillStyle(this.titleColor).
-        setTextBaseline("bottom");
+    this.title = new CAAT.TextActor()
+        .setFont(this.titleFont)
+        .setText("panel_title")
+        .setTextAlign("left")
+        .setFillStyle(this.titleColor)
+        .setTextBaseline("bottom");
             
 	
 	// Panel contains other objects
@@ -28,7 +28,7 @@ function Panel(id) {
 	this.setTitle = function(title) {
 		
 		this.title.setText(title);
-		this.title.setLocation(1,1);
+		this.title.setLocation(1,1); // Top left position
 		this.container.addChild(this.title);
 	}
 }

@@ -68,6 +68,7 @@ function createEquipedCardsPanel(director) {
 	
 	// Equiped cards panel
 	var equipedCards = new EquipedCardsPanel();
+	equipedCards.setTitle("Equiped cards");	
 	equipedCards.container.setLocation(10,10)
 		.setSize(100,400)
 		.setAlpha(0.5)
@@ -75,7 +76,6 @@ function createEquipedCardsPanel(director) {
 	
 	equipedCards.container.name = "Equiped Cards Panel";
 	equipedCards.initElementSlots(director);
-	equipedCards.setTitle("Equiped cards");
 	
 	return equipedCards;
 }
@@ -83,7 +83,7 @@ function createEquipedCardsPanel(director) {
 function createPlayerLifePanel(director) {
 	
 	// Player life panel
-	var playerLifePanel = new PlayerLifePanel();
+	var playerLifePanel = new PlayerLifePanel("player_life_panel");
 	var canvasWidth = director.canvas.width;
 	var canvasHeight = director.canvas.height;
 

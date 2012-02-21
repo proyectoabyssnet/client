@@ -43,7 +43,7 @@ function EquipedCardsPanel(id) {
 		for(var element = 0; element < this.MAX_SLOT_ELEMENTS; element++) {
 						
 			var maxNumberOfCards = 2; // Cards per slot
-	
+			var slotElementBackground = this.slotBackgroundImages[element];
 			var slotElement = new CAAT.ActorContainer();
 			
 			slotElement.setBounds(
@@ -54,7 +54,7 @@ function EquipedCardsPanel(id) {
 					)
 				.setFillStyle("#fbff87")
 				.setBackgroundImage(
-						director.getImage(this.slotBackgroundImages[element])
+						director.getImage(slotElementBackground);
 						);
 			
 			slotElement.setId("slot_element_" + element);
@@ -63,9 +63,9 @@ function EquipedCardsPanel(id) {
 			var cells = this.createCells(2, nextSlotY);
 			
 			// Add cells to slot element
-//			slotElement.addChild(cells[0].container); // Left cell
-//			slotElement.addChild(cells[1].container); // Right cell
-//			console.log(slotElement.y);
+			slotElement.addChild(cells[0].container); // Left cell
+			slotElement.addChild(cells[1].container); // Right cell
+			console.log("slot element y: " + slotElement.y);
 			
 			// Add slot element to panel
 			this.addSlotElement(slotElement);							
@@ -76,9 +76,9 @@ function EquipedCardsPanel(id) {
 	}
 	
 	// Add slot element to panel
-	this.addSlotElement = function(slot) {
+	this.addSlotElement = function(slotElement) {
 		
-		this.container.addChild(slot);		
+		this.container.addChild(slotElement);		
 	}
 	
 	this.createCells = function(numberOfCells, slotElementYPosition) {
