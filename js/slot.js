@@ -1,19 +1,29 @@
 /*
 * SLOT TO CONTAIN CARD/s
 */
-function Slot(numberOfCardsPerCell) {
+function Slot(numberOfCards) {
 	
 	/* PROPERTIES */
 	
-	this.maxNumberOfCardsPerCell = numberOfCardsPerCell;
+	this.isFree = true;
+	this.cellAlpha = 0.5;
+	this.MAX_CARDS = numberOfCards;
+	this.cards = new Array(numberOfCards);
+
 	this.container = new CAAT.ActorContainer();
 	
 	/* METHODS */
 	
-	this.init = function(x,y,width,height) {
+	this.addCard = function(card) {
 		
-		this.container.setBounds(x,y,width,height);
-
+		if (this.cards.length < this.MAX_CARDS) {
+			
+			this.cards.push(card);
+			
+		} else {
+		
+			this.isFree = false;
+		}
 	}
 	
 }

@@ -9,7 +9,6 @@ function EquipedCardsPanel(id) {
 	this.MAX_SLOT_ELEMENTS = 5; // Number of elements (land, air,...)
 	this.CELL_PADDING = 2; // Separating between cell and borders
 	this.CELL_LEFT_MARGIN = 10; // Horizontal separation
-	this.cellAlpha = 0.5;
 	this.SLOT_PADDING = 2; // Vertical separation between slots
 	this.slotElementSize = [0,0]; // width, height
 	
@@ -66,6 +65,7 @@ function EquipedCardsPanel(id) {
 			// Calculate Y position for next slot element
 			nextSlotY += this.slotElementSize[1] + this.SLOT_PADDING;
 		}
+		
 	}
 	
 	// Add slot element to panel
