@@ -41,21 +41,19 @@ function initGame(director) {
 	
 	var atkDefPanel = createAtkDefPanel(director);
 	scene_1.addChild(atkDefPanel.container);
-	
-		
+			
 	// Create cards
 	var card1 = new Card();
 	card1.container.setId("card1_small").enableDrag();
 	card1.setImage(director, "card1-small");
-
 	
 	var card2 = new Card();
 	card2.container.setId("card2_small").enableDrag();
 	card2.setImage(director, "card2-small");
 	card2.container.enableDrag();
 
-	cardsOnHandPanel.addCard(card1);
-	cardsOnHandPanel.addCard(card2);
+	//cardsOnHandPanel.addCard(card1);
+	//cardsOnHandPanel.addCard(card2);
 	
 	CAAT.loop(60);
 }
@@ -104,6 +102,7 @@ function createCardsOnHandPanel(director) {
 		.setAlpha(0.50);
 	
 	cardsOnHandPanel.setTitle("Cards on hand");
+	cardsOnHandPanel.initCells(director);
 		
 	return cardsOnHandPanel;
 }

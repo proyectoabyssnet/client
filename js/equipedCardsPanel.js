@@ -86,9 +86,9 @@ function EquipedCardsPanel(id) {
 		var nextCellXPosition = xPosition + this.SLOT_PADDING;
 		yPosition += this.SLOT_PADDING;
 		
-		console.log("left cell " + nextCellXPosition);
+
 		for(var slotCell = 0; slotCell < 2; slotCell++) {
-			console.log(xPosition + "," + yPosition);
+
 			var cell = new Slot(2); // 2 cards per cells
 			
 			cell.container.setBounds(
@@ -103,7 +103,6 @@ function EquipedCardsPanel(id) {
 			// to the right side
 			nextCellXPosition += 50 + this.CELL_PADDING + this.CELL_LEFT_MARGIN;
 
-			console.log("right cell: " + nextCellXPosition);
 			cells.push(cell);
 		}	
 		

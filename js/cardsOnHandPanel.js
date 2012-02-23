@@ -6,6 +6,8 @@ function CardsOnHandPanel(id) {
 	/* PROPERTIES */
 	
 	this.MAX_CARDS = 10;
+	this.CELL_PADDING = 5;
+	this.CELL_LEFT_MARGIN = 10;
 	
 	// Call constructor with parameters
 	this.base = Panel;
@@ -16,24 +18,27 @@ function CardsOnHandPanel(id) {
 	this.container = new CAAT.ActorContainer()
 		.setFillStyle("#967551"); // Brown color by default
 	
-	// Init slots to store each card
-	this.initSlots = function(director) {
+	// Init cells to store each card
+	this.initCells = function(director) {
 		
 		var slotBackgroundImage = director.getImage("slot-bg");
-		var nextSlotXPosition = 1;
+		var nextCellXPosition = 1;
 		
-		for(var i=0; i < 10; i++) {
+		for(var i=0; i < 8; i++) {
 			
-			// Create 1 slot to contain 1 card
-			var newSlot = new Slot(1,1);
+			// Create 1 cell to contain 1 card
+			var cell = new Slot(1);
 			
-			newSlot.container.setSize(50,70)
-				.setLocation(nextSlotXPosition,1)
-				.setBackgroundImage();
+			cell.container.setSize(50,70)
+				.setLocation(nextCellXPosition, 1)
+				.setFillStyle("#aabb00");
 				
-			nextSlotXPosition += 1; // Calculate next slot position
+			// Calculate next cell position				
+			nextCellXPosition += cell.container.width +
+				this.CELL_LEFT_MARGIN + 
+				this.CELL_PADDING; 
 			
-			this.container.addChild(newSlot.container);
+			this.container.addChild(cell.container);
 		}
 	}
 	
