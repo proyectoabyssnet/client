@@ -7,7 +7,7 @@ function CardsOnHandPanel(id) {
 	
 	this.MAX_CARDS = 10;
 	this.CELL_PADDING = 5;
-	this.CELL_LEFT_MARGIN = 10;
+	this.CELL_LEFT_MARGIN = 5;
 	
 	// Call constructor with parameters
 	this.base = Panel;
@@ -30,7 +30,11 @@ function CardsOnHandPanel(id) {
 			var cell = new Slot(1);
 			
 			cell.container.setSize(50,70)
-				.setLocation(nextCellXPosition, 1)
+				.setLocation(
+					nextCellXPosition + 
+					this.CELL_PADDING, 1 + 
+					this.CELL_PADDING
+					)
 				.setFillStyle("#aabb00");
 				
 			// Calculate next cell position				
