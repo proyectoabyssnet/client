@@ -53,10 +53,9 @@ function initGame(director) {
 	card2.container.setId("card2_small").enableDrag();
 	card2.setImage(director, "card2-small");
 	card2.container.enableDrag();
-	
+
 	cardsOnHandPanel.addCard(card1);
 	cardsOnHandPanel.addCard(card2);
-	
 	
 	CAAT.loop(60);
 }

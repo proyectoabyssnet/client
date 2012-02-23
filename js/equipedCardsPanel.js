@@ -9,20 +9,11 @@ function EquipedCardsPanel(id) {
 	this.MAX_SLOT_ELEMENTS = 5; // Number of elements (land, air,...)
 	this.CELL_PADDING = 2; // Horizontal separation between cards (cells)
 	this.SLOT_PADDING = 2; // Vertical separation between slots
+	this.slotElementSize = [0,0]; // width, height
 	
 	// Call constructor with parameters
 	this.base = Panel;
 	this.base(id);
-	this.lastInsertedIndex = 0;
-	
-	// Slots containing cards
-	this.slots = new Array(
-				[0,0], 
-				[0,0],
-				[0,0],
-				[0,0],
-				[0,0]
-	); // 0 = free, 1 = full
 	
 	this.slotBackgroundImages = ["card-mascot-elements",
 	                             "card-air-elements",
@@ -37,73 +28,79 @@ function EquipedCardsPanel(id) {
 		
 		// Get first image to read it's size
 		var image = director.getImage(this.slotBackgroundImages[0]);
-		var defaultImageWidth = image.width;
-		var defaultImageHeight = image.height;
+		this.slotElementSize[0] = image.width;
+		this.slotElementSize[1] = image.height;
 		
 		for(var element = 0; element < this.MAX_SLOT_ELEMENTS; element++) {
 						
 			var maxNumberOfCards = 2; // Cards per slot
 			var slotElementBackground = this.slotBackgroundImages[element];
 			var slotElement = new CAAT.ActorContainer();
-			
+
 			slotElement.setBounds(
 					this.container.x,
 					nextSlotY,
-					defaultImageWidth,
-					defaultImageHeight
+					this.slotElementSize[0], // width
+					this.slotElementSize[1] // height
 					)
 				.setFillStyle("#fbff87")
 				.setBackgroundImage(
-						director.getImage(slotElementBackground);
+						director.getImage(slotElementBackground)
 						);
 			
 			slotElement.setId("slot_element_" + element);
 			
 			// Create 2 cells at nextSlotY position
-			var cells = this.createCells(2, nextSlotY);
+			var cells = this.createCells(2);
 			
 			// Add cells to slot element
 			slotElement.addChild(cells[0].container); // Left cell
-			slotElement.addChild(cells[1].container); // Right cell
-			console.log("slot element y: " + slotElement.y);
+			slotElement.addChild(cells[1].container); // Right cell		
+
 			
 			// Add slot element to panel
 			this.addSlotElement(slotElement);							
 			
 			// Calculate Y position for next slot element
-			nextSlotY += defaultImageHeight + this.SLOT_PADDING;
+			nextSlotY += this.slotElementSize[1] + this.SLOT_PADDING;
 		}
 	}
 	
 	// Add slot element to panel
 	this.addSlotElement = function(slotElement) {
 		
-		this.container.addChild(slotElement);		
+		this.container.addChild(slotElement);	
 	}
 	
-	this.createCells = function(numberOfCells, slotElementYPosition) {
+	this.createCells = function(numberOfCells) {
 				
 		// Array containing cells
 		var cells = [];
+		var xPosition = 0;
+		var yPosition = 0;
 		
 		// Create slots containing cards inside each slot element
 		// p.e.: land element has 2 slots containing 2 cards each slot
-		var nextCellXPosition = 1;
+		var nextCellXPosition = xPosition + this.SLOT_PADDING;
+		yPosition += this.SLOT_PADDING;
 		
+		console.log("left cell " + nextCellXPosition);
 		for(var slotCell = 0; slotCell < 2; slotCell++) {
-		
+			console.log(xPosition + "," + yPosition);
 			var cell = new Slot(2); // 2 cards per cells
 			
-			cell.container.setBounds(nextCellXPosition, 
-									slotElementYPosition, 
-									50, 
-									70)
+			cell.container.setBounds(
+				nextCellXPosition,	
+				yPosition,
+				50, 70)
 				.setFillStyle("#aabb00");
 				
+
 			// Calculate x position for the cell placed
 			// to the right side
-			nextCellXPosition += cell.container.width + this.CELL_PADDING;
-			
+			nextCellXPosition += 50 + this.CELL_PADDING;
+
+			console.log("right cell: " + nextCellXPosition);
 			cells.push(cell);
 		}	
 		
