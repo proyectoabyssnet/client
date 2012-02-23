@@ -7,7 +7,9 @@ function EquipedCardsPanel(id) {
 	/* PROPERTIES */
 	
 	this.MAX_SLOT_ELEMENTS = 5; // Number of elements (land, air,...)
-	this.CELL_PADDING = 2; // Horizontal separation between cards (cells)
+	this.CELL_PADDING = 2; // Separating between cell and borders
+	this.CELL_LEFT_MARGIN = 10; // Horizontal separation
+	this.cellAlpha = 0.5;
 	this.SLOT_PADDING = 2; // Vertical separation between slots
 	this.slotElementSize = [0,0]; // width, height
 	
@@ -93,12 +95,13 @@ function EquipedCardsPanel(id) {
 				nextCellXPosition,	
 				yPosition,
 				50, 70)
-				.setFillStyle("#aabb00");
+				.setFillStyle("#aabb00")
+				.setAlpha(this.cellAlpha);
 				
 
 			// Calculate x position for the cell placed
 			// to the right side
-			nextCellXPosition += 50 + this.CELL_PADDING;
+			nextCellXPosition += 50 + this.CELL_PADDING + this.CELL_LEFT_MARGIN;
 
 			console.log("right cell: " + nextCellXPosition);
 			cells.push(cell);
