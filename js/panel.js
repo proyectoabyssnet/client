@@ -24,7 +24,7 @@ function Panel() {
 	        .setFont(this.titleFont)
 	        .setText("panel_title")
 	        .setTextAlign("left")
-	        //.setFillStyle(this.titleColor)
+	        .setTextFillStyle(this.titleColor)
 	        .setTextBaseline("bottom");
 	}
 	

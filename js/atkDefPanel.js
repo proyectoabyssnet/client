@@ -13,7 +13,7 @@ function AtkDefPanel() {
         .setFont(this.titleFont)
         .setText("ATK")
         .setTextAlign("left")
-        .setFillStyle("#fff")
+        .setTextFillStyle("#fff")
         .setTextBaseline("bottom")
         .setLocation(1,25);
 
@@ -21,7 +21,7 @@ function AtkDefPanel() {
         .setFont(this.titleFont)
         .setText("DEF")
         .setTextAlign("left")
-        .setFillStyle("#fff")
+        .setTextFillStyle("#fff")
         .setTextBaseline("bottom")
         .setLocation(1,50);
         		
