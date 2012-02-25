@@ -50,10 +50,10 @@ function initGame(director) {
 	var card2 = new Card();
 	card2.container.setId("card2_small").enableDrag();
 	card2.setImage(director, "card2-small");
-	card2.container.enableDrag();
 
-	cardsOnHandPanel.addCard(card1);
-	cardsOnHandPanel.addCard(card2);
+
+//	cardsOnHandPanel.addCard(card1);
+//	cardsOnHandPanel.addCard(card2);
 	
 	CAAT.loop(60);
 }
@@ -65,13 +65,14 @@ function createEquipedCardsPanel(director) {
 	
 	// Equiped cards panel
 	var equipedCards = new EquipedCardsPanel();
+	equipedCards.initPanel();
 	equipedCards.setTitle("Equiped cards");	
 	equipedCards.container.setLocation(10,10)
 		.setSize(100,400)
 		.setAlpha(0.5)
 		.setId("equiped_cards_panel");
 	
-	equipedCards.container.name = "Equiped Cards Panel";
+	equipedCards.container.setId("Equiped Cards Panel");
 	equipedCards.initElementSlots(director);
 	
 	return equipedCards;
@@ -80,27 +81,29 @@ function createEquipedCardsPanel(director) {
 function createPlayerLifePanel(director) {
 	
 	// Player life panel
-	var playerLifePanel = new PlayerLifePanel("player_life_panel");
+	var playerLifePanel = new PlayerLifePanel();
 	var canvasWidth = director.canvas.width;
 	var canvasHeight = director.canvas.height;
-
+	playerLifePanel.initPanel();
+	playerLifePanel.container.setId("player_life_panel");
 	playerLifePanel.init(director, 10, canvasHeight-100, 100, 100); 
 	playerLifePanel.setPlayerImage(director, "player-image");	
 	playerLifePanel.initLifeImages(director);
 	playerLifePanel.setTitle("Player life");
-	playerLifePanel.container.setId("player_life_panel");
+	
 		
 	return playerLifePanel;
 }
 
 function createCardsOnHandPanel(director) {
 
-	var cardsOnHandPanel = new CardsOnHandPanel("cards_on_hand_panel");
-	
+	var cardsOnHandPanel = new CardsOnHandPanel();
+	cardsOnHandPanel.initPanel();
 	cardsOnHandPanel.container.setLocation(230, 500)
 		.setSize(500, 200)
 		.setAlpha(0.50);
 	
+	cardsOnHandPanel.container.setId("cards_on_hand_panel");
 	cardsOnHandPanel.setTitle("Cards on hand");
 	cardsOnHandPanel.initCells(director);
 		
@@ -109,8 +112,9 @@ function createCardsOnHandPanel(director) {
 
 function createAtkDefPanel(director) {
 	
-	var atkDefPanel = new AtkDefPanel("atk_def_panel");
-	atkDefPanel.init();
+	var atkDefPanel = new AtkDefPanel();
+	atkDefPanel.initPanel();
+	atkDefPanel.initLabels();
 	atkDefPanel.setTitle("Atk / Def");
 	atkDefPanel.container.setLocation(130, director.canvas.height - 100)
 		.setSize(100,200)

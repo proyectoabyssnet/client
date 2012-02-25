@@ -2,7 +2,7 @@
 * EQUIPED CARDS PANEL OBJECT
 */
 
-function EquipedCardsPanel(id) {
+function EquipedCardsPanel() {
 	
 	/* PROPERTIES */
 	
@@ -13,8 +13,8 @@ function EquipedCardsPanel(id) {
 	this.slotElementSize = [0,0]; // width, height
 	
 	// Call constructor with parameters
-	this.base = Panel;
-	this.base(id);
+//	this.base = Panel;
+//	this.base(id);
 	
 	this.slotBackgroundImages = ["card-mascot-elements",
 	                             "card-air-elements",

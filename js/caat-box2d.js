@@ -1,8 +1,70 @@
+/*
+The MIT License
+
+Copyright (c) 2010-2011-2012 Ibon Tolosana [@hyperandroid]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+Version: 0.3 build: 213
+
+Created on:
+DATE: 2012-02-23
+TIME: 17:38:27
+*/
+
+
 /**
- * @author  Hyperandroid  ||  http://hyperandroid.com/
+ * See LICENSE file.
  *
  * Box2D actors.
  */
+
+(function() {
+
+    /**
+     * Ad Eemeli Kelokorpi suggested,
+     * @param set
+     * @param director
+     * @param world
+     */
+    CAAT.enableBox2DDebug= function(set, director, world) {
+
+        if ( set )  {
+            var debugDraw = new Box2D.Dynamics.b2DebugDraw();
+            var test= false;
+            try {
+                debugDraw.m_sprite.graphics.clear= function() {};
+            } catch( e ) {}
+
+            world.SetDebugDraw(debugDraw);
+
+            debugDraw.SetSprite(director.ctx);
+            debugDraw.SetDrawScale(CAAT.PMR);
+            debugDraw.SetFillAlpha(.5);
+            debugDraw.SetLineThickness(1.0);
+            debugDraw.SetFlags(0x0001 | 0x0002);
+
+        } else {
+            world.setDebugDraw( null );
+        }
+    }
+})();
 
 (function() {
 
@@ -46,6 +108,8 @@
          */
         worldBody:          null,
 
+        world:              null,
+
         /**
          * Box2d fixture
          */
@@ -58,8 +122,47 @@
          */
         bodyData:           null,
 
+        recycle:            false,
+
         /**
-         * Set this body's density.
+         * set this actor to recycle its body, that is, do not destroy it.
+         */
+        setRecycle : function() {
+            this.recycle= true;
+            return this;
+        },
+        destroy : function() {
+
+            CAAT.B2DBodyActor.superclass.destroy.call(this);
+            if ( this.recycle ) {
+                this.setLocation(-Number.MAX_VALUE, -Number.MAX_VALUE);
+                this.setAwake(false);
+            } else {
+                var body= this.worldBody;
+                body.DestroyFixture( this.worldBodyFixture );
+                this.world.DestroyBody(body);
+            }
+
+            return this;
+        },
+        setAwake : function( bool ) {
+            this.worldBody.SetAwake(bool);
+            return this;
+        },
+        setSleepingAllowed : function(bool) {
+            this.worldBody.SetSleepingAllowed(bool);
+            return this;
+        },
+        setLocation : function(x,y) {
+            this.worldBody.SetPosition(
+                new Box2D.Common.Math.b2Vec2(
+                    (x+this.width/2)/CAAT.PMR,
+                    (y+this.height/2)/CAAT.PMR) );
+            return this;
+        },
+        /**
+         * Set this body's
+         * density.
          * @param d {number}
          */
         setDensity : function(d) {
@@ -130,6 +233,8 @@
                 this.image=         bodyData.image;
 
             }
+
+            this.world= world;
 
             return this;
         },
@@ -219,7 +324,8 @@
             var poly= this.worldBodyFixture.GetShape();
             if ( poly ) {
                 var v= Box2D.Common.Math.b2Math.MulX(xf, poly.m_centroid);
-                this.setLocation(
+                //this.setLocation(
+                CAAT.Actor.prototype.setLocation.call( this,
                         v.x*CAAT.PMR - this.width/2,
                         v.y*CAAT.PMR - this.height/2 );
                 this.setRotation( b.GetAngle() );
@@ -252,7 +358,7 @@
                     box2D_data.boundingBox[1].x-box2D_data.boundingBox[0].x+1,
                     box2D_data.boundingBox[1].y-box2D_data.boundingBox[0].y+1 ).
                 setFillStyle( box2D_data.worldBodyFixture.IsSensor() ? 'red' : 'green').
-                setImageTransformation(CAAT.ImageActor.prototype.TR_FIXED_TO_SIZE);
+                setImageTransformation(CAAT.SpriteImage.prototype.TR_FIXED_TO_SIZE);
 
             return this;
         }
@@ -397,7 +503,8 @@
 
             var b= this.worldBody;
             var xf= b.m_xf;
-            this.setLocation(
+            //this.setLocation(
+            CAAT.Actor.prototype.setLocation.call( this,
                     CAAT.PMR*xf.position.x - this.width/2,
                     CAAT.PMR*xf.position.y - this.height/2 );
             this.setRotation( b.GetAngle() );
@@ -453,7 +560,7 @@
             this.setFillStyle(this.worldBodyFixture.IsSensor() ? 'red' : 'blue').
                     setBackgroundImage(this.image).
                     setSize(2*this.radius,2*this.radius).
-                    setImageTransformation(CAAT.ImageActor.prototype.TR_FIXED_TO_SIZE);
+                    setImageTransformation(CAAT.SpriteImage.prototype.TR_FIXED_TO_SIZE);
 
 
             return this;

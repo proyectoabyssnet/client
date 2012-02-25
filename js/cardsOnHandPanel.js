@@ -1,7 +1,7 @@
 /*
  * CARDS ON HAND PANEL - OBJECT
  */
-function CardsOnHandPanel(id) {
+function CardsOnHandPanel() {
 	
 	/* PROPERTIES */
 	
@@ -13,8 +13,8 @@ function CardsOnHandPanel(id) {
 	this.lastUpdatedCell = 0; // Cell where a card was added or removed 
 	
 	// Call constructor with basic parameters
-	this.base = Panel;
-	this.base(id);
+//	this.base = MyPanel;
+//	this.base(id);
 	
 	this.container = new CAAT.ActorContainer()
 		.setFillStyle("#967551"); // Brown color by default
@@ -35,9 +35,8 @@ function CardsOnHandPanel(id) {
 			cell.container.setSize(this.cellWidth, this.cellHeight)
 				.setId("coh_cell_" + i)
 				.setLocation(
-					nextCellXPosition + 
-					this.CELL_PADDING, 1 + 
-					this.CELL_PADDING
+					nextCellXPosition + this.CELL_PADDING,  
+					1 + this.CELL_PADDING
 					)
 				.setFillStyle("#aabb00")
 				.setAlpha(this.cellAlpha);
@@ -54,28 +53,31 @@ function CardsOnHandPanel(id) {
 	
 	this.addCard = function(card) {
 		
-		var cell = this.container.getChildAt(this.lastUpdatedCell);
-		
-		if (cell && typeof cell.addCard == "function") {
-			
-			cell.addCard(card);
-			
-		} else {
-		
-			console.log("No cell found at " + 
-				this.lastUpdatedCell + 
-				" position");
-			return;
-		}
-		//this.cardsOnHand.push(card.container.id);
-		card.container.setLocation(card.container.x + 5, card.container.y + 5);
-		
-		this.container.addChild(card.container);
+		console.log("Adding card ");
+//		this.lastUpdatedCell++;
+//		
+//		var cell = this.container.getChildAt(this.lastUpdatedCell);
+//		
+//		if (cell && typeof cell.addCard == 'function') {
+//			console.log(cell.getId());
+//			cell.addCard(card);
+//			
+//		} else {
+//		
+//			console.log("No cell found at " + 
+//				this.lastUpdatedCell + 
+//				" position");
+//			return;
+//		}
+//		//this.cardsOnHand.push(card.container.id);
+//		card.container.setLocation(card.container.x + 5, card.container.y + 5);
+//		
+//		this.container.addChild(card.container);
 	}
 	
 	this.getFreeCell = function() {
 		
-		var freeCell = 0;
+		var freeCell = null;
 		var found = false;
 		var cellIndex = 1;
 				

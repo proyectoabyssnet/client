@@ -35,7 +35,7 @@ function Engineer(projects) {
 
 Engineer.prototype = new WorkerBee; // Inherits from WorkerBee
 
-function Object() {
+function Object(name) {
 	this.name = name || "no_name";
 	this.position = [];
 }
@@ -50,5 +50,9 @@ Box.prototype.showLifeTime = function() {
 	console.log(this.lifeTime);
 }
 
-// TESTING EXAMPLES
+
+
+
+//// TESTING EXAMPLES
+
 

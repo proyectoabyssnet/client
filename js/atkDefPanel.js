@@ -1,7 +1,7 @@
 /*
  * ATK - DEF PANEL
  */
-function AtkDefPanel(id) {
+function AtkDefPanel() {
 	
 	/* PROPERTIES */
 	
@@ -27,7 +27,7 @@ function AtkDefPanel(id) {
         		
 	/* METHODS */
 	
-	this.init = function() {
+	this.initLabels = function() {
 	
 		this.container.addChild(this.atkLabel);
 		this.container.addChild(this.defLabel);

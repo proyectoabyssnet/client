@@ -8,7 +8,7 @@ function Slot(numberOfCards) {
 	this.isFree = true;
 	this.cellAlpha = 0.5;
 	this.MAX_CARDS = numberOfCards;
-	this.cards = new Array(numberOfCards);
+	this.cards = new Array(this.MAX_CARDS);
 
 	this.container = new CAAT.ActorContainer();
 	
