@@ -51,8 +51,26 @@ Box.prototype.showLifeTime = function() {
 }
 
 
+function obj() {
+
+	this.name = "object";
+	this.life = 3;
+	
+	this.m1 = function() {
+		console.log(this.name);
+	}
+	this.m2 = function() {
+		console.log(this.life);	
+	}
+	this.m3 = function() {
+		console.log(this.name + "," + this.life);
+	}
+}
 
 //// TESTING EXAMPLES
-var car1 = new Car();
 
+var obj1 = new obj();
+for(var m in obj1) {
+	console.log(m);
+}
 

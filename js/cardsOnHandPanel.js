@@ -10,7 +10,16 @@ function CardsOnHandPanel() {
 	this.CELL_LEFT_MARGIN = 5;
 	this.cellWidth = 0;
 	this.cellHeight = 0;
-	this.lastUpdatedCell = 0; // Cell where a card was added or removed 
+	this.lastUpdatedCell = 0; // Cell where a card was added or removed
+	
+	/*
+	* Cells containing cards
+	* Array(["cell1", true], 
+	* 		["cell2", true],...)
+	*
+	* Stores cell id and if it's free (true/false)
+	*/
+	this.cells = []; 
 	
 
 	// Init cells to store each card
@@ -21,10 +30,13 @@ function CardsOnHandPanel() {
 		this.cellHeight = slotBackgroundImage.height;
 		var nextCellXPosition = 1;
 		
+		console.log("Creating " + this.MAX_CARDS_ON_HAND + " cells");
+		
 		for(var i=0; i < this.MAX_CARDS_ON_HAND; i++) {
 			
 			// Create 1 cell to contain 1 card
 			var cell = new Slot(1);
+			var cellId = "coh_cell_" + i;
 			
 			cell.container.setSize(this.cellWidth, this.cellHeight)
 				.setId("coh_cell_" + i)
@@ -34,7 +46,9 @@ function CardsOnHandPanel() {
 					)
 				.setFillStyle("#aabb00")
 				.setAlpha(this.cellAlpha);
-				
+			
+			this.cells[cellId] = true;		
+			
 			// Calculate next cell position				
 			nextCellXPosition += cell.container.width +
 				this.CELL_LEFT_MARGIN + 
@@ -47,25 +61,16 @@ function CardsOnHandPanel() {
 	
 	this.addCard = function(card) {
 		
-		this.lastUpdatedCell++;
-		
-		var cell = this.container.getChildAt(this.lastUpdatedCell);
-		
-		if (cell && typeof cell.addCard == 'function') {
-			console.log(cell.getId());
-			cell.addCard(card);
+		var cell = this.container.findActorById("coh_cell_" +
+			this.lastUpdatedCell);
+
+		if (cell && this.cells[cell.id] == true) {
 			
-		} else {
+			console.log(cell.id + " is free");
+			cell.addChild( card.container );
+			this.lastUpdatedCell++;			
+		} 
 		
-			console.log("No cell found at " + 
-				this.lastUpdatedCell + 
-				" position");
-			return;
-		}
-		//this.cardsOnHand.push(card.container.id);
-		card.container.setLocation(card.container.x + 5, card.container.y + 5);
-		
-		this.container.addChild(card.container);
 	}
 	
 	this.getFreeCell = function() {

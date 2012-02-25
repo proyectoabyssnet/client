@@ -16,9 +16,12 @@ function Slot(numberOfCards) {
 	
 	this.addCard = function(card) {
 		
+		// Check if there is space to store more cards
+		// in this slot
 		if (this.cards.length < this.MAX_CARDS) {
 			
 			this.cards.push(card);
+			this.container.addChild(card.container);
 			
 		} else {
 		
