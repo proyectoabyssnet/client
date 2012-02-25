@@ -30,8 +30,6 @@ function CardsOnHandPanel() {
 		this.cellHeight = slotBackgroundImage.height;
 		var nextCellXPosition = 1;
 		
-		console.log("Creating " + this.MAX_CARDS_ON_HAND + " cells");
-		
 		for(var i=0; i < this.MAX_CARDS_ON_HAND; i++) {
 			
 			// Create 1 cell to contain 1 card
@@ -61,46 +59,18 @@ function CardsOnHandPanel() {
 	
 	this.addCard = function(card) {
 		
+		// Get access to the last updated cell (container) (added card, removed card,...)
 		var cell = this.container.findActorById("coh_cell_" +
 			this.lastUpdatedCell);
 
+		// If cell is not null and is free...
 		if (cell && this.cells[cell.id] == true) {
 			
-			console.log(cell.id + " is free");
 			cell.addChild( card.container );
+			this.cells[cell.id] = false; // Mark cell as not free
 			this.lastUpdatedCell++;			
 		} 
 		
-	}
-	
-	this.getFreeCell = function() {
-		
-		var freeCell = null;
-		var found = false;
-		var cellIndex = 1;
-				
-		if (this.container.getNumChildren() <= 0) {
-		
-			console.log("Not cells found");
-			return;
-		}
-		
-		do {
-		
-			var cell = this.container.getChildAt(cellIndex);
-			console.log("Checking cell: " + cell.getId());
-			
-			if (cell && cell.isFree) {
-				
-				freeCell = cell;
-				found = true;
-			}
-
-			cellIndex++;
-			
-		} while(found == false && cellIndex != this.MAX_CARDS_ON_HAND);
-		
-		return freeCell;
 	}
 	
 }
