@@ -8,27 +8,28 @@ function AtkDefPanel() {
 	this.atkValue = 0;
 	this.defValue = 0;
 	this.container = new CAAT.ActorContainer();
-	
-    this.atkLabel = new CAAT.TextActor()
-        .setFont(this.titleFont)
-        .setText("ATK")
-        .setTextAlign("left")
-        .setTextFillStyle("#fff")
-        .setTextBaseline("bottom")
-        .setLocation(1,25);
 
-    this.defLabel = new CAAT.TextActor()
-        .setFont(this.titleFont)
-        .setText("DEF")
-        .setTextAlign("left")
-        .setTextFillStyle("#fff")
-        .setTextBaseline("bottom")
-        .setLocation(1,50);
         		
 	/* METHODS */
 	
 	this.initLabels = function() {
 	
+		this.atkLabel = new CAAT.TextActor()
+		    .setFont(this.titleFont)
+		    .setText("ATK")
+		    .setTextAlign("left")
+		    .setTextFillStyle("#fff")
+		    .setTextBaseline("bottom")
+		    .setLocation(1,25);
+
+		this.defLabel = new CAAT.TextActor()
+		    .setFont(this.titleFont)
+		    .setText("DEF")
+		    .setTextAlign("left")
+		    .setTextFillStyle("#fff")
+		    .setTextBaseline("bottom")
+		    .setLocation(1,50);	
+        
 		this.container.addChild(this.atkLabel);
 		this.container.addChild(this.defLabel);
 		
