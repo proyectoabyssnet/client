@@ -12,13 +12,7 @@ function CardsOnHandPanel() {
 	this.cellHeight = 0;
 	this.lastUpdatedCell = 0; // Cell where a card was added or removed 
 	
-	// Call constructor with basic parameters
-//	this.base = MyPanel;
-//	this.base(id);
-	
-	this.container = new CAAT.ActorContainer()
-		.setFillStyle("#967551"); // Brown color by default
-	
+
 	// Init cells to store each card
 	this.initCells = function(director) {
 		
@@ -53,26 +47,25 @@ function CardsOnHandPanel() {
 	
 	this.addCard = function(card) {
 		
-		console.log("Adding card ");
-//		this.lastUpdatedCell++;
-//		
-//		var cell = this.container.getChildAt(this.lastUpdatedCell);
-//		
-//		if (cell && typeof cell.addCard == 'function') {
-//			console.log(cell.getId());
-//			cell.addCard(card);
-//			
-//		} else {
-//		
-//			console.log("No cell found at " + 
-//				this.lastUpdatedCell + 
-//				" position");
-//			return;
-//		}
-//		//this.cardsOnHand.push(card.container.id);
-//		card.container.setLocation(card.container.x + 5, card.container.y + 5);
-//		
-//		this.container.addChild(card.container);
+		this.lastUpdatedCell++;
+		
+		var cell = this.container.getChildAt(this.lastUpdatedCell);
+		
+		if (cell && typeof cell.addCard == 'function') {
+			console.log(cell.getId());
+			cell.addCard(card);
+			
+		} else {
+		
+			console.log("No cell found at " + 
+				this.lastUpdatedCell + 
+				" position");
+			return;
+		}
+		//this.cardsOnHand.push(card.container.id);
+		card.container.setLocation(card.container.x + 5, card.container.y + 5);
+		
+		this.container.addChild(card.container);
 	}
 	
 	this.getFreeCell = function() {

@@ -11,10 +11,7 @@ function EquipedCardsPanel() {
 	this.CELL_LEFT_MARGIN = 10; // Horizontal separation
 	this.SLOT_PADDING = 2; // Vertical separation between slots
 	this.slotElementSize = [0,0]; // width, height
-	
-	// Call constructor with parameters
-//	this.base = Panel;
-//	this.base(id);
+
 	
 	this.slotBackgroundImages = ["card-mascot-elements",
 	                             "card-air-elements",

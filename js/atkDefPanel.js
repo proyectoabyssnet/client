@@ -7,13 +7,12 @@ function AtkDefPanel() {
 	
 	this.atkValue = 0;
 	this.defValue = 0;
-	this.container = new CAAT.ActorContainer();
-
         		
 	/* METHODS */
 	
 	this.initLabels = function() {
-	
+		
+		// atk label
 		this.atkLabel = new CAAT.TextActor()
 		    .setFont(this.titleFont)
 		    .setText("ATK")
@@ -22,6 +21,7 @@ function AtkDefPanel() {
 		    .setTextBaseline("bottom")
 		    .setLocation(1,25);
 
+		// def label
 		this.defLabel = new CAAT.TextActor()
 		    .setFont(this.titleFont)
 		    .setText("DEF")

@@ -100,7 +100,7 @@ function createCardsOnHandPanel(director) {
 	var cardsOnHandPanel = new CardsOnHandPanel();
 	cardsOnHandPanel.initPanel();
 	cardsOnHandPanel.container.setLocation(230, 500)
-		.setSize(500, 200)
+		.setSize(500, 80)
 		.setAlpha(0.50);
 	
 	cardsOnHandPanel.container.setId("cards_on_hand_panel");
@@ -117,9 +117,8 @@ function createAtkDefPanel(director) {
 	atkDefPanel.initLabels();
 	atkDefPanel.setTitle("Atk / Def");
 	atkDefPanel.container.setLocation(130, director.canvas.height - 100)
-		.setSize(100,200)
-		.setAlpha(0.50);
-		
+		.setSize(80,80)
+		.setAlpha(0.50);		
 	
 	return atkDefPanel;
 }

@@ -52,7 +52,7 @@ Box.prototype.showLifeTime = function() {
 
 
 
-
 //// TESTING EXAMPLES
+var car1 = new Car();
 
 

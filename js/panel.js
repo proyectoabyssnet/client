@@ -11,14 +11,14 @@ function Panel() {
 	this.defaultBackgroundcolor = "#967551";
 	this.titleObject = null;
 	
-	// Panel contains other objects
 	this.container = new CAAT.ActorContainer()
 		.setFillStyle(this.defaultBackgroundcolor);
-	
+		
+					
 	/* METHODS */
 	
 	this.initPanel = function() {
-		
+					
 		// Init panel title
 	    this.titleObject = new CAAT.TextActor()
 	        .setFont(this.titleFont)
@@ -47,6 +47,11 @@ function Panel() {
 			console.log("Panel title is set to invisible");
 		}
 
+	}
+	
+	this.setPrueba = function() {
+	
+		console.log("setPrueba");
 	}
 }
 
