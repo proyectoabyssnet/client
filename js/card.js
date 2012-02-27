@@ -17,34 +17,6 @@ function Card() {
 	
 	/* METHODS */
 	
-	this.container.mouseUp = function(event) {
-	
-		console.log("mouseUP");
-		
-		if (clicked == true && dragging == true) {
-			console.log("droped");
-			dragging = false;
-			clicked = false;
-		}
-	}
-	
-	this.container.mouseDown = function(event) {
-		
-		clicked = true;
-		console.log("mouseDown");
-	}
-	
-	this.container.mouseMove = function(event) {
-	
-		console.log("moseMove");
-		
-		if (clicked == true) {
-			console.log("draging");
-			dragging = true;
-		}	
-	}
-	
-	
 	this.setImage = function(director, imageName) {
 		
 		var image = director.getImage(imageName);

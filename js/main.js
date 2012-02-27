@@ -28,6 +28,8 @@ function initGame(director) {
 
 	var scene_1 = director.createScene()
 		.setFillStyle('#000');
+		
+	
 	
 	/* CREATE GAME UI OBJECTS */
 	var equipedCardsPanel = createEquipedCardsPanel(director);
@@ -44,15 +46,21 @@ function initGame(director) {
 			
 	// Create cards
 	var card1 = new Card();
-	card1.container.setId("card1_small");
+	card1.container.setId("card1_small").enableDrag();
 	card1.setImage(director, "card1-small");
 	
 	var card2 = new Card();
-	card2.container.setId("card2_small");
+	card2.container.setId("card2_small").enableDrag();
 	card2.setImage(director, "card2-small");
 
+	// Testing input lists
+	scene_1.enableInputList(2);
+	scene_1.addActorToInputList(cardsOnHandPanel.container,1);
+	
 	cardsOnHandPanel.addCard(card1);
 	cardsOnHandPanel.addCard(card2);
+	scene_1.addActorToInputList(card1.container,0);
+	scene_1.addActorToInputList(card2.container,0);
 	
 	CAAT.loop(60);
 }
