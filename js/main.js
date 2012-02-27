@@ -44,11 +44,11 @@ function initGame(director) {
 			
 	// Create cards
 	var card1 = new Card();
-	card1.container.setId("card1_small").enableDrag();
+	card1.container.setId("card1_small");
 	card1.setImage(director, "card1-small");
 	
 	var card2 = new Card();
-	card2.container.setId("card2_small").enableDrag();
+	card2.container.setId("card2_small");
 	card2.setImage(director, "card2-small");
 
 	cardsOnHandPanel.addCard(card1);

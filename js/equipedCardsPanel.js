@@ -33,6 +33,7 @@ function EquipedCardsPanel() {
 						
 			var maxNumberOfCards = 2; // Cards per slot
 			var slotElementBackground = this.slotBackgroundImages[element];
+			
 			var slotElement = new CAAT.ActorContainer();
 
 			slotElement.setBounds(
@@ -46,7 +47,13 @@ function EquipedCardsPanel() {
 						director.getImage(slotElementBackground)
 						);
 			
-			slotElement.setId("slot_element_" + element);
+			slotElement.setId("slot_" + 
+				this.slotBackgroundImages[ element ]);
+				
+			slotElement.mouseUp = function(event) {;
+				
+				console.log(event.source.id);
+			}
 			
 			// Create 2 cells at nextSlotY position
 			var cells = this.createCells(2);
@@ -92,8 +99,7 @@ function EquipedCardsPanel() {
 				nextCellXPosition,	
 				yPosition,
 				50, 70)
-				.setFillStyle("#aabb00")
-				.setAlpha(this.cellAlpha);
+				.setFillStyle("#aabb00");
 				
 
 			// Calculate x position for the cell placed

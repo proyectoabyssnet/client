@@ -5,7 +5,7 @@ function PlayerLifePanel() {
 	
 	/* PROPERTIES */
 	
-	this.LIFE_SLOTS = 5;
+	var LIFE_SLOTS = 5;
 	this.container = new CAAT.ActorContainer();
 	this.bgImage = "life-panel-bg";
 	this.playerAvatar = "";

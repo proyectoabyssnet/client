@@ -13,11 +13,8 @@ function CardsOnHandPanel() {
 	this.lastUpdatedCell = 0; // Cell where a card was added or removed
 	
 	/*
-	* Cells containing cards
-	* Array(["cell1", true], 
-	* 		["cell2", true],...)
-	*
-	* Stores cell id and if it's free (true/false)
+	* Check if cell is free (true/false)
+	* Array("cell_1": true, "cell_2": false,...]
 	*/
 	this.cells = []; 
 	
@@ -42,9 +39,9 @@ function CardsOnHandPanel() {
 					nextCellXPosition + this.CELL_PADDING,  
 					1 + this.CELL_PADDING
 					)
-				.setFillStyle("#aabb00")
-				.setAlpha(this.cellAlpha);
-			
+				.setFillStyle("#aabb00");
+		
+			// Cell is free by default
 			this.cells[cellId] = true;		
 			
 			// Calculate next cell position				
@@ -59,7 +56,8 @@ function CardsOnHandPanel() {
 	
 	this.addCard = function(card) {
 		
-		// Get access to the last updated cell (container) (added card, removed card,...)
+		// Get access to the last updated cell
+		// (added card, removed card,...)
 		var cell = this.container.findActorById("coh_cell_" +
 			this.lastUpdatedCell);
 

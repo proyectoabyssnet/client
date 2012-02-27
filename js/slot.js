@@ -6,11 +6,12 @@ function Slot(numberOfCards) {
 	/* PROPERTIES */
 	
 	this.isFree = true;
-	this.cellAlpha = 0.5;
+	this.alphaValue = 0.5;
 	this.MAX_CARDS = numberOfCards;
 	this.cards = new Array(this.MAX_CARDS);
 
-	this.container = new CAAT.ActorContainer();
+	this.container = new CAAT.ActorContainer()
+		.setAlpha(this.alphaValue);
 	
 	/* METHODS */
 	
