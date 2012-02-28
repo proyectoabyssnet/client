@@ -47,10 +47,10 @@ function EquipedCardsPanel() {
 						director.getImage(slotElementBackground)
 						);
 			
-			slotElement.setId("slot_" + 
+			slotElement.setId("slot-" + 
 				this.slotBackgroundImages[ element ]);
 				
-			slotElement.mouseUp = function(event) {;
+			slotElement.mouseUp = function(event) {
 				
 				console.log(event.source.id);
 			}

@@ -44,6 +44,9 @@ function initGame(director) {
 	var atkDefPanel = createAtkDefPanel(director);
 	scene_1.addChild(atkDefPanel.container);
 			
+	var rouletteOptions = createRouletteOptions(director);
+	scene_1.addChild(rouletteOptions.container);
+	
 	// Create cards
 	var card1 = new Card();
 	card1.container.setId("card1_small").enableDrag();
@@ -52,6 +55,7 @@ function initGame(director) {
 	var card2 = new Card();
 	card2.container.setId("card2_small").enableDrag();
 	card2.setImage(director, "card2-small");
+	card2.forTesting(director);
 
 	// Testing input lists
 	scene_1.enableInputList(2);
@@ -130,6 +134,15 @@ function createAtkDefPanel(director) {
 	return atkDefPanel;
 }
 
+function createRouletteOptions(director) {
+
+	var roulette = new RouletteOptions();
+	roulette.initPanel();
+	roulette.initRoulette(director);
+	
+	return roulette;
+}
+
 /* PRELOAD IMAGES */
 function loadImages(director) {
 	
@@ -150,7 +163,8 @@ function loadImages(director) {
 			{id:'card1-small',				url:'img/card1-small.jpg'},
 			{id:'card2-small',				url:'img/card2-small.jpg'},
 			{id:'card1-big',				url:'img/card1.jpg'},
-			{id:'card2-big',				url:'img/card2.jpg'}												
+			{id:'card2-big',				url:'img/card2.jpg'},
+			{id:'roulette',					url:'img/roulette.png'}												
 		],
 		function(counter,images) {
 			

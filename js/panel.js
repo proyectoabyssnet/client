@@ -10,15 +10,15 @@ function Panel() {
 	this.titleColor = "#fdff47";
 	this.defaultBackgroundcolor = "#967551";
 	this.titleObject = null;
-	
-	this.container = new CAAT.ActorContainer()
-		.setFillStyle(this.defaultBackgroundcolor);
 		
 					
 	/* METHODS */
 	
 	this.initPanel = function() {
 					
+		this.container = new CAAT.ActorContainer()
+			.setFillStyle(this.defaultBackgroundcolor);
+							
 		// Init panel title
 	    this.titleObject = new CAAT.TextActor()
 	        .setFont(this.titleFont)
