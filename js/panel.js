@@ -27,6 +27,7 @@ function Panel() {
 	        .setTextFillStyle(this.titleColor)
 	        .setTextBaseline("bottom");
 	}
+
 	
 	this.setTitle = function(theTitle) {
 		

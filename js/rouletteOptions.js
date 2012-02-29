@@ -28,6 +28,7 @@ function RouletteOptions() {
 		this.initOptionLabels();
 	}
 	
+	// Convert degrees to radians
 	this.deg2rad = function(degrees) {
 		
 		var radians = (2 * Math.PI * degrees) / 360;
@@ -39,7 +40,7 @@ function RouletteOptions() {
 		var centerX = this.backgroundImage.width / 2;
 		var centerY = this.backgroundImage.height / 2;
 		var radius = 90;
-		var step = -135;
+		var step = -135; // Position for option 1
 		
 		for(var label=0; label < 5; label++) {
 		

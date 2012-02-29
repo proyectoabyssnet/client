@@ -4,6 +4,7 @@ window.onload = init;
 *	INIT MAIN OBJECTS
 */
 
+
 function init() {
 
 	var canvasObject = document.getElementById('canvas1');
@@ -54,16 +55,18 @@ function initGame(director) {
 	card2.container.setId("card2_small").enableDrag();
 	card2.setImage(director, "card2-small");
 	card2.forTesting(director);
-
-	// Testing input lists
-	scene_1.enableInputList(2);
-	scene_1.addActorToInputList(cardsOnHandPanel.container,1);
 	
+	/* TESTING INPUT LISTS */
+		
 	cardsOnHandPanel.addCard(card1);
-	cardsOnHandPanel.addCard(card2);
-	scene_1.addActorToInputList(card1.container,0);
-	scene_1.addActorToInputList(card2.container,0);
+
+	var cell1 = cardsOnHandPanel.container.findActorById("coh_cell_1");
 	
+	scene_1.enableInputList(2);	
+//	scene_1.addActorToInputList(card1.container,0);	
+//	scene_1.addActorToInputList(cell1.container,1);	
+
+
 	CAAT.loop(60);
 }
 

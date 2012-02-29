@@ -62,7 +62,7 @@ function CardsOnHandPanel() {
 			this.lastUpdatedCell);
 
 		// If cell is not null and is free...
-		if (cell && this.cells[cell.id] == true) {
+		if (cell != null && this.cells[cell.id] == true) {
 			
 			cell.addChild( card.container );
 			this.cells[cell.id] = false; // Mark cell as not free

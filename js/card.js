@@ -58,26 +58,26 @@ function Card() {
 	
 	this.forTesting = function(director) {
 	
-		var point = new CAAT.Point(this.x, this.y, 0);
-		
-		var equipedCards = director.findActorById("equiped_cards_panel");
-		
-		if (equipedCards == null) {
-			console.log("equipedCards actor not found");
-			return;
-		}
-		
-		var slotElement = equipedCards.findActorById(this.slotElements[2]);
-							
-		if (slotReference != null) {
-		
-			console.log("modelToModel result: " +
-				this.container.modelToModel(point, slotReference));			
-				
-		} else {
-		
-			console.log("null reference to slotElement" + slotReference);
-		}
+//		var point = new CAAT.Point(this.x, this.y, 0);
+//		
+//		var equipedCards = director.findActorById("equiped_cards_panel");
+//		
+//		if (equipedCards == null) {
+//			console.log("equipedCards actor not found");
+//			return;
+//		}
+//		
+//		var slotElement = equipedCards.findActorById(this.slotElements[2]);
+//							
+//		if (slotReference != null) {
+//		
+//			console.log("modelToModel result: " +
+//				this.container.modelToModel(point, slotReference));			
+//				
+//		} else {
+//		
+//			console.log("null reference to slotElement" + slotReference);
+//		}
 
 	}
     	
