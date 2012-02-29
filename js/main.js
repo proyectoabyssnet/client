@@ -29,8 +29,6 @@ function initGame(director) {
 	var scene_1 = director.createScene()
 		.setFillStyle('#000');
 		
-	
-	
 	/* CREATE GAME UI OBJECTS */
 	var equipedCardsPanel = createEquipedCardsPanel(director);
 	scene_1.addChild(equipedCardsPanel.container);
@@ -137,7 +135,6 @@ function createAtkDefPanel(director) {
 function createRouletteOptions(director) {
 
 	var roulette = new RouletteOptions();
-	roulette.initPanel();
 	roulette.initRoulette(director);
 	
 	return roulette;

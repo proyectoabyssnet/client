@@ -6,7 +6,7 @@ function RouletteOptions() {
 	
 	/* PROPERTIES */
 	
-	this.image = "";
+	this.backgroundImage = null;
 	this.optionLabels = new Array(5);
 	
 	
@@ -14,29 +14,37 @@ function RouletteOptions() {
 	
 	this.initRoulette = function( director ) {
 		
-		var image = director.getImage( "roulette" );
-		var width = image.width;
-		var height = image.height;
+		this.initPanel();
+		
+		this.backgroundImage = director.getImage( "roulette" );
+		var width = this.backgroundImage.width;
+		var height = this.backgroundImage.height;
 		
 		// Image with pentagons
-		this.container.setBackgroundImage( image )
+		this.container.setBackgroundImage( this.backgroundImage )
 			.setSize( width, height )
 			.setLocation(director.canvas.width - width, 1);
 		
 		this.initOptionLabels();
 	}
 	
+	this.deg2rad = function(degrees) {
+		
+		var radians = (2 * Math.PI * degrees) / 360;
+		return radians;
+	}
+	
 	this.initOptionLabels = function() {
 		
-		var centerX = this.image.width / 2;
-		var centerY = this.image.height / 2;
-		var radius = 45;
-		var step = 0.5;
+		var centerX = this.backgroundImage.width / 2;
+		var centerY = this.backgroundImage.height / 2;
+		var radius = 90;
+		var step = -135;
 		
 		for(var label=0; label < 5; label++) {
 		
-			var positionX = centerX + Math.cos(step) * radius;
-			var positionY = centerY + Math.sin(step) * radius;
+			var positionX = centerX + Math.cos(this.deg2rad(step)) * radius;
+			var positionY = centerY + Math.sin(this.deg2rad(step)) * radius;
 					
 			this.optionLabels[ label ] = new CAAT.TextActor()
 				.setFont("14px sans-serif")
@@ -48,7 +56,7 @@ function RouletteOptions() {
 			
 			this.container.addChild( this.optionLabels[ label ] );
 			
-			step += -0.4;			
+			step += 75;			
 		}
 		
 	}
