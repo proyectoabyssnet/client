@@ -48,11 +48,15 @@ function RouletteOptions() {
 					
 			this.optionLabels[ label ] = new CAAT.TextActor()
 				.setFont("14px sans-serif")
-				.setText("label_" + label)
+				.setText("option_" + label)
 				.setTextFillStyle("#00ff00")
 				.setTextAlign("left")
-				.setTextBaseline("bottom")
-				.setLocation(positionX, positionY);
+				.setTextBaseline("bottom");
+
+			this.optionLabels[ label ].setLocation(
+				positionX - this.optionLabels[ label ].width / 2,
+				positionY
+			);
 			
 			this.container.addChild( this.optionLabels[ label ] );
 			
