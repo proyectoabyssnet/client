@@ -24,22 +24,22 @@ function Card() {
 	
 	this.container.mouseUp = function(event) {
 	
-		myconsole.log(event.source.id + ": mouse up");
+		console.log(event.source.id + ": mouse up");
 
 		var point = new CAAT.Point(this.x, this.y, this.z);
 		
 		var equipedCards = director.findActorById("equiped_cards_panel");
 		
-		myconsole.log(this.container.modelToModel(point, equipedCards));
+		console.log(this.container.modelToModel(point, equipedCards));
 	}
 
 	this.container.mouseDown = function(event) {
 	
-		myconsole.log("mouseDown");
+		console.log("mouseDown");
 	}
 	
 	this.setDirector = function(theDirector) {
-		myconsole.log("Setting director");
+		console.log("Setting director");
 		director = theDirector;
 	}
 	
@@ -64,7 +64,7 @@ function Card() {
 	// Show card details (big picture, text,...)
 	this.showDetails = function() {
 	
-		myconsole.log("Card details")
+		console.log("Card details")
 	}
 	
 	this.forTesting = function(director) {

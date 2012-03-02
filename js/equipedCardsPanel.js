@@ -78,40 +78,41 @@ function EquipedCardsPanel() {
 		this.container.addChild(slotElement);	
 	}
 	
-	this.createCells = function(numberOfCells) {
-				
-		// Array containing cells
-		var cells = [];
-		var xPosition = 0;
-		var yPosition = 0;
-		
-		// Create slots containing cards inside each slot element
-		// p.e.: land element has 2 slots containing 2 cards each slot
-		var nextCellXPosition = xPosition + this.SLOT_PADDING;
-		yPosition += this.SLOT_PADDING;
-		
-
-		for(var slotCell = 0; slotCell < 2; slotCell++) {
-
-			var cell = new Slot(2); // 2 cards per cells
-			
-			cell.container.setBounds(
-				nextCellXPosition,	
-				yPosition,
-				50, 70)
-				.setFillStyle("#aabb00");
-				
-
-			// Calculate x position for the cell placed
-			// to the right side
-			nextCellXPosition += 50 + this.CELL_PADDING + this.CELL_LEFT_MARGIN;
-
-			cells.push(cell);
-		}	
-		
-		return cells;
-	}
 }
 
 EquipedCardsPanel.prototype = new Panel;
+
+EquipedCardsPanel.prototype.createCells = function(numberOfCells) {
+
+	// Array containing cells
+	var cells = [];
+	var xPosition = 0;
+	var yPosition = 0;
+	
+	// Create slots containing cards inside each slot element
+	// p.e.: land element has 2 slots containing 2 cards each slot
+	var nextCellXPosition = xPosition + this.SLOT_PADDING;
+	yPosition += this.SLOT_PADDING;
+	
+
+	for(var slotCell = 0; slotCell < 2; slotCell++) {
+
+		var cell = new Slot(2); // 2 cards per cells
+		
+		cell.container.setBounds(
+			nextCellXPosition,	
+			yPosition,
+			50, 70)
+			.setFillStyle("#aabb00");
+			
+
+		// Calculate x position for the cell placed
+		// to the right side
+		nextCellXPosition += 50 + this.CELL_PADDING + this.CELL_LEFT_MARGIN;
+
+		cells.push(cell);
+	}	
+	
+	return cells;
+}
 

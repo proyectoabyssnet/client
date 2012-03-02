@@ -4,8 +4,6 @@ window.onload = init;
 *	INIT MAIN OBJECTS
 */
 
-var myconsole = null;
-
 function init() {
 
 	var canvasObject = document.getElementById('canvas1');
@@ -20,23 +18,6 @@ function init() {
 		.initialize(800,600, canvasObject)
 		.setClear(false);
 
-	// log object
-	if (typeof(console) == "undefined" && console == null) {
-	
-		myconsole = document.getElementById("logConsole");
-		
-		if (console == null) {
-			alert("Could not get console");
-			return;
-		}
-		
-		console.prototype.log = function(text) {
-			console.innerHTML = text;
-		}
-		
-	} else {	
-		myconsole = console;
-	}
 	
 	// Load resources (images,...)
 	loadImages(director);
