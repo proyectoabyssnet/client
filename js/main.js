@@ -4,6 +4,7 @@ window.onload = init;
 *	INIT MAIN OBJECTS
 */
 
+var myconsole = null;
 
 function init() {
 
@@ -18,6 +19,24 @@ function init() {
 	var director = new CAAT.Director()
 		.initialize(800,600, canvasObject)
 		.setClear(false);
+
+	// log object
+	if (typeof(console) == "undefined" && console == null) {
+	
+		myconsole = document.getElementById("logConsole");
+		
+		if (console == null) {
+			alert("Could not get console");
+			return;
+		}
+		
+		console.prototype.log = function(text) {
+			console.innerHTML = text;
+		}
+		
+	} else {	
+		myconsole = console;
+	}
 	
 	// Load resources (images,...)
 	loadImages(director);
@@ -50,6 +69,7 @@ function initGame(director) {
 	var card1 = new Card();
 	card1.container.setId("card1_small");
 	card1.setImage(director, "card1-small");
+	card1.setDirector(director);
 	
 	var card2 = new Card();
 	card2.container.setId("card2_small").enableDrag();
@@ -82,7 +102,7 @@ function createEquipedCardsPanel(director) {
 		.setAlpha(0.5)
 		.setId("equiped_cards_panel");
 	
-	equipedCards.container.setId("Equiped Cards Panel");
+	equipedCards.container.setId("equiped_cards_panel");
 	equipedCards.initElementSlots(director);
 	
 	return equipedCards;

@@ -52,7 +52,7 @@ function EquipedCardsPanel() {
 				
 			slotElement.mouseUp = function(event) {
 				
-				console.log(event.source.id);
+				//console.log(event.source.id);
 			}
 			
 			// Create 2 cells at nextSlotY position

@@ -45,7 +45,7 @@ function Panel() {
 			
 		} else {
 		
-			console.log("Panel title is set to invisible");
+			//console.log("Panel title is set to invisible");
 		}
 
 	}

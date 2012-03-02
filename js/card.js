@@ -10,9 +10,7 @@ function Card() {
 	this.elementType = "";
 	this.container = new CAAT.Actor();
 	var bigImage = "";
-	var clicked = false;
-	var dragging = false;
-	var dropped = false;
+	var director = null;
 	this.slotElements = ["slot-card-mascot-elements",
 	                     "slot-card-air-elements",
 	                     "slot-card-water-elements",
@@ -26,13 +24,23 @@ function Card() {
 	
 	this.container.mouseUp = function(event) {
 	
-		console.log(event.source.id + ": mouse up");
-		console.log(event.screenPoint.x + ", " + event.screenPoint.y);
+		myconsole.log(event.source.id + ": mouse up");
+
+		var point = new CAAT.Point(this.x, this.y, this.z);
+		
+		var equipedCards = director.findActorById("equiped_cards_panel");
+		
+		myconsole.log(this.container.modelToModel(point, equipedCards));
 	}
 
 	this.container.mouseDown = function(event) {
 	
-		console.log("mouseDown");
+		myconsole.log("mouseDown");
+	}
+	
+	this.setDirector = function(theDirector) {
+		myconsole.log("Setting director");
+		director = theDirector;
 	}
 	
 	this.setImage = function(director, imageName) {
@@ -56,7 +64,7 @@ function Card() {
 	// Show card details (big picture, text,...)
 	this.showDetails = function() {
 	
-		console.log("Card details")
+		myconsole.log("Card details")
 	}
 	
 	this.forTesting = function(director) {
