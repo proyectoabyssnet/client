@@ -48,7 +48,7 @@ function initGame(director) {
 	
 	// Create cards
 	var card1 = new Card();
-	card1.container.setId("card1_small").enableDrag();
+	card1.container.setId("card1_small");
 	card1.setImage(director, "card1-small");
 	
 	var card2 = new Card();
@@ -59,12 +59,10 @@ function initGame(director) {
 	/* TESTING INPUT LISTS */
 		
 	cardsOnHandPanel.addCard(card1);
-
-	var cell1 = cardsOnHandPanel.container.findActorById("coh_cell_1");
 	
 	scene_1.enableInputList(2);	
-//	scene_1.addActorToInputList(card1.container,0);	
-//	scene_1.addActorToInputList(cell1.container,1);	
+	scene_1.addActorToInputList(cardsOnHandPanel.container, 1);
+	scene_1.addActorToInputList(card1.container, 0);	
 
 
 	CAAT.loop(60);

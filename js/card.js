@@ -22,11 +22,14 @@ function Card() {
 	
 	/* METHODS */
 	
-	this.container.mouseUp = function(event) {
-		
-		console.log("mouseUp");
-	}
+	this.container.enableDrag();
 	
+	this.container.mouseUp = function(event) {
+	
+		console.log(event.source.id + ": mouse up");
+		console.log(event.screenPoint.x + ", " + event.screenPoint.y);
+	}
+
 	this.container.mouseDown = function(event) {
 	
 		console.log("mouseDown");
