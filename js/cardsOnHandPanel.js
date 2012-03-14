@@ -1,76 +1,94 @@
 /*
  * CARDS ON HAND PANEL - OBJECT
  */
-function CardsOnHandPanel() {
+var CardsOnHandPanel = Object.create( Panel );
 	
-	/* PROPERTIES */
-	
-	this.MAX_CARDS_ON_HAND = 5;
-	this.CELL_PADDING = 5;
-	this.CELL_LEFT_MARGIN = 5;
-	this.cellWidth = 0;
-	this.cellHeight = 0;
-	this.lastUpdatedCell = 0; // Cell where a card was added or removed
-	
-	/*
-	* Check if cell is free (true/false)
-	* Array("cell_1": true, "cell_2": false,...]
-	*/
-	this.cells = []; 
-	
+Object.defineProperties( CardsOnHandPanel, {
 
-	// Init cells to store each card
-	this.initCells = function(director) {
-		
-		var slotBackgroundImage = director.getImage("slot-bg");
-		this.cellWidth = slotBackgroundImage.width;
-		this.cellHeight = slotBackgroundImage.height;
-		var nextCellXPosition = 1;
-		
-		for(var i=0; i < this.MAX_CARDS_ON_HAND; i++) {
+	MAX_CARDS_ON_HAND: 	{ value: 0, writable: true },
+	CELL_PADDING: 		{ value: 0, writable: true },
+	CELL_LEFT_MARGIN: 	{ value: 0, writable: true },
+	cellWidth: 			{ value: 0, writable: true },
+	cellHeight: 		{ value: 0, writable: true },
+	lastUpdatedCell: 	{ value: 0, writable: true }, 
+	cells: 				{ value: [], writable: true },
 			
-			// Create 1 cell to contain 1 card
-			var cell = new Slot(1);
-			var cellId = "coh_cell_" + i;
-			
-			cell.container.setSize(this.cellWidth, this.cellHeight)
-				.setId("coh_cell_" + i)
-				.setLocation(
-					nextCellXPosition + this.CELL_PADDING,  
-					1 + this.CELL_PADDING
-					)
-				.setFillStyle("#aabb00");
+	init: {
+	
+		value: function() {
 		
-			// Cell is free by default
-			this.cells[cellId] = true;		
+			this.initPanel();
+			this.MAX_CARDS_ON_HAND = 5;
+			this.CELL_PADDING = 5;
+			this.CELL_LEFT_MARGIN = 5;
 			
-			// Calculate next cell position				
-			nextCellXPosition += cell.container.width +
-				this.CELL_LEFT_MARGIN + 
-				this.CELL_PADDING; 
-			
-			this.container.addChild(cell.container);
-		}
+		}, enumerable: false
+	},
+
+	initCells: {
+	
+		value: function(director) {
 		
+			var slotBackgroundImage = director.getImage("slot-bg");
+			this.cellWidth = slotBackgroundImage.width;
+			this.cellHeight = slotBackgroundImage.height;
+			var nextCellXPosition = 1;
+			var cell = null;
+			var cellId = "";
+			
+			for(var i=0; i < this.MAX_CARDS_ON_HAND; i++) {
+		
+				// Create 1 cell to contain 1 card
+				cell = Object.create( Slot );
+				Object.defineProperty( cell, "container", {
+					value: new CAAT.ActorContainer(),
+					writable: true
+				});
+				
+				cell.setMaxCards(1);
+				cellId = "coh_cell_" + i;
+		
+				cell.container.setSize(this.cellWidth, this.cellHeight)
+					.setId("coh_cell_" + i)
+					.setLocation(
+						nextCellXPosition + this.CELL_PADDING,  
+						1 + this.CELL_PADDING
+						)
+					.setFillStyle("#aabb00")
+					.setAlpha(0.5);
+	
+				// Cell is free by default
+				this.cells[cellId] = true;		
+		
+				// Calculate next cell position				
+				nextCellXPosition += cell.container.width +
+					this.CELL_LEFT_MARGIN + 
+					this.CELL_PADDING; 
+		
+				this.container.addChild(cell.container);
+			}
+		
+		}, enumerable: false
+	},
+
+	addCard: {
+		value: function(card) {
+		
+			// Get access to the last updated cell
+			// (added card, removed card,...)
+			var cell = this.container.findActorById("coh_cell_" +
+				this.lastUpdatedCell);
+
+			// If cell is not null and is free...
+			if (cell != null && this.cells[cell.id] == true) {
+		
+				cell.addChild( card.container );
+				this.cells[cell.id] = false; // Mark cell as not free
+				this.lastUpdatedCell++;			
+			} 
+			
+		}, enumerable: false
 	}
-	
-	this.addCard = function(card) {
 		
-		// Get access to the last updated cell
-		// (added card, removed card,...)
-		var cell = this.container.findActorById("coh_cell_" +
-			this.lastUpdatedCell);
-
-		// If cell is not null and is free...
-		if (cell != null && this.cells[cell.id] == true) {
-			
-			cell.addChild( card.container );
-			this.cells[cell.id] = false; // Mark cell as not free
-			this.lastUpdatedCell++;			
-		} 
-		
-	}
+});
 	
-}
-
-CardsOnHandPanel.prototype = new Panel;

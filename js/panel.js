@@ -1,51 +1,45 @@
 /*
 * PANEL OBJECT
 */
-function Panel() {
+var Panel =  {};
 
-	/* PROPERTIES */
-	
-	this.titleIsVisible = true;
-	this.titleFont = "14px sans-serif";
-	this.titleColor = "#fdff47";
-	this.defaultBackgroundcolor = "#967551";
-	this.titleObject = null;
-	
-}
+Object.defineProperties(Panel, {
 
-Panel.prototype.initPanel = function() {
-				
-	this.container = new CAAT.ActorContainer()
-		.setFillStyle(this.defaultBackgroundcolor);
+	titleIsVisible:  	{ value: true, writable: true },
+	titleFont: 			{ value: "14px sans-serif", writable: false },
+	titleColor: 		{ value: "#fdff47", writable: false },
+	defaultBackgroundcolor: { value: "#967551", writable: false },
+	titleObject: 		{ value: null, writable: true },
+	container: 			{ value: null, writable: true },
+	
+	initPanel: {
+		value: function() {
+
+			this.titleIsVisible = true;
+			this.container = new CAAT.ActorContainer()
+				.setFillStyle(this.defaultBackgroundcolor);
 						
-	// Init panel title
-    this.titleObject = new CAAT.TextActor()
-        .setFont(this.titleFont)
-        .setText("panel_title")
-        .setTextAlign("left")
-        .setTextFillStyle(this.titleColor)
-        .setTextBaseline("bottom");
+			// Init panel title
+			this.titleObject = new CAAT.TextActor()
+				.setFont(this.titleFont)
+				.setText("panel_title")
+				.setTextAlign("left")
+				.setTextFillStyle(this.titleColor)
+				.setTextBaseline("bottom");
+				
+        }, enumerable: false
         
-};
+	}, // end initPanel
 
-Panel.prototype.setTitle = function(theTitle) {
+	setTitle: {
+		value: function(theTitle) {
 		
-	if (this.titleIsVisible) {
-	
-		if (this.titleObject == null) {
+			this.titleObject.setText(theTitle);
+			this.titleObject.setLocation(1,1); // Top left position
+			this.container.addChild(this.titleObject);
+				
+		}, enumerable: true
 		
-			console.log("titleObject was not initialized");
-			return;
-		}
-		
-		this.titleObject.setText(theTitle);
-		this.titleObject.setLocation(1,1); // Top left position
-		this.container.addChild(this.titleObject);
-		
-	} else {
-	
-		//console.log("Panel title is set to invisible");
-	}
+	} // end setTitle
 
-};
-
+}); // end Panel object

@@ -31,9 +31,10 @@ function initGame(director) {
 		.setFillStyle('#000');
 		
 	/* CREATE GAME UI OBJECTS */
+
 	var equipedCardsPanel = createEquipedCardsPanel(director);
 	scene_1.addChild(equipedCardsPanel.container);
-	
+
 	var playerLifePanel = createPlayerLifePanel(director);
 	scene_1.addChild(playerLifePanel.container);
 	
@@ -45,26 +46,29 @@ function initGame(director) {
 			
 	var rouletteOptions = createRouletteOptions(director);
 	scene_1.addChild(rouletteOptions.container);
-	
+
 	// Create cards
-	var card1 = new Card();
-	card1.container.setId("card1_small");
-	card1.setImage(director, "card1-small");
-	card1.setDirector(director);
+	var card = null;
 	
-	var card2 = new Card();
-	card2.container.setId("card2_small").enableDrag();
-	card2.setImage(director, "card2-small");
-	card2.forTesting(director);
-	
+	//for(var c = 0; c < 3; c++) {
+		card = Object.create( Card );	
+		Object.defineProperty(card, "container", {
+			value: null,
+			writable: true
+		});
+		card.initCard(new CAAT.Actor());
+		card.setImage(director, "card1-small");
+		
+		cardsOnHandPanel.addCard( card );
+	//}
+
 	/* TESTING INPUT LISTS */
 		
-	cardsOnHandPanel.addCard(card1);
+	//cardsOnHandPanel.addCard(card1);
 	
 	scene_1.enableInputList(2);	
 	scene_1.addActorToInputList(cardsOnHandPanel.container, 1);
-	scene_1.addActorToInputList(card1.container, 0);	
-
+	scene_1.addActorToInputList(card.container, 0);	
 
 	CAAT.loop(60);
 }
@@ -74,42 +78,40 @@ function initGame(director) {
 
 function createEquipedCardsPanel(director) {
 	
-	// Equiped cards panel
-	var equipedCards = new EquipedCardsPanel();
-	equipedCards.initPanel();
-	equipedCards.setTitle("Equiped cards");	
-	equipedCards.container.setLocation(10,10)
+	var equipedCardsPanel = Object.create( EquipedCardsPanel );
+	equipedCardsPanel.initPanel();
+	equipedCardsPanel.setTitle("Equiped cards");	
+	equipedCardsPanel.container.setLocation(10,10)
 		.setSize(100,400)
 		.setAlpha(0.5)
 		.setId("equiped_cards_panel");
+
+	equipedCardsPanel.container.setId("equiped_cards_panel");
+	equipedCardsPanel.initElementSlots(director);
 	
-	equipedCards.container.setId("equiped_cards_panel");
-	equipedCards.initElementSlots(director);
-	
-	return equipedCards;
+	return equipedCardsPanel;
 }
 
 function createPlayerLifePanel(director) {
 	
 	// Player life panel
-	var playerLifePanel = new PlayerLifePanel();
+	var playerLifePanel = Object.create( PlayerLifePanel );
 	var canvasWidth = director.canvas.width;
 	var canvasHeight = director.canvas.height;
-	playerLifePanel.initPanel();
+	
 	playerLifePanel.container.setId("player_life_panel");
 	playerLifePanel.init(director, 10, canvasHeight-100, 100, 100); 
 	playerLifePanel.setPlayerImage(director, "player-image");	
 	playerLifePanel.initLifeImages(director);
 	playerLifePanel.setTitle("Player life");
 	
-		
 	return playerLifePanel;
 }
 
 function createCardsOnHandPanel(director) {
 
-	var cardsOnHandPanel = new CardsOnHandPanel();
-	cardsOnHandPanel.initPanel();
+	var cardsOnHandPanel = Object.create( CardsOnHandPanel );
+	cardsOnHandPanel.init();
 	cardsOnHandPanel.container.setLocation(230, 500)
 		.setSize(500, 80)
 		.setAlpha(0.50);
@@ -123,7 +125,7 @@ function createCardsOnHandPanel(director) {
 
 function createAtkDefPanel(director) {
 	
-	var atkDefPanel = new AtkDefPanel();
+	var atkDefPanel = Object.create( AtkDefPanel );
 	atkDefPanel.initPanel();
 	atkDefPanel.initLabels();
 	atkDefPanel.setTitle("Atk / Def");
@@ -136,7 +138,7 @@ function createAtkDefPanel(director) {
 
 function createRouletteOptions(director) {
 
-	var roulette = new RouletteOptions();
+	var roulette = Object.create( RouletteOptions );
 	roulette.initRoulette(director);
 	
 	return roulette;

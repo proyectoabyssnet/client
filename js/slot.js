@@ -1,33 +1,40 @@
 /*
 * SLOT TO CONTAIN CARD/s
 */
-function Slot(numberOfCards) {
-	
-	/* PROPERTIES */
-	
-	this.isFree = true;
-	this.alphaValue = 0.5;
-	this.MAX_CARDS = numberOfCards;
-	this.cards = new Array(this.MAX_CARDS);
+var Slot = {};
 
-	this.container = new CAAT.ActorContainer()
-		.setAlpha(this.alphaValue);
+Object.defineProperties(Slot, {
+
+	isFree: 	{ value: true, writable: true },
+	alphaValue: { value: 0.5, writable: true },
+	MAX_CARDS: 	{ value: 0, writable: false },
+	cards: 		{ value: [], writable: true },
 	
-	/* METHODS */
 	
-	this.addCard = function(card) {
+	setMaxCards: {
+		value: function( numberOfCards ) {
+	
+		this.MAX_CARDS = numberOfCards;
 		
-		// Check if there is space to store more cards
-		// in this slot
-		if (this.cards.length < this.MAX_CARDS) {
-			
-			this.cards.push(card);
-			this.container.addChild(card.container);
-			
-		} else {
+		}, enumerable: true
+	},
+	
+	addCard: { 
+		value: function(card) {
 		
-			this.isFree = false;
-		}
+			// Check if there is space to store cards
+			// in this slot
+			if (this.cards.length < this.MAX_CARDS) {
+			
+				this.cards.push(card);
+				this.container.addChild(card.container);
+			
+			} else {
+		
+				this.isFree = false;
+			}
+		
+		}, enumerable: false
 	}
 	
-}
+});

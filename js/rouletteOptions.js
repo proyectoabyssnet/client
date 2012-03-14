@@ -2,69 +2,74 @@
 * ROULETTE OPTIONS FOR PLAYER
 */
 
-function RouletteOptions() {
+var RouletteOptions = Object.create( Panel );
+
+Object.defineProperties( RouletteOptions, {
 	
-	/* PROPERTIES */
-	
-	this.backgroundImage = null;
-	this.optionLabels = new Array(5);
-	
-	
-	/* METHODS */
-	
-	this.initRoulette = function( director ) {
+	backgroundImage: { value: null, writable: true },
+	optionLabels: { value: new Array(5), writable: true },
+
+	initRoulette: {
+		value: function( director ) {
 		
-		this.initPanel();
+			this.initPanel();
 		
-		this.backgroundImage = director.getImage( "roulette" );
-		var width = this.backgroundImage.width;
-		var height = this.backgroundImage.height;
+			this.backgroundImage = director.getImage( "roulette" );
+			var width = this.backgroundImage.width;
+			var height = this.backgroundImage.height;
 		
-		// Image with pentagons
-		this.container.setBackgroundImage( this.backgroundImage )
-			.setSize( width, height )
-			.setLocation(director.canvas.width - width, 1);
+			// Image with pentagons
+			this.container.setBackgroundImage( this.backgroundImage )
+				.setSize( width, height )
+				.setLocation(director.canvas.width - width, 1);
 		
-		this.initOptionLabels();
-	}
+			this.initOptionLabels();
+		}, enumerable: false
+	},
 	
 	// Convert degrees to radians
-	this.deg2rad = function(degrees) {
+	deg2rad: {
+		value: function(degrees) {
 		
-		var radians = (2 * Math.PI * degrees) / 360;
-		return radians;
-	}
+			var radians = (2 * Math.PI * degrees) / 360;
+			return radians;
+			
+		}, enumerable: true
+	},
 	
-	this.initOptionLabels = function() {
+	initOptionLabels: {
+		value: function() {
 		
-		var centerX = this.backgroundImage.width / 2;
-		var centerY = this.backgroundImage.height / 2;
-		var radius = 90;
-		var step = -135; // Position for option 1
+			var centerX = this.backgroundImage.width / 2;
+			var centerY = this.backgroundImage.height / 2;
+			var radius = 90;
+			var step = -135; // Position for option 1
+			var positionX = 0;
+			var positionY = 0;
 		
-		for(var label=0; label < 5; label++) {
+			for(var label=0; label < 5; label++) {
 		
-			var positionX = centerX + Math.cos(this.deg2rad(step)) * radius;
-			var positionY = centerY + Math.sin(this.deg2rad(step)) * radius;
+				positionX = centerX + Math.cos(this.deg2rad(step)) * radius;
+				positionY = centerY + Math.sin(this.deg2rad(step)) * radius;
 					
-			this.optionLabels[ label ] = new CAAT.TextActor()
-				.setFont("14px sans-serif")
-				.setText("option_" + label)
-				.setTextFillStyle("#00ff00")
-				.setTextAlign("left")
-				.setTextBaseline("bottom");
+				this.optionLabels[ label ] = new CAAT.TextActor()
+					.setFont("14px sans-serif")
+					.setText("option_" + label)
+					.setTextFillStyle("#00ff00")
+					.setTextAlign("left")
+					.setTextBaseline("bottom");
 
-			this.optionLabels[ label ].setLocation(
-				positionX - this.optionLabels[ label ].width / 2,
-				positionY
-			);
+				this.optionLabels[ label ].setLocation(
+					positionX - this.optionLabels[ label ].width / 2,
+					positionY
+				);
 			
-			this.container.addChild( this.optionLabels[ label ] );
+				this.container.addChild( this.optionLabels[ label ] );
 			
-			step += 75;			
-		}
-		
+				step += 75;			
+			}
+			
+		}, enumerable: false
 	}
-}
 
-RouletteOptions.prototype = new Panel;
+});
