@@ -1,7 +1,7 @@
 /*
 * PANEL OBJECT
 */
-var Panel =  {};
+var Panel = {};
 
 Object.defineProperties(Panel, {
 

@@ -56,7 +56,7 @@ function initGame(director) {
 			value: null,
 			writable: true
 		});
-		card.initCard(new CAAT.Actor());
+		card.initCard( director, new CAAT.Actor() );
 		card.setImage(director, "card1-small");
 		
 		cardsOnHandPanel.addCard( card );

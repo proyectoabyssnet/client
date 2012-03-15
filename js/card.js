@@ -8,9 +8,9 @@ Object.defineProperties(Card, {
 
 	position: 		{ value: [0,0], writable: true },
 	elementType: 	{ value: "", writable: true },
-	//container: 		{ value: null, writable: true },
 	bigImage: 		{ value: "", writable: true },
-	director: 		{ value: null, writable: false },
+	director: 		{ value: "", writable: false },
+	container:		{ value: "", writable: false },
 	slotElements: 	{ 
 		value: ["slot-card-mascot-elements",
                  "slot-card-air-elements",
@@ -22,33 +22,40 @@ Object.defineProperties(Card, {
 
 	
 	initCard: {
-		value: function( container )  {
+	
+		value: function( director, container )  {
 		
-			//this.container = new CAAT.Actor();
 			this.container = container;
 			this.container.enableDrag();
-			this.container.mouseUp = function(event) {
-
-			var point = new CAAT.Point(this.x, this.y, this.z);
-			var equipedCards = director.findActorById("equiped_cards_panel");
+			this.director.value = director;	
+			this.initEvents();
+					
+		}, enumerable: false
+	},
 	
-			console.log(this.container.modelToModel(point, equipedCards));
-			}
+	initEvents: {
+	
+		value: function() {
 			
+			this.container.mouseUp = function(event) {
+				
+				console.log("mouseUp");
+				var point = new CAAT.Point(this.x, this.y, this.z);
+				var equipedCards = this.director.findActorById("equiped_cards_panel");
+
+				console.log(this.container.modelToModel(point, equipedCards));
+			}
+						
 			this.container.mouseDown = function(event) {
 
-				console.log("mouseDown");
+				console.log("card mouseDown");
 			}
-
-			this.setDirector = function(theDirector) {
-				console.log("Setting director");
-				director = theDirector;
-			}
-					
-		}, writable: false
+			
+		}, enumerable: false
 	},
 	
 	setImage: {
+	
 		value: function(director, imageName) {
 		
 		var image = director.getImage(imageName);
@@ -60,23 +67,26 @@ Object.defineProperties(Card, {
 		this.container.setBackgroundImage(image)
 			.setSize(image.width, image.height);
 			
-		}, writable: false,
+		}, enumerable: false,
 	},
 	
 	// Fire, land, air, water,...
 	setCardType: {
+	
 		value: function(elementType) {
 		
-		this.elementType = elementType;
-		}, writable: false
+			this.elementType = elementType;
+			
+		}, enumerable: false
 	},
 	
 	// Show card details (big picture, text,...)
 	showDetails: {
+	
 		value: function() {
 	
 		console.log("Card details")
-		}, writeble: false
+		}, enumerable: false
 	},
 	
 	forTesting: {
@@ -102,7 +112,7 @@ Object.defineProperties(Card, {
 	//		
 	//			console.log("null reference to slotElement" + slotReference);
 	//		}
-		}, writable: false
+		}, enumerable: false
 	}
     	
 });

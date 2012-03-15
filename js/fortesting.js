@@ -1,41 +1,40 @@
 /*** TESTING PURPOSES ***/
 
-
 var LifeForm = {};
 	
 Object.defineProperties(LifeForm, {
 
-	planet: {
-		value: "unknown",
+	health: {
+		value: 100,
 		writable: true
 	},
+
 	
-	armor: {
-		value: 0,
-		writable: true
-	},
-	
-	hibernate: {
+	attack: {
 		value: function() {
-			console.log("Hibernating...");
-		},
-		writable: false
+			
+			var health = this.health;
+			
+			if (health >= 60) {
+			
+				console.log("attacking!!!");
+				
+			} else {
+				console.log("You are too weak now. Take some rest");
+			}
+		
+		}, enumerable: false
 	}
 });
-
 
 
 var lf1 = Object.create(LifeForm);
+var lf2 = Object.create(LifeForm);
 
-lf1.hibernate();
+//lf1.health = 120;
+lf2.health = 180;
 
-var lf2 = Object.create(lf1, {
-	
-	language: {
-		value: "takrum",
-		writable: true
-	}
-});
+console.log( "lf1.health: " + lf1.health  + " , lf2.health: " + lf2.health );
 
-console.log( "lf2 planet: " + lf2.planet );
-console.log( "lfs language: " + lf2.language );
+lf2.health = lf2.health - 160;
+lf2.attack();
