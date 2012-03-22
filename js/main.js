@@ -47,28 +47,32 @@ function initGame(director) {
 	var rouletteOptions = createRouletteOptions(director);
 	scene_1.addChild(rouletteOptions.container);
 	
+	scene_1.enableInputList(4);	// panel and numberOfCards
+		
 	// Create cards
 	var card = null;
+	var cardIndex = 0;
+	var numberOfCards = 5;
 	
-	//for(var c = 0; c < 3; c++) {
+	for(; cardIndex < numberOfCards; cardIndex++) {
 		card = Object.create( Card );	
 		Object.defineProperty(card, "container", {
 			value: null,
 			writable: true
 		});
-		card.initCard( director, new CAAT.Actor() );
+		card.initCard( director, new CAAT.Actor().setId("card_on_hand_" + 
+			cardIndex) );
 		card.setImage(director, "card1-small");
 		
 		cardsOnHandPanel.addCard( card );
-	//}
+		
+		scene_1.addActorToInputList(card.container, cardIndex);			
+	}
 
+	scene_1.addActorToInputList(cardsOnHandPanel.container, cardIndex + 1);
+	
 	/* TESTING INPUT LISTS */
 		
-	//cardsOnHandPanel.addCard(card1);
-	
-	scene_1.enableInputList(2);	
-	scene_1.addActorToInputList(cardsOnHandPanel.container, 1);
-	scene_1.addActorToInputList(card.container, 0);	
 
 	CAAT.loop(60);
 }

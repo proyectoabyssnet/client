@@ -51,8 +51,13 @@ Object.defineProperties(Card, {
 				if (equipedCards != null) {
 					
 					var container = Card['container'];
-					//var transformedPoint = container.modelToModel(point, equipedCards);
-					//console.log(transformedPoint);				
+					var transformedPoint = this.modelToModel(point, equipedCards);
+					console.log("Current point: " +
+								point.x + "," + point.y);
+								
+					console.log("Transformed point: " + 
+								transformedPoint.x + "," + 
+								transformedPoint.y);				
 				}
 			}
 						
