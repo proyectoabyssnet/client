@@ -46,7 +46,7 @@ function initGame(director) {
 			
 	var rouletteOptions = createRouletteOptions(director);
 	scene_1.addChild(rouletteOptions.container);
-
+	
 	// Create cards
 	var card = null;
 	
