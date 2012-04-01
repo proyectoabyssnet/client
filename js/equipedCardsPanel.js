@@ -132,15 +132,17 @@ Object.defineProperties(EquipedCardsPanel, {
 			for( ; slotCell < numberOfCells; slotCell++) {
 			
 				cell = Object.create(Slot);
+				
 				// Define an ActorContainer property
 				// for this cell
 				Object.defineProperties( cell, {
+				
 					container: { 
 						value: new CAAT.ActorContainer()
 							.setId("cell_" + slotCell)
 							.setAlpha(Slot.alphaValue),
 						writable: true
-						}
+					}
 				});
 				
 				cell.setMaxCards(2); // 2 cards per cells

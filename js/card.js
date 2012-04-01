@@ -10,7 +10,8 @@ Object.defineProperties(Card, {
 	elementType: 	{ value: "", writable: true },
 	bigImage: 		{ value: "bigImage.png", writable: true },
 	container:		{ value: null, writable: true },
-	director:		{ value: null, writable: true },
+	panel1:			{ value: null, writable: true },
+	director:		{ value: null, writable: true },	
 	slotElements: 	{ 
 		value: ["slot-card-mascot-elements",
                  "slot-card-air-elements",
@@ -23,11 +24,11 @@ Object.defineProperties(Card, {
 	
 	initCard: {
 	
-		value: function( theDirector, container )  {
+		value: function( director, container )  {
 		
 			this.container = container;
 			this.container.enableDrag();
-			Card['director'] = theDirector;	
+			this.director = director; 
 			this.initEvents();
 					
 		}, enumerable: false
@@ -36,22 +37,33 @@ Object.defineProperties(Card, {
 	initEvents: {
 	
 		value: function() {
-			
+		
+			var director = this.director;
+			var container = this.container;
 			
 			this.container.mouseUp = function(event) {
 
 				console.log("mouseUp");
 
-				var point = new CAAT.Point(this.x, this.y, this.z);
-				var dir = Card['director'];
-				var equipedCards = dir
-					.getScene(0) // UI elements are in scene with index 0
+				var point = new CAAT.Point(container.x, container.y, container.z);
+
+				
+				// Get reference to EquipedCardsPanel
+				var equipedCards = director
+					.getScene(0)
 					.findActorById("equiped_cards_panel");
 
+				// Get reference to slotElement
+				// ...
+				// Check if card position collides with equipedCardsPanel
+				// and add card automatically to the correct cell
+				// ...
+				
 				if (equipedCards != null) {
 					
-					var container = Card['container'];
-					var transformedPoint = this.modelToModel(point, equipedCards);
+					console.log("Got " + equipedCards.id);
+
+					var transformedPoint = director.modelToModel(point, equipedCards);
 					console.log("Current point: " +
 								point.x + "," + point.y);
 								
