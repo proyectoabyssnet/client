@@ -12,6 +12,7 @@ Object.defineProperties(EquipedCardsPanel, {
 	SLOT_PADDING: 		{ value: 2, writable: true }, // Vertical separation between slots
 	slotElementSize: 	{ value: [0,0], writable: true }, // width, height
 	cells:				{ value: [], writable: true }, // to store cards
+	selected:			{ value: false, writable: true }, // Used to select panel1
 	slotBackgroundImages: { 
 		value: ["card-mascot-elements",
 				 "card-air-elements",

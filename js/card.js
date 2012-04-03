@@ -62,10 +62,10 @@ Object.defineProperties(Card, {
 				if (equipedCards != null) {
 					
 					console.log("Got " + equipedCards.id);
-
-					var transformedPoint = director.modelToModel(point, equipedCards);
-					console.log("Current point: " +
-								point.x + "," + point.y);
+					console.log("card point: " + point.x + "," + point.y + ": " +
+								"panel point: " + equipedCards.x + "," + equipedCards.y);
+								
+					var transformedPoint = container.modelToModel(point, equipedCards);
 								
 					console.log("Transformed point: " + 
 								transformedPoint.x + "," + 
@@ -113,32 +113,6 @@ Object.defineProperties(Card, {
 		value: function() {
 	
 		console.log("Card details")
-		}, enumerable: false
-	},
-	
-	forTesting: {
-		value: function(director) {
-	
-	//		var point = new CAAT.Point(this.x, this.y, 0);
-	//		
-	//		var equipedCards = director.findActorById("equiped_cards_panel");
-	//		
-	//		if (equipedCards == null) {
-	//			console.log("equipedCards actor not found");
-	//			return;
-	//		}
-	//		
-	//		var slotElement = equipedCards.findActorById(this.slotElements[2]);
-	//							
-	//		if (slotReference != null) {
-	//		
-	//			console.log("modelToModel result: " +
-	//				this.container.modelToModel(point, slotReference));			
-	//				
-	//		} else {
-	//		
-	//			console.log("null reference to slotElement" + slotReference);
-	//		}
 		}, enumerable: false
 	}
     	
