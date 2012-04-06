@@ -1,5 +1,6 @@
 window.onload = init;
 
+
 /*
 *	INIT MAIN OBJECTS
 */
@@ -14,37 +15,36 @@ function init() {
 	}
 	
 	// Create Director and assign canvas object
-	var director = new CAAT.Director()
+	window['director'] = new CAAT.Director()
 		.initialize(800,600, canvasObject)
 		.setClear(false);
-
 	
 	// Load resources (images,...)
-	loadImages(director);
+	loadImages();
 }
 
 /* INIT GAME */
 
-function initGame(director) {
+function initGame() {
 
-	var scene_1 = director.createScene()
+	var scene_1 = window['director'].createScene()
 		.setFillStyle('#000');
 		
 	/* CREATE GAME UI OBJECTS */
 
-	var equipedCardsPanel = createEquipedCardsPanel(director);
+	var equipedCardsPanel = createEquipedCardsPanel();
 	scene_1.addChild(equipedCardsPanel.container);
 
-	var playerLifePanel = createPlayerLifePanel(director);
+	var playerLifePanel = createPlayerLifePanel();
 	scene_1.addChild(playerLifePanel.container);
 	
-	var cardsOnHandPanel = createCardsOnHandPanel(director);
+	var cardsOnHandPanel = createCardsOnHandPanel();
 	scene_1.addChild(cardsOnHandPanel.container);
 	
-	var atkDefPanel = createAtkDefPanel(director);
+	var atkDefPanel = createAtkDefPanel();
 	scene_1.addChild(atkDefPanel.container);
 			
-	var rouletteOptions = createRouletteOptions(director);
+	var rouletteOptions = createRouletteOptions();
 	scene_1.addChild(rouletteOptions.container);
 	
 	
@@ -64,12 +64,11 @@ function initGame(director) {
 			writable: true
 		});
 		
-		card.initCard( 
-			director, 
+		card.initCard(
 			new CAAT.Actor().setId("card_on_hand_" + cardIndex) 
 		);
 		
-		card.setImage(director, "card1-small");
+		card.setImage("card1-small");
 		
 		cardsOnHandPanel.addCard( card );
 		
@@ -84,7 +83,7 @@ function initGame(director) {
 /* END INIT GAME */
 
 
-function createEquipedCardsPanel(director) {
+function createEquipedCardsPanel() {
 	
 	var equipedCardsPanel = Object.create( EquipedCardsPanel );
 	equipedCardsPanel.initPanel();
@@ -95,28 +94,28 @@ function createEquipedCardsPanel(director) {
 		.setId("equiped_cards_panel");
 
 	equipedCardsPanel.container.setId("equiped_cards_panel");
-	equipedCardsPanel.initElementSlots(director);
+	equipedCardsPanel.initElementSlots();
 	
 	return equipedCardsPanel;
 }
 
-function createPlayerLifePanel(director) {
+function createPlayerLifePanel() {
 	
 	// Player life panel
 	var playerLifePanel = Object.create( PlayerLifePanel );
-	var canvasWidth = director.canvas.width;
-	var canvasHeight = director.canvas.height;
+	var canvasWidth = window['director'].canvas.width;
+	var canvasHeight = window['director'].canvas.height;
 	
 	playerLifePanel.container.setId("player_life_panel");
-	playerLifePanel.init(director, 10, canvasHeight-100, 100, 100); 
-	playerLifePanel.setPlayerImage(director, "player-image");	
-	playerLifePanel.initLifeImages(director);
+	playerLifePanel.init(10, canvasHeight-100, 100, 100); 
+	playerLifePanel.setPlayerImage("player-image");	
+	playerLifePanel.initLifeImages();
 	playerLifePanel.setTitle("Player life");
 	
 	return playerLifePanel;
 }
 
-function createCardsOnHandPanel(director) {
+function createCardsOnHandPanel() {
 
 	var cardsOnHandPanel = Object.create( CardsOnHandPanel );
 	cardsOnHandPanel.init();
@@ -126,34 +125,34 @@ function createCardsOnHandPanel(director) {
 	
 	cardsOnHandPanel.container.setId("cards_on_hand_panel");
 	cardsOnHandPanel.setTitle("Cards on hand");
-	cardsOnHandPanel.initCells(director);
+	cardsOnHandPanel.initCells();
 		
 	return cardsOnHandPanel;
 }
 
-function createAtkDefPanel(director) {
+function createAtkDefPanel() {
 	
 	var atkDefPanel = Object.create( AtkDefPanel );
 	atkDefPanel.initPanel();
 	atkDefPanel.initLabels();
 	atkDefPanel.setTitle("Atk / Def");
-	atkDefPanel.container.setLocation(130, director.canvas.height - 100)
+	atkDefPanel.container.setLocation(130, window['director'].canvas.height - 100)
 		.setSize(80,80)
 		.setAlpha(0.50);		
 	
 	return atkDefPanel;
 }
 
-function createRouletteOptions(director) {
+function createRouletteOptions() {
 
 	var roulette = Object.create( RouletteOptions );
-	roulette.initRoulette(director);
+	roulette.initRoulette();
 	
 	return roulette;
 }
 
 /* PRELOAD IMAGES */
-function loadImages(director) {
+function loadImages() {
 	
 	// Preload images
 	new CAAT.ImagePreloader().loadImages(
@@ -178,10 +177,10 @@ function loadImages(director) {
 		function(counter,images) {
 			
 			if (counter == images.length) {
-				director.setImagesCache(images);
+				window['director'].setImagesCache(images);
 					
 				// Images were loaded. It's time to init scene/s
-				initGame(director);						
+				initGame();						
 			}
 		}
 	);	

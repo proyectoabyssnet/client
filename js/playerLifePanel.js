@@ -13,19 +13,19 @@ Object.defineProperties( PlayerLifePanel, {
 	
 	
 	init: {
-		value: function(director, x, y, width, height) {
+		value: function( x, y, width, height) {
 		
 		this.initPanel();
 		this.container.setBounds(x, y, width, height)
 		.setFillStyle("#ff0000")
-		.setBackgroundImage(director.getImage(this.bgImage));	
+		.setBackgroundImage(window['director'].getImage(this.bgImage));	
 		
 		}, enumerable: false	
 	},
 	
 	initLifeImages: {
 	 
-		value: function(director) {
+		value: function() {
 		
 			var centerX = this.container.width / 2;
 			var centerY = this.container.height / 2;
@@ -43,7 +43,7 @@ Object.defineProperties( PlayerLifePanel, {
 			
 				var lifeImage = new CAAT.Actor()
 					.setBounds(positionX, positionY, 26, 24)
-					.setBackgroundImage(director.getImage("life"));
+					.setBackgroundImage(window['director'].getImage("life"));
 				
 				this.container.addChild(lifeImage);
 			
@@ -54,9 +54,9 @@ Object.defineProperties( PlayerLifePanel, {
 	
 	setPlayerImage: {
 		
-		value: function(director, imageName) {
+		value: function( imageName) {
 		
-			var image = director.getImage(imageName);	
+			var image = window['director'].getImage(imageName);	
 			var xPosition = this.container.x + image.width / 2;
 			var yPosition = this.container.y + image.height / 2;
 		

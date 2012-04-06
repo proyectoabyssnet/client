@@ -10,18 +10,18 @@ Object.defineProperties( RouletteOptions, {
 	optionLabels: { value: new Array(5), writable: true },
 
 	initRoulette: {
-		value: function( director ) {
+		value: function( ) {
 		
 			this.initPanel();
 		
-			this.backgroundImage = director.getImage( "roulette" );
+			this.backgroundImage = window['director'].getImage( "roulette" );
 			var width = this.backgroundImage.width;
 			var height = this.backgroundImage.height;
 		
 			// Image with pentagons
 			this.container.setBackgroundImage( this.backgroundImage )
 				.setSize( width, height )
-				.setLocation(director.canvas.width - width, 1);
+				.setLocation(window['director'].canvas.width - width, 1);
 		
 			this.initOptionLabels();
 		}, enumerable: false

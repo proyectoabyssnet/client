@@ -43,12 +43,12 @@ Object.defineProperties(EquipedCardsPanel, {
 
 	initElementSlots: {
 	
-		value: function(director) {
+		value: function() {
 		
 		var nextSlotY = this.container.y;
 	
 		// Get first image to read it's size
-		var image = director.getImage(this.slotBackgroundImages[0]);
+		var image = window['director'].getImage(this.slotBackgroundImages[0]);
 		this.slotElementSize[0] = image.width;
 		this.slotElementSize[1] = image.height;
 	
@@ -72,7 +72,7 @@ Object.defineProperties(EquipedCardsPanel, {
 						)
 					.setFillStyle("#fbff87")
 					.setBackgroundImage(
-							director.getImage(slotElementBackground)
+							window['director'].getImage(slotElementBackground)
 							);
 			
 				slotElement.setId("slot-" + 

@@ -27,9 +27,9 @@ Object.defineProperties( CardsOnHandPanel, {
 
 	initCells: {
 	
-		value: function(director) {
+		value: function() {
 		
-			var slotBackgroundImage = director.getImage("slot-bg");
+			var slotBackgroundImage = window['director'].getImage("slot-bg");
 			this.cellWidth = slotBackgroundImage.width;
 			this.cellHeight = slotBackgroundImage.height;
 			var nextCellXPosition = 1;

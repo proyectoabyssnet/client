@@ -10,8 +10,6 @@ Object.defineProperties(Card, {
 	elementType: 	{ value: "", writable: true },
 	bigImage: 		{ value: "bigImage.png", writable: true },
 	container:		{ value: null, writable: true },
-	panel1:			{ value: null, writable: true },
-	director:		{ value: null, writable: true },	
 	slotElements: 	{ 
 		value: ["slot-card-mascot-elements",
                  "slot-card-air-elements",
@@ -24,11 +22,10 @@ Object.defineProperties(Card, {
 	
 	initCard: {
 	
-		value: function( director, container )  {
+		value: function( container )  {
 		
 			this.container = container;
 			this.container.enableDrag();
-			this.director = director; 
 			this.initEvents();
 					
 		}, enumerable: false
@@ -38,7 +35,6 @@ Object.defineProperties(Card, {
 	
 		value: function() {
 		
-			var director = this.director;
 			var container = this.container;
 			
 			this.container.mouseUp = function(event) {
@@ -49,7 +45,7 @@ Object.defineProperties(Card, {
 
 				
 				// Get reference to EquipedCardsPanel
-				var equipedCards = director
+				var equipedCards = window['director']
 					.getScene(0)
 					.findActorById("equiped_cards_panel");
 
@@ -65,11 +61,17 @@ Object.defineProperties(Card, {
 					console.log("card point: " + point.x + "," + point.y + ": " +
 								"panel point: " + equipedCards.x + "," + equipedCards.y);
 								
-					var transformedPoint = container.modelToModel(point, equipedCards);
+					var transformedPoint = container.modelToModel(point, window['director']);
 								
 					console.log("Transformed point: " + 
 								transformedPoint.x + "," + 
-								transformedPoint.y);				
+								transformedPoint.y);	
+								
+					window['director'].getScene(0).findActorById('cards_on_hand_panel')
+						.removeChild( container );
+						
+					//equipedCards.addChild( this );
+							
 				}
 			}
 						
@@ -83,9 +85,9 @@ Object.defineProperties(Card, {
 	
 	setImage: {
 	
-		value: function(director, imageName) {
+		value: function(imageName) {
 		
-		var image = director.getImage(imageName);
+		var image = window['director'].getImage(imageName);
 		
 		// Get image name to show the full detailed image
 		// p.e.: card-small.jpg -> card.jpg is the detailed image		
