@@ -39,40 +39,17 @@ Object.defineProperties(Card, {
 			
 			this.container.mouseUp = function(event) {
 
-				console.log("mouseUp");
-
+				console.log("*** MOUSE UP ***");
 				var point = new CAAT.Point(container.x, container.y, container.z);
-
 				
 				// Get reference to EquipedCardsPanel
-				var equipedCards = window['director']
-					.getScene(0)
-					.findActorById("equiped_cards_panel");
-
-				// Get reference to slotElement
-				// ...
-				// Check if card position collides with equipedCardsPanel
-				// and add card automatically to the correct cell
-				// ...
-				
-				if (equipedCards != null) {
-					
-					console.log("Got " + equipedCards.id);
-					console.log("card point: " + point.x + "," + point.y + ": " +
-								"panel point: " + equipedCards.x + "," + equipedCards.y);
-								
-					var transformedPoint = container.modelToModel(point, window['director']);
-								
-					console.log("Transformed point: " + 
-								transformedPoint.x + "," + 
-								transformedPoint.y);	
-								
-					window['director'].getScene(0).findActorById('cards_on_hand_panel')
-						.removeChild( container );
-						
-					//equipedCards.addChild( this );
-							
+				var ecp = window['equiped_cards_panel'];
+				for(var i=0; i < ecp.container.childrenList.length; i++) {
+					console.log(ecp.container.childrenList[i].getId());
+					var slotElementCell = ecp.container.childrenList[i].childrenList[1].getId();
+					console.log("Cells inside each slot: " + slotElementCell);
 				}
+				
 			}
 						
 			this.container.mouseDown = function(event) {

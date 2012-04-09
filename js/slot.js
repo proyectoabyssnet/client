@@ -1,5 +1,5 @@
 /*
-* SLOT TO CONTAIN CARD/s
+* SLOT CONTAINING CARD/s
 */
 var Slot = {};
 

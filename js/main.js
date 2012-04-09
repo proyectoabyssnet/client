@@ -32,8 +32,8 @@ function initGame() {
 		
 	/* CREATE GAME UI OBJECTS */
 
-	var equipedCardsPanel = createEquipedCardsPanel();
-	scene_1.addChild(equipedCardsPanel.container);
+	window['equiped_cards_panel'] = createEquipedCardsPanel();
+	scene_1.addChild(window['equiped_cards_panel'].container);
 
 	var playerLifePanel = createPlayerLifePanel();
 	scene_1.addChild(playerLifePanel.container);

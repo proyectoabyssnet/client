@@ -11,7 +11,8 @@ Object.defineProperties(EquipedCardsPanel, {
 	CELL_LEFT_MARGIN: 	{ value: 10, writable: true }, // Horizontal separation
 	SLOT_PADDING: 		{ value: 2, writable: true }, // Vertical separation between slots
 	slotElementSize: 	{ value: [0,0], writable: true }, // width, height
-	cells:				{ value: [], writable: true }, // to store cards
+	slotElements:		{ value: null, writable: true }, // Elements
+	cells:				{ value: [], writable: true }, // Cells inside elements
 	selected:			{ value: false, writable: true }, // Used to select panel1
 	slotBackgroundImages: { 
 		value: ["card-mascot-elements",
@@ -41,6 +42,14 @@ Object.defineProperties(EquipedCardsPanel, {
 	
 	}, // end init
 
+	getCells: {
+		value: function() {
+			
+			return this.cells;
+		
+		}, enumerable: true
+	},
+	
 	initElementSlots: {
 	
 		value: function() {
@@ -89,7 +98,7 @@ Object.defineProperties(EquipedCardsPanel, {
 				// Add cells to slot element
 				slotElement.addChild(cells[0].container); // Left cell
 				slotElement.addChild(cells[1].container); // Right cell		
-			
+				
 				// Add slot element to panel
 				this.addSlotElement(slotElement);							
 			
@@ -146,7 +155,7 @@ Object.defineProperties(EquipedCardsPanel, {
 					}
 				});
 				
-				cell.setMaxCards(2); // 2 cards per cells
+				cell.setMaxCards(2); // Cell can store 2 cards
 				cell.container.setBounds(
 					nextCellXPosition,	
 					yPosition,

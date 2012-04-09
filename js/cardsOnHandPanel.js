@@ -45,7 +45,7 @@ Object.defineProperties( CardsOnHandPanel, {
 					writable: true
 				});
 				
-				cell.setMaxCards(1);
+				cell.setMaxCards(1); // 1 card per cell
 				cellId = "coh_cell_" + i;
 		
 				cell.container.setSize(this.cellWidth, this.cellHeight)
