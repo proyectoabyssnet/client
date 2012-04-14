@@ -81,7 +81,7 @@ Object.defineProperties(Card, {
 	},
 	
 	// Fire, land, air, water,...
-	setCardType: {
+	setElementType: {
 	
 		value: function(elementType) {
 		

@@ -131,9 +131,20 @@ Object.defineProperties(EquipedCardsPanel, {
 		value: function(card) {
 			
 			// What sort of card is it? (land, air,...)
+			var cardType = card.elementType;
 			
 			// Ok, got it. Now find out if slotElement contains a free cell for
 			// this card
+			var slotElementId = "card-" + cardType + "-elements";
+			
+			if (this.slotElements[slotElementId][0].isFree) {
+				
+				// Put it here
+					
+			} else if (this.slotElements[slotElementId][1].isFree) {
+			
+				// Put it here
+			}
 			
 			// No free cell found? Put it back to it's source panel
 					

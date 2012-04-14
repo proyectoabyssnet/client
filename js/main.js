@@ -68,6 +68,7 @@ function initGame() {
 			new CAAT.Actor().setId("card_on_hand_" + cardIndex) 
 		);
 		
+		card.setElementType("air");
 		card.setImage("card1-small");
 		
 		cardsOnHandPanel.addCard( card );
