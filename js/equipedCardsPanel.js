@@ -11,7 +11,6 @@ Object.defineProperties(EquipedCardsPanel, {
 	CELL_LEFT_MARGIN: 	{ value: 10, writable: true }, // Horizontal separation
 	SLOT_PADDING: 		{ value: 2, writable: true }, // Vertical separation between slots
 	slotElementSize: 	{ value: [0,0], writable: true }, // width, height
-	slotElements:		{ value: null, writable: true }, // Elements
 	cells:				{ value: [], writable: true }, // Cells inside elements
 	selected:			{ value: false, writable: true }, // Used to select panel1
 	slotBackgroundImages: { 
@@ -22,22 +21,28 @@ Object.defineProperties(EquipedCardsPanel, {
 				 "card-fire-elements"],
 			writable: false
 	},
-							 
+	
+	// Each slot contains two cells at 0 and 1 index position
+    slotElements: { 
+    	value: { 
+    		"land":		[0,0],
+    		"air": 		[0,0],
+    		"water":	[0,0],
+    		"fire":		[0,0],
+    		"mascot":	[0,0]
+    	},
+    	writable: true
+    },
+				 
 	init: {
 		value: function() {
-	
+			
 			this.MAX_SLOT_ELEMENTS = 5; // Number of elements (land, air,...)
 			this.CELL_PADDING = 2; // Separating between cell and borders
 			this.CELL_LEFT_MARGIN = 10; // Horizontal separation
 			this.SLOT_PADDING = 2; // Vertical separation between slots
 			this.slotElementSize = [0,0]; // width, height
 
-		
-			this.slotBackgroundImages = ["card-mascot-elements",
-										 "card-air-elements",
-										 "card-water-elements",
-										 "card-land-elements",
-										 "card-fire-elements"];
 		}, writable: false
 	
 	}, // end init
@@ -53,7 +58,7 @@ Object.defineProperties(EquipedCardsPanel, {
 	initElementSlots: {
 	
 		value: function() {
-		
+					
 		var nextSlotY = this.container.y;
 	
 		// Get first image to read it's size
@@ -65,8 +70,9 @@ Object.defineProperties(EquipedCardsPanel, {
 		var slotElementBackground = "";
 		var slotElement = null;
 		var cells = null;
+		var element = 0;
 		
-			for(var element = 0; element < this.MAX_SLOT_ELEMENTS; element++) {
+			for(; element < this.MAX_SLOT_ELEMENTS; element++) {
 						
 				maxNumberOfCards = 2; // Cards per slot
 				slotElementBackground = this.slotBackgroundImages[element];

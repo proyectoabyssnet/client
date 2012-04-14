@@ -44,10 +44,15 @@ Object.defineProperties(Card, {
 				
 				// Get reference to EquipedCardsPanel
 				var ecp = window['equiped_cards_panel'];
+
+				console.log(
+					ecp.container.findActorById("slot-card-air-elements")
+					.findActorById("cell_0")
+				);
+								
 				for(var i=0; i < ecp.container.childrenList.length; i++) {
-					console.log(ecp.container.childrenList[i].getId());
-					var slotElementCell = ecp.container.childrenList[i].childrenList[1].getId();
-					console.log("Cells inside each slot: " + slotElementCell);
+
+
 				}
 				
 			}
