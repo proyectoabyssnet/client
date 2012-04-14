@@ -139,14 +139,22 @@ Object.defineProperties(EquipedCardsPanel, {
 			
 			if (this.slotElements[slotElementId][0].isFree) {
 				
-				// Put it here
+				// Put card inside cell 1
+				//this.slotElements[slotElementId][0].addCard( card );
+				console.log(this.slotElements[slotElementId][0].cards.length);
 					
 			} else if (this.slotElements[slotElementId][1].isFree) {
 			
-				// Put it here
+				// Put card inside cell 2
+				//this.slotElements[slotElementId][1].addCard( card );				
+				console.log(this.slotElements[slotElementId][1].cards.length);				
+				
+			} else {
+			
+				// No free cell found? Put it back to it's source panel
+					
 			}
 			
-			// No free cell found? Put it back to it's source panel
 					
 		},
 		enumerable: true

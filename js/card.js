@@ -48,10 +48,19 @@ Object.defineProperties(Card, {
 				console.log(
 					ecp.slotElements["card-air-elements"][0]["name"]
 				);
-								
-				for(var i=0; i < ecp.container.childrenList.length; i++) {
+				
+				var convertedPoint = container.modelToModel( new CAAT.Point(0,0), ecp.container );
 
-
+				// Check if card x,y position is inside EquipedCardsPanel area
+				if (
+					(convertedPoint.x >= ecp.container.x && 
+					convertedPoint.x <= ecp.container.x + ecp.container.width) 
+					&&
+					(convertedPoint.y >= ecp.container.y && 
+					convertedPoint.y <= ecp.container.y + ecp.container.height)
+					) 
+				{
+					console.log("Card is over EquipedCardsPanel");
 				}
 				
 			}
