@@ -51,7 +51,7 @@ Object.defineProperties(Card, {
 				
 				var convertedPoint = container.modelToModel( new CAAT.Point(0,0), ecp.container );
 
-				// Check if card x,y position is inside EquipedCardsPanel area
+				// Check if card x,y position collides EquipedCardsPanel area
 				if (
 					(convertedPoint.x >= ecp.container.x && 
 					convertedPoint.x <= ecp.container.x + ecp.container.width) 
