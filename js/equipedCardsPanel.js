@@ -22,14 +22,14 @@ Object.defineProperties(EquipedCardsPanel, {
 			writable: false
 	},
 	
-	// Each slot contains two cells at 0 and 1 index position
+	// Each slot contains two cells (0 and 1 indexes)
     slotElements: { 
     	value: { 
-    		"land":		[0,0],
-    		"air": 		[0,0],
-    		"water":	[0,0],
-    		"fire":		[0,0],
-    		"mascot":	[0,0]
+    		"card-mascot-elements":		[0,0],
+    		"card-air-elements": 		[0,0],
+    		"card-water-elements":		[0,0],
+    		"card-fire-elements":		[0,0],
+    		"card-land-elements":		[0,0]
     	},
     	writable: true
     },
@@ -92,6 +92,8 @@ Object.defineProperties(EquipedCardsPanel, {
 			
 				slotElement.setId("slot-" + 
 					this.slotBackgroundImages[ element ]);
+					
+					
 				
 				slotElement.mouseUp = function(event) {
 				
@@ -100,11 +102,19 @@ Object.defineProperties(EquipedCardsPanel, {
 			
 				// Create 2 cells
 				cells = this.createCells(2);
+				cells[0]["name"] = this.slotBackgroundImages[ element ];
+				cells[1]["name"] = this.slotBackgroundImages[ element ];
 				
-				// Add cells to slot element
+				// Add cells to slot element (containers only)
 				slotElement.addChild(cells[0].container); // Left cell
 				slotElement.addChild(cells[1].container); // Right cell		
 				
+				var elementId = this.slotBackgroundImages[ element ];
+				
+				// Store cells (Object) inside each slot
+				this.slotElements[elementId][0] = cells[0];
+				this.slotElements[elementId][1] = cells[1];
+									
 				// Add slot element to panel
 				this.addSlotElement(slotElement);							
 			
@@ -116,6 +126,21 @@ Object.defineProperties(EquipedCardsPanel, {
 		}, enumerable: false
 	},
 
+	equipCard: {
+	
+		value: function(card) {
+			
+			// What sort of card is it? (land, air,...)
+			
+			// Ok, got it. Now find out if slotElement contains a free cell for
+			// this card
+			
+			// No free cell found? Put it back to it's source panel
+					
+		},
+		enumerable: true
+	},
+	
 	addSlotElement: {
 	
 		value: function(slotElement) {
@@ -161,6 +186,7 @@ Object.defineProperties(EquipedCardsPanel, {
 					}
 				});
 				
+				cell["name"] = "Cell_" + slotCell;
 				cell.setMaxCards(2); // Cell can store 2 cards
 				cell.container.setBounds(
 					nextCellXPosition,	

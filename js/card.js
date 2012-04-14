@@ -46,8 +46,7 @@ Object.defineProperties(Card, {
 				var ecp = window['equiped_cards_panel'];
 
 				console.log(
-					ecp.container.findActorById("slot-card-air-elements")
-					.findActorById("cell_0")
+					ecp.slotElements["card-air-elements"][0]["name"]
 				);
 								
 				for(var i=0; i < ecp.container.childrenList.length; i++) {
