@@ -46,8 +46,7 @@ function initGame() {
 			
 	var rouletteOptions = createRouletteOptions();
 	scene_1.addChild(rouletteOptions.container);
-	
-	
+		
 	// Create cards
 	scene_1.enableInputList(5);	// panel and numberOfCards
 		
@@ -71,7 +70,7 @@ function initGame() {
 		
 		card.setElementType("air");
 		card.setImage("card1-small");
-		
+
 		cardsOnHandPanel.addCard( card );
 		
 		scene_1.addActorToInputList(card.container, cardIndex);			

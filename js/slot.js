@@ -5,7 +5,7 @@ var Slot = {};
 
 Object.defineProperties(Slot, {
 
-	//isFree: 	{ value: true, writable: true },
+	isFree: 	{ value: true, writable: true },
 	alphaValue: { value: 0.5, writable: true },
 	MAX_CARDS: 	{ value: 0, writable: false },
 	cards: 		{ value: [], writable: true },

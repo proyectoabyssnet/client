@@ -140,7 +140,7 @@ Object.defineProperties(EquipedCardsPanel, {
 			if (this.slotElements[slotElementId][0].isFree) {
 				
 				// Put card inside cell 1
-				//this.slotElements[slotElementId][0].addCard( card );
+				//this.slotElements[slotElementId][0].addCard( card );				
 				console.log(this.slotElements[slotElementId][0].cards.length);
 					
 			} else if (this.slotElements[slotElementId][1].isFree) {

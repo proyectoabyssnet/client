@@ -48,7 +48,9 @@ Object.defineProperties(Card, {
 						
 			this.container.mouseUp = function(event) {
 
-				console.log("*** MOUSE UP ***");
+				console.log(container.id + ", index: " + 
+					" *** MOUSE UP ***");
+					
 				Card['isMoving'] = false;
 				
 				// Get reference to EquipedCardsPanel
@@ -72,10 +74,13 @@ Object.defineProperties(Card, {
 				{
 					console.log("Card is over EquipedCardsPanel");
 					// Get card to be equiped
-					//...
+					var cardIndex = container.id.split("_")[3];
 					
 					// Tell EquipedCardsPanel to equip this card but first of all
 					//equipedCardsPanel.equipCard( cardIndex );
+					
+					// Tell CardsOnHandPanel to delete cards from the right cell
+					//cardsOnHandPanel.deleteCard( card );
 				}
 				
 			}	

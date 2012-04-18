@@ -50,10 +50,10 @@ Object.defineProperties( CardsOnHandPanel, {
 						value: new CAAT.ActorContainer(),
 						writable: true
 					},
-					"isFree": {
+					/*"isFree": {
 						value: true,
 						writable: true
-					},
+					},*/
 					"cards": {
 						value: [],
 						writable: true
@@ -109,6 +109,26 @@ Object.defineProperties( CardsOnHandPanel, {
 			} 
 			
 		}, enumerable: true
+	},
+	
+	removeCard: {
+	
+		value: function( cardIndex ) {
+		
+			// Card index is equal to cell index because
+			// we have only 1 card inside each cell
+			var cell = this.cells[ cardIndex ];
+			
+			// Remove parenting between cell and card
+			this.container.removeChild( cell.cards[0].container );
+			
+			cell.cards = [];
+			cell.isFree = true;
+			cell.lastUpdatedCell = cardIndex;
+		
+		},
+		enumerable: true
+		
 	}
 		
 });
