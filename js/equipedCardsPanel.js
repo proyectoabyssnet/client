@@ -128,7 +128,7 @@ Object.defineProperties(EquipedCardsPanel, {
 
 	equipCard: {
 	
-		value: function(card) {
+		value: function( card ) {
 			
 			// What sort of card is it? (land, air,...)
 			var cardType = card.elementType;
@@ -136,25 +136,24 @@ Object.defineProperties(EquipedCardsPanel, {
 			// Ok, got it. Now find out if slotElement contains a free cell for
 			// this card
 			var slotElementId = "card-" + cardType + "-elements";
+			var slotElementCell = this.slotElements[slotElementId];
 			
-			if (this.slotElements[slotElementId][0].isFree) {
+			if (slotElementCell[0].isFree) {
 				
 				// Put card inside cell 1
-				//this.slotElements[slotElementId][0].addCard( card );				
-				console.log(this.slotElements[slotElementId][0].cards.length);
+				slotElementCell[0].addCard( card );				
 					
-			} else if (this.slotElements[slotElementId][1].isFree) {
+			} else if (slotElementCell[1].isFree) {
 			
 				// Put card inside cell 2
-				//this.slotElements[slotElementId][1].addCard( card );				
-				console.log(this.slotElements[slotElementId][1].cards.length);				
+				slotElementCell[1].addCard( card );				
 				
 			} else {
 			
 				// No free cell found? Put it back to it's source panel
 					
 			}
-			
+		
 					
 		},
 		enumerable: true

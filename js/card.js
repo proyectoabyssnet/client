@@ -6,13 +6,12 @@ var Card = {};
 
 Object.defineProperties(Card, {
 
-	position: 		{ value: [0,0], writable: true },
 	elementType: 	{ value: "", writable: true },
 	bigImage: 		{ value: "bigImage.png", writable: true },
 	container:		{ value: null, writable: true },
 	isMoving:		{ value: false, writable: true }, // Is card moving?
-	oldPosition:	{ value: false, writable: true },
-
+	oldPosition:	{ value: [0,0], writable: true },	
+	collision:		{ value: false, writable: true },
 	slotElements: 	{ 
 		value: ["slot-card-mascot-elements",
                  "slot-card-air-elements",
@@ -39,18 +38,18 @@ Object.defineProperties(Card, {
 		value: function() {
 		
 			var container = this.container;
+			var thisCard = this;
 			
 			this.container.mouseDown = function(event) {
 
 				console.log("card mouseDown");
 				Card['isMoving'] = true;
 			}
+		
 						
 			this.container.mouseUp = function(event) {
 
-				console.log(container.id + ", index: " + 
-					" *** MOUSE UP ***");
-					
+				console.log(container.id + " *** MOUSE UP ***");					
 				Card['isMoving'] = false;
 				
 				// Get reference to EquipedCardsPanel
@@ -72,15 +71,23 @@ Object.defineProperties(Card, {
 					convertedPoint.y <= equipedCardsPanel.container.y + equipedCardsPanel.container.height)
 					) 
 				{
-					console.log("Card is over EquipedCardsPanel");
-					// Get card to be equiped
+					console.log("Card is over EquipedCardsPanel");					
+					Card['collission'] = true;
+					
+					// Get card index to be equiped
 					var cardIndex = container.id.split("_")[3];
-					
-					// Tell EquipedCardsPanel to equip this card but first of all
-					//equipedCardsPanel.equipCard( cardIndex );
-					
+								
 					// Tell CardsOnHandPanel to delete cards from the right cell
-					//cardsOnHandPanel.deleteCard( card );
+					//cardsOnHandPanel.removeCard( cardIndex );
+
+					// Tell EquipedCardsPanel to equip this card but first of all
+					//equipedCardsPanel.equipCard( thisCard );
+					
+				} else {
+					
+					container.x = Card['oldPosition'][0]; 
+					container.y = Card['oldPosition'][1]; 
+					
 				}
 				
 			}	

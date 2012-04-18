@@ -38,8 +38,8 @@ function initGame() {
 	var playerLifePanel = createPlayerLifePanel();
 	scene_1.addChild(playerLifePanel.container);
 	
-	var cardsOnHandPanel = createCardsOnHandPanel();
-	scene_1.addChild(cardsOnHandPanel.container);
+	window['cards_on_hand_panel'] = createCardsOnHandPanel();
+	scene_1.addChild(window['cards_on_hand_panel'].container);
 	
 	var atkDefPanel = createAtkDefPanel();
 	scene_1.addChild(atkDefPanel.container);
@@ -71,12 +71,12 @@ function initGame() {
 		card.setElementType("air");
 		card.setImage("card1-small");
 
-		cardsOnHandPanel.addCard( card );
+		window['cards_on_hand_panel'] .addCard( card );
 		
 		scene_1.addActorToInputList(card.container, cardIndex);			
 	}
 
-	scene_1.addActorToInputList(cardsOnHandPanel.container, cardIndex + 1);
+	scene_1.addActorToInputList(window['cards_on_hand_panel'] .container, cardIndex + 1);
 
 	CAAT.loop(60);
 }
