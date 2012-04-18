@@ -41,10 +41,10 @@ Object.defineProperties( CardsOnHandPanel, {
 		
 				// Create 1 cell to store 1 card
 				cell = Object.create( Slot );
-				/*Object.defineProperty( cell, "container", {
-					value: new CAAT.ActorContainer(),
-					writable: true
-				});*/
+
+				// Defined vars differs for each Object instance
+				// otherwise all cells would share the save values
+				// for this vars
 				Object.defineProperties( cell, {
 					"container": {
 						value: new CAAT.ActorContainer(),
@@ -52,6 +52,10 @@ Object.defineProperties( CardsOnHandPanel, {
 					},
 					"isFree": {
 						value: true,
+						writable: true
+					},
+					"cards": {
+						value: [],
 						writable: true
 					}
 				});

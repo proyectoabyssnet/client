@@ -23,13 +23,12 @@ Object.defineProperties(Slot, {
 	addCard: { 
 	
 		value: function(card) {
+
+			if (this.cards.length < this.MAX_CARDS) {
 		
-			// Check if there is space to store cards
-			// in this slot
-			//if (this.cards.length < this.MAX_CARDS) {
 				this.cards.push(card);
-				this.container.addChild(card.container);
-			//} 
+				this.container.addChild(card.container);	
+			}	
 		
 		}, enumerable: true
 	}
