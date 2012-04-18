@@ -49,11 +49,12 @@ function initGame() {
 	
 	
 	// Create cards
-	scene_1.enableInputList(4);	// panel and numberOfCards
+	scene_1.enableInputList(5);	// panel and numberOfCards
 		
 	var card = null;
 	var cardIndex = 0;
 	var numberOfCards = 5;
+	
 	
 	for(; cardIndex < numberOfCards; cardIndex++) {
 	

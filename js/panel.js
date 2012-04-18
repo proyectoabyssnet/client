@@ -13,6 +13,7 @@ Object.defineProperties(Panel, {
 	container: 			{ value: null, writable: true },
 	
 	initPanel: {
+	
 		value: function() {
 
 			this.titleIsVisible = true;
@@ -32,6 +33,7 @@ Object.defineProperties(Panel, {
 	}, // end initPanel
 
 	setTitle: {
+	
 		value: function(theTitle) {
 		
 			this.titleObject.setText(theTitle);

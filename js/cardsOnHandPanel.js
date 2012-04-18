@@ -11,7 +11,9 @@ Object.defineProperties( CardsOnHandPanel, {
 	cellWidth: 			{ value: 0, writable: true },
 	cellHeight: 		{ value: 0, writable: true },
 	lastUpdatedCell: 	{ value: 0, writable: true }, 
+	draggedCardId:		{ value: 0, writable: true }, // Cards being dragged
 	cells: 				{ value: [], writable: true },
+	//cards:				{ value: [], writable: true },
 			
 	init: {
 	
@@ -34,20 +36,27 @@ Object.defineProperties( CardsOnHandPanel, {
 			this.cellHeight = slotBackgroundImage.height;
 			var nextCellXPosition = 1;
 			var cell = null;
-			var cellId = "";
 			
 			for(var i=0; i < this.MAX_CARDS_ON_HAND; i++) {
 		
-				// Create 1 cell to contain 1 card
+				// Create 1 cell to store 1 card
 				cell = Object.create( Slot );
-				Object.defineProperty( cell, "container", {
+				/*Object.defineProperty( cell, "container", {
 					value: new CAAT.ActorContainer(),
 					writable: true
+				});*/
+				Object.defineProperties( cell, {
+					"container": {
+						value: new CAAT.ActorContainer(),
+						writable: true
+					},
+					"isFree": {
+						value: true,
+						writable: true
+					}
 				});
 				
 				cell.setMaxCards(1); // 1 card per cell
-				cellId = "coh_cell_" + i;
-		
 				cell.container.setSize(this.cellWidth, this.cellHeight)
 					.setId("coh_cell_" + i)
 					.setLocation(
@@ -57,8 +66,8 @@ Object.defineProperties( CardsOnHandPanel, {
 					.setFillStyle("#aabb00")
 					.setAlpha(0.5);
 	
-				// Cell is free by default
-				this.cells[cellId] = true;		
+				// Store cell... 	
+				this.cells.push( cell );				
 		
 				// Calculate next cell position				
 				nextCellXPosition += cell.container.width +
@@ -72,22 +81,30 @@ Object.defineProperties( CardsOnHandPanel, {
 	},
 
 	addCard: {
+	
 		value: function(card) {
-		
+				
+			if (this.lastUpdatedCell < 0 || 
+				this.lastUpdatedCell > 4) {
+				
+				console.log( "Cannot have more than 5 cards in your hand" );
+				return;
+			}
+			
 			// Get access to the last updated cell
 			// (added card, removed card,...)
-			var cell = this.container.findActorById("coh_cell_" +
-				this.lastUpdatedCell);
-
+			var cell = this.cells[this.lastUpdatedCell];
+			
 			// If cell is not null and is free...
-			if (cell != null && this.cells[cell.id] == true) {
-		
-				cell.addChild( card.container );
-				this.cells[cell.id] = false; // Mark cell as not free
-				this.lastUpdatedCell++;			
+			if (cell.isFree == true) {
+			
+				console.log( cell );
+				cell.addCard( card );
+				cell.isFree = false;
+				this.lastUpdatedCell++;												
 			} 
 			
-		}, enumerable: false
+		}, enumerable: true
 	}
 		
 });

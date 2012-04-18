@@ -61,16 +61,16 @@ Object.defineProperties(EquipedCardsPanel, {
 					
 		var nextSlotY = this.container.y;
 	
-		// Get first image to read it's size
-		var image = window['director'].getImage(this.slotBackgroundImages[0]);
-		this.slotElementSize[0] = image.width;
-		this.slotElementSize[1] = image.height;
+			// Get first image to read it's size
+			var image = window['director'].getImage(this.slotBackgroundImages[0]);
+			this.slotElementSize[0] = image.width;
+			this.slotElementSize[1] = image.height;
 	
-		var maxNumberOfCards = 2;
-		var slotElementBackground = "";
-		var slotElement = null;
-		var cells = null;
-		var element = 0;
+			var maxNumberOfCards = 2;
+			var slotElementBackground = "";
+			var slotElement = null;
+			var cells = null;
+			var element = 0;
 		
 			for(; element < this.MAX_SLOT_ELEMENTS; element++) {
 						
