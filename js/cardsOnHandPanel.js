@@ -102,7 +102,6 @@ Object.defineProperties( CardsOnHandPanel, {
 			// If cell is not null and is free...
 			if (cell.isFree == true) {
 			
-				console.log(card.oldPosition[0] + "," + card.oldPosition[1]);
 				cell.addCard( card );
 				cell.isFree = false;
 				this.lastUpdatedCell++;												
@@ -111,7 +110,7 @@ Object.defineProperties( CardsOnHandPanel, {
 		}, enumerable: true
 	},
 	
-	removeCard: {
+	freeCard: {
 	
 		value: function( cardIndex ) {
 		
@@ -121,10 +120,10 @@ Object.defineProperties( CardsOnHandPanel, {
 			
 			// Remove parenting between cell and card
 			cell.cards[0].container.setParent( null );			
-			this.container.removeChild( cell.cards[0].container );
+			//this.container.removeChild( cell.cards[0].container );
 			
-			cell.cards = [];
-			cell.isFree = true;
+			//cell.cards = [];
+			//cell.isFree = true;
 			cell.lastUpdatedCell = cardIndex;
 		
 		},

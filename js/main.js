@@ -52,10 +52,10 @@ function initGame() {
 		
 	var card = null;
 	var cardIndex = 0;
-	var numberOfCards = 5;
+	var cardsOnHandCount = 5;
 	
 	
-	for(; cardIndex < numberOfCards; cardIndex++) {
+	for(; cardIndex < cardsOnHandCount; cardIndex++) {
 	
 		card = Object.create( Card );	
 		
@@ -67,8 +67,9 @@ function initGame() {
 		card.initCard(
 			new CAAT.Actor().setId("card_on_hand_" + cardIndex) 
 		);
-		
-		card.setElementType("air");
+				
+		var cardType = randomCardType();	
+		card.setElementType(cardType);
 		card.setImage("card1-small");
 
 		window['cards_on_hand_panel'] .addCard( card );
@@ -76,12 +77,48 @@ function initGame() {
 		scene_1.addActorToInputList(card.container, cardIndex);			
 	}
 
-	scene_1.addActorToInputList(window['cards_on_hand_panel'] .container, cardIndex + 1);
+	scene_1.addActorToInputList(window['cards_on_hand_panel'].container, cardsOnHandCount);
+	scene_1.addActorToInputList(window['equiped_cards_panel'].container, cardsOnHandCount + 1);
 
 	CAAT.loop(60);
 }
 
 /* END INIT GAME */
+
+function randomCardType() {
+
+	// Generate random card type (air, land,...)
+	var minValue = 1;
+	var maxValue = 5;
+	var randomCardType = Math.round(minValue + (Math.random() * (maxValue - minValue)) );
+	var cardType = "";
+	
+		
+	switch(randomCardType) {
+	
+		case 1:
+			cardType = "land";
+		break;
+		
+		case 2:
+			cardType = "water";
+		break;
+		
+		case 3:
+			cardType = "fire";
+		break;
+		
+		case 4:
+			cardType = "mascot";
+		break;
+		
+		case 5:
+			cardType = "air";
+		break;
+	}
+	
+	return cardType;
+}
 
 
 function createEquipedCardsPanel() {

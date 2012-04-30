@@ -130,6 +130,9 @@ Object.defineProperties(EquipedCardsPanel, {
 	
 		value: function( card ) {
 			
+			console.log("Current card x,y: " + card.container.x + "," +
+				card.container.y);
+				
 			// What sort of card is it? (land, air,...)
 			var cardType = card.elementType;
 			
@@ -141,12 +144,16 @@ Object.defineProperties(EquipedCardsPanel, {
 			if (slotElementCell[0].isFree) {
 				
 				// Put card inside cell 1
-				slotElementCell[0].addCard( card );				
+				//slotElementCell[0].addCard( card );	
+				card.container.setPosition(
+					slotElementCell[0].container.x,
+					slotElementCell[0].container.y
+				);			
 					
 			} else if (slotElementCell[1].isFree) {
 			
 				// Put card inside cell 2
-				slotElementCell[1].addCard( card );				
+				//slotElementCell[1].addCard( card );				
 				
 			} else {
 			
@@ -154,6 +161,8 @@ Object.defineProperties(EquipedCardsPanel, {
 					
 			}
 		
+			console.log("After Card x,y: " + card.container.x + "," +
+				card.container.y);
 					
 		},
 		enumerable: true

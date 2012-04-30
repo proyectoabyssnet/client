@@ -78,13 +78,14 @@ Object.defineProperties(Card, {
 					var cardIndex = container.id.split("_")[3];
 								
 					// Tell CardsOnHandPanel to delete cards from the right cell
-					//cardsOnHandPanel.removeCard( cardIndex );
+					cardsOnHandPanel.freeCard( cardIndex );
 
 					// Tell EquipedCardsPanel to equip this card but first of all
-					//equipedCardsPanel.equipCard( thisCard );
+					equipedCardsPanel.equipCard( thisCard );
 					
 				} else {
 					
+					// Return to original position
 					container.x = Card['oldPosition'][0]; 
 					container.y = Card['oldPosition'][1]; 
 					
