@@ -160,8 +160,10 @@ Object.defineProperties(EquipedCardsPanel, {
 					slotElementCell[0].container.y
 				);			
 				
-				/*if (slotElementCell[0].cards.length == slotElementCell[0].MAX_CARDS)
-					slotElementCell[0].isFree = false;*/
+				console.log(slotElementCell[0].cards.length + " cards");
+				
+				if (slotElementCell[0].cards.length == slotElementCell[0].MAX_CARDS)
+					slotElementCell[0].isFree = false;
 					
 			} else if (slotElementCell[1].isFree == true) {
 			
@@ -172,8 +174,10 @@ Object.defineProperties(EquipedCardsPanel, {
 					slotElementCell[1].container.y
 				);	
 
-				/*if (slotElementCell[1].cards.length == slotElementCell[1].MAX_CARDS)
-					slotElementCell[1].isFree = false;				*/
+				console.log(slotElementCell[1].cards.length + " cards");
+				
+				if (slotElementCell[1].cards.length == slotElementCell[1].MAX_CARDS)
+					slotElementCell[1].isFree = false;				
 								
 			} else {
 			
@@ -236,6 +240,7 @@ Object.defineProperties(EquipedCardsPanel, {
 					}
 				});
 				
+				cell.init();
 				cell["name"] = "Cell_" + slotCell;
 				cell.setMaxCards(2); // Cell can store 2 cards
 				cell.container.setBounds(

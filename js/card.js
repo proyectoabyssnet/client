@@ -7,6 +7,7 @@ var Card = {};
 Object.defineProperties(Card, {
 
 	elementType: 	{ value: "", writable: true },
+	tagVisible:		{ value: false, writable: true },
 	bigImage: 		{ value: "bigImage.png", writable: true },
 	container:		{ value: null, writable: true },
 	isMoving:		{ value: false, writable: true }, // Is card moving?
@@ -22,15 +23,23 @@ Object.defineProperties(Card, {
     },
 
 	
-	initCard: {
+	init: {
 	
-		value: function( container )  {
+		value: function(id)  {
 		
-			this.container = container;
+			this.container = new CAAT.Actor().setId(id);//container;
 			this.container.enableDrag();
 			this.initEvents();
-					
+						
 		}, enumerable: false
+	},
+	
+	setTagVisible: {
+	
+		value: function( value ) {
+		
+			this.tagVisible = value;
+		}
 	},
 	
 	initEvents: {
@@ -46,7 +55,12 @@ Object.defineProperties(Card, {
 				Card['isMoving'] = true;
 			}
 		
-						
+			this.container.mouseEnter = function(event) {
+			
+				console.log("Card type: " + thisCard["elementType"]);
+
+			}
+			
 			this.container.mouseUp = function(event) {
 
 				console.log(container.id + " *** MOUSE UP ***");					
@@ -62,7 +76,7 @@ Object.defineProperties(Card, {
 					equipedCardsPanel.container 
 				);
 
-				// Check if card x,y position collides EquipedCardsPanel area
+				// Check if card x,y position collides with EquipedCardsPanel area
 				if (
 					(convertedPoint.x >= equipedCardsPanel.container.x && 
 					convertedPoint.x <= equipedCardsPanel.container.x + equipedCardsPanel.container.width) 
@@ -109,7 +123,8 @@ Object.defineProperties(Card, {
 		
 		this.container.setBackgroundImage(image)
 			.setSize(image.width, image.height);
-			
+		
+		
 		}, enumerable: false,
 	},
 	

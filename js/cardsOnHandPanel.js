@@ -49,17 +49,18 @@ Object.defineProperties( CardsOnHandPanel, {
 					"container": {
 						value: new CAAT.ActorContainer(),
 						writable: true
-					},
-					/*"isFree": {
+					}/*,
+					"isFree": {
 						value: true,
 						writable: true
-					},*/
+					},
 					"cards": {
 						value: [],
 						writable: true
-					}
+					}*/
 				});
 				
+				cell.init();
 				cell.setMaxCards(1); // 1 card per cell
 				cell.container.setSize(this.cellWidth, this.cellHeight)
 					.setId("coh_cell_" + i)

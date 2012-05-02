@@ -59,15 +59,16 @@ function initGame() {
 	
 		card = Object.create( Card );	
 		
-		Object.defineProperty(card, "container", {
+		/*Object.defineProperty(card, "container", {
 			value: null,
 			writable: true
 		});
 		
 		card.initCard(
 			new CAAT.Actor().setId("card_on_hand_" + cardIndex) 
-		);
+		);*/
 				
+		card.init("card_on_hand_" + cardIndex);
 		card['name'] = "card_" + cardIndex;
 		var cardType = randomCardType();
 		console.log("#");

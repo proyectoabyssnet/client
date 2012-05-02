@@ -10,6 +10,14 @@ Object.defineProperties(Slot, {
 	MAX_CARDS: 	{ value: 0, writable: false },
 	cards: 		{ value: [], writable: true },
 	
+	init: {
+	
+		value: function() {
+			
+			this.cards = [];
+		
+		}, enumerable: true
+	},
 	
 	setMaxCards: {
 	
@@ -25,9 +33,7 @@ Object.defineProperties(Slot, {
 		value: function(card) {
 
 			//if (this.cards.length < this.MAX_CARDS) {
-				console.log("Adding card to slot...");
 				this.cards.push(card);
-				console.log("Stored cards: " + this.cards.length);
 				this.container.addChild(card.container);	
 			//}	
 		
