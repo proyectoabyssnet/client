@@ -64,6 +64,7 @@
 		.thumb .end { overflow:hidden; height:5px; width:7px; }
 		.disable { display:none !important; }
 		.disable * { display:none; }
+		.prueba { width:50%; }
 
 	#zposition{
 		top:5em;
@@ -134,15 +135,14 @@
 			<button class="blockinline">Otros</button>
 			
     </li>
-     <li>
+    <li>
         <h4>Chat</h4>
-         <section>
-	       		<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
-				<div class="viewport">
-		            <div class="overview" id="content">
-		            </div>
-				</div>
-			</section>
+        <section id="prueba">
+			<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+			<div class="viewport">
+	            <div class="overview" id="content"></div>
+			</div>
+		</section>
 	    
 	        <section>
 	            <span id="status">Connecting...</span>
@@ -165,6 +165,8 @@
 	
 
 	</div>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script src="js/jquery.tinyscrollbar.js"></script>
+    <script src="js/chat-frontend.js"></script>
 	</body>
 </html>
