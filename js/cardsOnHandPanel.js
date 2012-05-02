@@ -13,7 +13,6 @@ Object.defineProperties( CardsOnHandPanel, {
 	lastUpdatedCell: 	{ value: 0, writable: true }, 
 	draggedCardId:		{ value: 0, writable: true }, // Cards being dragged
 	cells: 				{ value: [], writable: true },
-	//cards:				{ value: [], writable: true },
 			
 	init: {
 	
@@ -45,11 +44,12 @@ Object.defineProperties( CardsOnHandPanel, {
 				// Defined vars differs for each Object instance
 				// otherwise all cells would share the save values
 				// for this vars
+				/*
 				Object.defineProperties( cell, {
 					"container": {
 						value: new CAAT.ActorContainer(),
 						writable: true
-					}/*,
+					},
 					"isFree": {
 						value: true,
 						writable: true
@@ -57,11 +57,11 @@ Object.defineProperties( CardsOnHandPanel, {
 					"cards": {
 						value: [],
 						writable: true
-					}*/
+					}
 				});
-				
-				cell.init();
-				cell.setMaxCards(1); // 1 card per cell
+				*/
+				cell.init("coh_cell_" + i);
+				cell.setMaxCards(1); // 1 card per cell				
 				cell.container.setSize(this.cellWidth, this.cellHeight)
 					.setId("coh_cell_" + i)
 					.setLocation(

@@ -70,7 +70,7 @@ function initGame() {
 				
 		card.init("card_on_hand_" + cardIndex);
 		card['name'] = "card_" + cardIndex;
-		var cardType = randomCardType();
+		var cardType = "water";//randomCardType();
 		console.log("#");
 		console.log("# Created " + cardType + " card type");	
 		console.log("#");

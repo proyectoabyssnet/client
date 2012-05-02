@@ -230,6 +230,7 @@ Object.defineProperties(EquipedCardsPanel, {
 				
 				// Define an ActorContainer property
 				// for this cell
+				/*
 				Object.defineProperties( cell, {
 				
 					container: { 
@@ -239,8 +240,9 @@ Object.defineProperties(EquipedCardsPanel, {
 						writable: true						
 					}
 				});
+				*/
 				
-				cell.init();
+				cell.init("cell_" + slotCell);
 				cell["name"] = "Cell_" + slotCell;
 				cell.setMaxCards(2); // Cell can store 2 cards
 				cell.container.setBounds(

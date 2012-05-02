@@ -8,12 +8,17 @@ Object.defineProperties(Slot, {
 	isFree: 	{ value: true, writable: true },
 	alphaValue: { value: 0.5, writable: true },
 	MAX_CARDS: 	{ value: 0, writable: false },
+	container:	{ value: null, writable: false },
 	cards: 		{ value: [], writable: true },
 	
 	init: {
 	
-		value: function() {
+		value: function(id) {
 			
+			this.container = new CAAT.ActorContainer()
+				.setId(id)
+				.setAlpha(this.alphaValue);
+				
 			this.cards = [];
 		
 		}, enumerable: true
@@ -23,7 +28,7 @@ Object.defineProperties(Slot, {
 	
 		value: function( numberOfCards ) {
 	
-		this.MAX_CARDS = numberOfCards;
+			this.MAX_CARDS = numberOfCards;
 		
 		}, enumerable: true
 	},
