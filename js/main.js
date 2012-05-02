@@ -68,10 +68,15 @@ function initGame() {
 			new CAAT.Actor().setId("card_on_hand_" + cardIndex) 
 		);
 				
-		var cardType = randomCardType();	
+		card['name'] = "card_" + cardIndex;
+		var cardType = randomCardType();
+		console.log("#");
+		console.log("# Created " + cardType + " card type");	
+		console.log("#");
 		card.setElementType(cardType);
 		card.setImage("card1-small");
 
+		//window['equiped_cards_panel'].equipCard( card );
 		window['cards_on_hand_panel'] .addCard( card );
 		
 		scene_1.addActorToInputList(card.container, cardIndex);			

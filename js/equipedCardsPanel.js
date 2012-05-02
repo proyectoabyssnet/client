@@ -22,14 +22,14 @@ Object.defineProperties(EquipedCardsPanel, {
 			writable: false
 	},
 	
-	// Each slot contains two cells (0 and 1 indexes)
+	// Each slot contains two cells
     slotElements: { 
     	value: { 
-    		"card-mascot-elements":		[0,0],
-    		"card-air-elements": 		[0,0],
-    		"card-water-elements":		[0,0],
-    		"card-fire-elements":		[0,0],
-    		"card-land-elements":		[0,0]
+    		"card-mascot-elements":		[null,null],
+    		"card-air-elements": 		[null,null],
+    		"card-water-elements":		[null,null],
+    		"card-fire-elements":		[null,null],
+    		"card-land-elements":		[null,null]
     	},
     	writable: true
     },
@@ -48,6 +48,7 @@ Object.defineProperties(EquipedCardsPanel, {
 	}, // end init
 
 	getCells: {
+	
 		value: function() {
 			
 			return this.cells;
@@ -85,42 +86,49 @@ Object.defineProperties(EquipedCardsPanel, {
 						this.slotElementSize[0], // width
 						this.slotElementSize[1] // height
 						)
-					.setFillStyle("#fbff87")
 					.setBackgroundImage(
 							window['director'].getImage(slotElementBackground)
 							);
-			
+					
 				slotElement.setId("slot-" + 
 					this.slotBackgroundImages[ element ]);
 					
-					
-				
+									
 				slotElement.mouseUp = function(event) {
 				
 					console.log(event.source.id);
 				}
 			
+				var elementId = this.slotBackgroundImages[ element ];
+							
 				// Create 2 cells
 				cells = this.createCells(2);
-				cells[0]["name"] = this.slotBackgroundImages[ element ];
-				cells[1]["name"] = this.slotBackgroundImages[ element ];
+				cells[0]["name"] = "cell_0_" + elementId;
+				cells[1]["name"] = "cell_1_" + elementId;
 				
 				// Add cells to slot element (containers only)
 				slotElement.addChild(cells[0].container); // Left cell
 				slotElement.addChild(cells[1].container); // Right cell		
 				
-				var elementId = this.slotBackgroundImages[ element ];
-				
-				// Store cells (Object) inside each slot
+
+				// Store cells (Object) inside each slot				
 				this.slotElements[elementId][0] = cells[0];
 				this.slotElements[elementId][1] = cells[1];
-									
+								
+				console.log(elementId + 
+					": recently stored cell in cell with position: " +
+					this.slotElements[elementId][0].container.x + "," +
+					this.slotElements[elementId][1].container.y);		
+						
+					
 				// Add slot element to panel
 				this.addSlotElement(slotElement);							
 			
 				// Calculate Y position for next slot element
 				nextSlotY += this.slotElementSize[1] + this.SLOT_PADDING;
 			
+				slotElement = null;
+				
 			} // end for
 			
 		}, enumerable: false
@@ -138,31 +146,46 @@ Object.defineProperties(EquipedCardsPanel, {
 			
 			// Ok, got it. Now find out if slotElement contains a free cell for
 			// this card
-			var slotElementId = "card-" + cardType + "-elements";
+			var slotElementId = "card-" + cardType + "-elements";		
+			console.log("Getting reference to slot: " + slotElementId);
 			var slotElementCell = this.slotElements[slotElementId];
-			
-			if (slotElementCell[0].isFree) {
+
+							
+			if (slotElementCell[0].isFree == true) {
 				
 				// Put card inside cell 1
-				//slotElementCell[0].addCard( card );	
+				slotElementCell[0].addCard( card );					
 				card.container.setPosition(
 					slotElementCell[0].container.x,
 					slotElementCell[0].container.y
 				);			
+				
+				/*if (slotElementCell[0].cards.length == slotElementCell[0].MAX_CARDS)
+					slotElementCell[0].isFree = false;*/
 					
-			} else if (slotElementCell[1].isFree) {
+			} else if (slotElementCell[1].isFree == true) {
 			
 				// Put card inside cell 2
-				//slotElementCell[1].addCard( card );				
-				
+				slotElementCell[1].addCard( card );				
+				card.container.setPosition(
+					slotElementCell[1].container.x,
+					slotElementCell[1].container.y
+				);	
+
+				/*if (slotElementCell[1].cards.length == slotElementCell[1].MAX_CARDS)
+					slotElementCell[1].isFree = false;				*/
+								
 			} else {
 			
 				// No free cell found? Put it back to it's source panel
-					
+				console.log("No free cells for this card. It was detached.");
 			}
 		
-			console.log("After Card x,y: " + card.container.x + "," +
-				card.container.y);
+			/*
+			console.log("Cards at cells (0 and 1): " + 
+				slotElementCell[0].cards.length + " " +
+				slotElementCell[1].cards.length);
+			*/
 					
 		},
 		enumerable: true
@@ -209,7 +232,7 @@ Object.defineProperties(EquipedCardsPanel, {
 						value: new CAAT.ActorContainer()
 							.setId("cell_" + slotCell)
 							.setAlpha(Slot.alphaValue),
-						writable: true
+						writable: true						
 					}
 				});
 				
@@ -222,6 +245,7 @@ Object.defineProperties(EquipedCardsPanel, {
 					70)
 					.setFillStyle("#aabb00");
 				
+
 				// Calculate x position for the cell placed
 				// to the right side
 				nextCellXPosition += 50 + 

@@ -24,11 +24,12 @@ Object.defineProperties(Slot, {
 	
 		value: function(card) {
 
-			if (this.cards.length < this.MAX_CARDS) {
-		
+			//if (this.cards.length < this.MAX_CARDS) {
+				console.log("Adding card to slot...");
 				this.cards.push(card);
+				console.log("Stored cards: " + this.cards.length);
 				this.container.addChild(card.container);	
-			}	
+			//}	
 		
 		}, enumerable: true
 	}
