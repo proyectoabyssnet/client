@@ -99,14 +99,14 @@ Object.defineProperties(Card, {
 					
 				} else {
 					
-					// Return to original position
+					// No collision with any other panel so 
+					// return to original position
 					container.x = Card['oldPosition'][0]; 
 					container.y = Card['oldPosition'][1]; 
 					
 				}
 				
-			}	
-					
+			}					
 			
 		}, enumerable: false
 	},
