@@ -32,6 +32,9 @@ function initGame() {
 		
 	/* CREATE GAME UI OBJECTS */
 
+	window['Tag'] = createTag();
+	scene_1.addChild(window['Tag'].container);
+	
 	window['equiped_cards_panel'] = createEquipedCardsPanel();
 	scene_1.addChild(window['equiped_cards_panel'].container);
 
@@ -126,6 +129,13 @@ function randomCardType() {
 	return cardType;
 }
 
+function createTag() {
+
+	var tag = Object.create(Tag);
+	tag.init("Tag", "Object ID", "Game object description");
+	
+	return tag;
+}
 
 function createEquipedCardsPanel() {
 	

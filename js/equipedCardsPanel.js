@@ -155,12 +155,12 @@ Object.defineProperties(EquipedCardsPanel, {
 				
 				// Put card inside cell 1
 				slotElementCell[0].addCard( card );					
-				/*
+				
 				card.container.setPosition(
 					slotElementCell[0].container.x,
 					slotElementCell[0].container.y
 				);			
-				*/
+				
 				console.log("First cell: " +
 					slotElementCell[0].cards.length + " cards");
 				
@@ -171,12 +171,12 @@ Object.defineProperties(EquipedCardsPanel, {
 			
 				// Put card inside cell 2
 				slotElementCell[1].addCard( card );				
-				/*
+				
 				card.container.setPosition(
 					slotElementCell[1].container.x,
 					slotElementCell[1].container.y
 				);	
-				*/
+				
 				
 				console.log("Second cell: " + 
 					slotElementCell[1].cards.length + " cards");

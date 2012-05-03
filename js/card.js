@@ -14,11 +14,13 @@ Object.defineProperties(Card, {
 	oldPosition:	{ value: [0,0], writable: true },	
 	collision:		{ value: false, writable: true },
 	slotElements: 	{ 
+	
 		value: ["slot-card-mascot-elements",
                  "slot-card-air-elements",
                  "slot-card-water-elements",
                  "slot-card-land-elements",
                  "slot-card-fire-elements"],
+                 
                  writable: false 
     },
 
@@ -58,7 +60,17 @@ Object.defineProperties(Card, {
 			this.container.mouseEnter = function(event) {
 			
 				console.log("Card type: " + thisCard["elementType"]);
-
+				var tag = window['Tag'];
+				tag.title = container.getId();
+				tag.description = "This is a card";
+				tag.setTagPosition(event.screenPoint.x, event.screenPoint.y);
+				tag.container.setVisible(true);			
+				
+			}
+			
+			this.container.mouseExit = function(event) {
+			
+				window['Tag'].container.setVisible(false);
 			}
 			
 			this.container.mouseUp = function(event) {
