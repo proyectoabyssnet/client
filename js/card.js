@@ -68,13 +68,17 @@ Object.defineProperties(Card, {
 			
 			this.container.mouseDown = function(event) {
 
-				console.log("card mouseDown");
+				console.log(container.id + " mouseDown: I belong to panel " +
+					container.parent.parent.getId());
+					
 				Card['isMoving'] = true;
 			}
 					
 			this.container.mouseUp = function(event) {
 
-				console.log(container.id + " *** MOUSE UP ***");					
+				console.log(container.id + " mouseUp: I belong to panel " +
+					container.parent.parent.getId());					
+					
 				Card['isMoving'] = false;
 				
 				// Get reference to EquipedCardsPanel

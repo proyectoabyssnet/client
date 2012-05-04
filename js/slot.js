@@ -37,12 +37,14 @@ Object.defineProperties(Slot, {
 	
 		value: function(card) {
 
-			if (this.cards.length < this.MAX_CARDS) {
-			
 				this.cards.push(card);
 				this.container.addChild(card.container);
-
-			}
+				
+				if (this.cards.length == 2) {
+					
+					this.container.setFillStyle("#ff0000");
+					this.container.setAlpha(250);
+				}
 		
 		}, enumerable: true
 	}

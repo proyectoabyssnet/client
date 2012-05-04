@@ -151,6 +151,9 @@ Object.defineProperties(EquipedCardsPanel, {
 				// Put card inside cell 1
 				slotElementCell[0].addCard( card );					
 				
+				console.log(card.container.getId() + " was equipped and belongs to panel " +
+					card.container.parent.parent.parent.getId());
+				
 				card.container.setLocation(
 					slotElementCell[0].container.x,
 					slotElementCell[0].container.y
@@ -163,16 +166,18 @@ Object.defineProperties(EquipedCardsPanel, {
 					slotElementCell[0].isFree = false;
 					
 			} else if (slotElementCell[1].isFree == true) {
-			
-		
+					
 				// Put card inside cell 2
 				slotElementCell[1].addCard( card );				
 				
+				console.log(card.container.getId() + " was equipped and belongs to second cell " +
+					card.container.parent.getId() + " at position " +
+					card.container.parent.x + "," + card.container.parent.y);
+									
 				card.container.setLocation(
 					slotElementCell[1].container.x,
 					slotElementCell[1].container.y
 				);	
-				
 				
 				console.log("Second cell: " + 
 					slotElementCell[1].cards.length + " cards");
@@ -184,12 +189,7 @@ Object.defineProperties(EquipedCardsPanel, {
 				
 				card.returnToSourcePosition();
 			}
-		
-			console.log("Cells x positions: " + 
-				slotElementCell[0].container.x + "->" +
-				slotElementCell[1].container.x 
-				);		
-					
+						
 		},
 		enumerable: true
 	},
