@@ -150,6 +150,8 @@ Object.defineProperties(EquipedCardsPanel, {
 
 			if (slotElementCell[0].isFree == true) {
 				
+				// Remove current parent relationship (cards_on_hand_panel, 
+				// equiped_cards_panel,...)
 				cardParent.removeChild( card.container );
 				
 				// Put card inside cell 1
@@ -157,11 +159,9 @@ Object.defineProperties(EquipedCardsPanel, {
 				
 				console.log(card.container.getId() + " was equipped and belongs to panel " +
 					card.container.parent.parent.parent.getId());
-				
-				
+							
 				card.container.setLocation(
-					slotElementCell[0].container.x,
-					slotElementCell[0].container.y
+					1,1
 				);	
 					
 				
@@ -184,8 +184,7 @@ Object.defineProperties(EquipedCardsPanel, {
 									
 				
 				card.container.setLocation(
-					slotElementCell[1].container.x,
-					slotElementCell[1].container.y
+					1,1
 				);	
 				
 				console.log("Second cell at: " +
