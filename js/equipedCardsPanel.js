@@ -35,6 +35,7 @@ Object.defineProperties(EquipedCardsPanel, {
     },
 				 
 	init: {
+	
 		value: function() {
 			
 			this.MAX_SLOT_ELEMENTS = 5; // Number of elements (land, air,...)
@@ -106,20 +107,15 @@ Object.defineProperties(EquipedCardsPanel, {
 				cells[0]["name"] = "cell_0_" + elementId;
 				cells[1]["name"] = "cell_1_" + elementId;
 				
+			
 				// Add cells to slot element (containers only)
 				slotElement.addChild(cells[0].container); // Left cell
-				slotElement.addChild(cells[1].container); // Right cell		
-				
+				slotElement.addChild(cells[1].container); // Right cell						
 
 				// Store cells (Object) inside each slot				
 				this.slotElements[elementId][0] = cells[0];
 				this.slotElements[elementId][1] = cells[1];
-								
-				console.log(elementId + 
-					": recently stored cell in cell with position: " +
-					this.slotElements[elementId][0].container.x + "," +
-					this.slotElements[elementId][1].container.y);		
-						
+										
 					
 				// Add slot element to panel
 				this.addSlotElement(slotElement);							
@@ -149,14 +145,13 @@ Object.defineProperties(EquipedCardsPanel, {
 			var slotElementId = "card-" + cardType + "-elements";		
 			console.log("Getting reference to slot: " + slotElementId);
 			var slotElementCell = this.slotElements[slotElementId];
-
-							
+			
 			if (slotElementCell[0].isFree == true) {
 				
 				// Put card inside cell 1
 				slotElementCell[0].addCard( card );					
 				
-				card.container.setPosition(
+				card.container.setLocation(
 					slotElementCell[0].container.x,
 					slotElementCell[0].container.y
 				);			
@@ -169,10 +164,11 @@ Object.defineProperties(EquipedCardsPanel, {
 					
 			} else if (slotElementCell[1].isFree == true) {
 			
+		
 				// Put card inside cell 2
 				slotElementCell[1].addCard( card );				
 				
-				card.container.setPosition(
+				card.container.setLocation(
 					slotElementCell[1].container.x,
 					slotElementCell[1].container.y
 				);	
@@ -185,16 +181,14 @@ Object.defineProperties(EquipedCardsPanel, {
 					slotElementCell[1].isFree = false;				
 								
 			} else {
-			
-				// No free cell found? Put it back to it's source panel
-				console.log("No free cells for this card. It was detached.");
+				
+				card.returnToSourcePosition();
 			}
 		
-			/*
-			console.log("Cards at cells (0 and 1): " + 
-				slotElementCell[0].cards.length + " " +
-				slotElementCell[1].cards.length);
-			*/
+			console.log("Cells x positions: " + 
+				slotElementCell[0].container.x + "->" +
+				slotElementCell[1].container.x 
+				);		
 					
 		},
 		enumerable: true

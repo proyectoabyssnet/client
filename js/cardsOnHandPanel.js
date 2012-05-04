@@ -40,26 +40,6 @@ Object.defineProperties( CardsOnHandPanel, {
 		
 				// Create 1 cell to store 1 card
 				cell = Object.create( Slot );
-
-				// Defined vars differs for each Object instance
-				// otherwise all cells would share the save values
-				// for this vars
-				/*
-				Object.defineProperties( cell, {
-					"container": {
-						value: new CAAT.ActorContainer(),
-						writable: true
-					},
-					"isFree": {
-						value: true,
-						writable: true
-					},
-					"cards": {
-						value: [],
-						writable: true
-					}
-				});
-				*/
 				cell.init("coh_cell_" + i);
 				cell.setMaxCards(1); // 1 card per cell				
 				cell.container.setSize(this.cellWidth, this.cellHeight)
@@ -120,8 +100,7 @@ Object.defineProperties( CardsOnHandPanel, {
 			var cell = this.cells[ cardIndex ];
 			
 			// Remove parenting between cell and card
-			cell.cards[0].container.setParent( null );			
-			//this.container.removeChild( cell.cards[0].container );
+			cell.container.removeChild( cell.cards[0].container );
 			
 			//cell.cards = [];
 			//cell.isFree = true;
