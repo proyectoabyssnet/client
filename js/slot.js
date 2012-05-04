@@ -41,7 +41,7 @@ Object.defineProperties(Slot, {
 				this.container.addChild(card.container);
 				
 				if (this.cards.length == 2) {
-					
+									
 					this.container.setFillStyle("#ff0000");
 					this.container.setAlpha(250);
 				}

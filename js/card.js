@@ -115,7 +115,7 @@ Object.defineProperties(Card, {
 					var cardIndex = container.id.split("_")[3];
 								
 					// Tell CardsOnHandPanel to delete cards from the right cell
-					cardsOnHandPanel.freeCard( cardIndex );
+					//cardsOnHandPanel.freeCard( cardIndex );
 
 					// Tell EquipedCardsPanel to equip this card but first of all
 					equipedCardsPanel.equipCard( thisCard );
