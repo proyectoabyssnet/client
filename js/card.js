@@ -29,7 +29,7 @@ Object.defineProperties(Card, {
 	
 		value: function(id)  {
 		
-			this.container = new CAAT.Actor().setId(id);//container;
+			this.container = new CAAT.Actor().setId(id);
 			this.container.enableDrag();
 			this.initEvents();
 						
@@ -50,61 +50,70 @@ Object.defineProperties(Card, {
 		
 			var container = this.container;
 			var thisCard = this;
+
+			this.container.__prev_mouseEnter = this.container.mouseEnter;
+			
+			this.container.mouseEnter = function(e) {
+			
+				this.__prev_mouseEnter.call( this, e );
+				  
+				// make your extra code here or previous to call __prev_mousedDown
+				// function
+				console.log("Extra code for mouseDown event");
+				console.log(container.getId());
+			};
 						
-			this.container.mouseDown = function(event) {
-					
-				Card['isMoving'] = true;
-			}
-					
 			this.container.mouseUp = function(event) {
-				
-				Card['isMoving'] = false;
-				
+							
 				// Get reference to EquipedCardsPanel
 				var equipedCardsPanel = window['equiped_cards_panel'];
-				var cardsOnHandPanel = window['cards_on_hand_panel'];
-				
+				var cardsOnHandPanel = window['cards_on_hand_panel'];				
 				
 				// Get panel where this card is
 				var panelWhereThisCardBelongsTo = container.parent.parent.getId();
 				
 				if (panelWhereThisCardBelongsTo == "cards_on_hand_panel") {
 
-				// Convert card coordinates to EquipedCardsPanel coordinates but
-				// before doing this, find out who card's parent is				
-				var convertedPoint = container.modelToModel( 
-					new CAAT.Point(0,0), 
-					equipedCardsPanel.container
-				);
+					// Convert card coordinates to EquipedCardsPanel coordinates but
+					// before doing this, find out who card's parent is				
+					var convertedPoint = container.modelToModel( 
+						new CAAT.Point(0,0), 
+						equipedCardsPanel.container
+					);
 
-				// Check if card x,y position collides with EquipedCardsPanel area
-				if (
-					(convertedPoint.x >= equipedCardsPanel.container.x && 
-					convertedPoint.x <= equipedCardsPanel.container.x + equipedCardsPanel.container.width) 
-					&&
-					(convertedPoint.y >= equipedCardsPanel.container.y && 
-					convertedPoint.y <= equipedCardsPanel.container.y + equipedCardsPanel.container.height)
-					) 
-				{
-					console.log("Card is over EquipedCardsPanel");					
-					Card['collission'] = true;
+					// Check if card x,y position collides with EquipedCardsPanel area
+					if (
+						(convertedPoint.x >= equipedCardsPanel.container.x && 
+						convertedPoint.x <= equipedCardsPanel.container.x + equipedCardsPanel.container.width) 
+						&&
+						(convertedPoint.y >= equipedCardsPanel.container.y && 
+						convertedPoint.y <= equipedCardsPanel.container.y + equipedCardsPanel.container.height)
+						) 
+					{
+						console.log("Card is over EquipedCardsPanel");					
+						Card['collission'] = true;
 					
-					// Get card index to be equiped
-					var cardIndex = container.id.split("_")[3];
+						// Get card index to be equiped
+						var cardIndex = container.id.split("_")[3];
 								
-					// Tell EquipedCardsPanel to equip this card but first of all
-					equipedCardsPanel.equipCard( thisCard );
+						// Tell EquipedCardsPanel to equip this card but first of all
+						equipedCardsPanel.equipCard( thisCard );
 					
-				} 
-				else {
+					} 
+					else {
 					
-					// No collision with any other panel so 
-					// return to original position
-					thisCard.returnToSourcePosition();
+						// No collision with any other panel so 
+						// return to original position
+						thisCard.returnToSourcePosition();					
+					}
+				
+				} else if (panelWhereThisCardBelongsTo == "equiped_cards_panel") {
+				
+					var slotElement = container.parent.parent;
+					
+					console.log("slotElement: " + slotElement.getId());
 					
 				}
-				
-				} // ..parent.parent.getId()...
 				else {
 				
 					thisCard.returnToSourcePosition();
@@ -119,9 +128,9 @@ Object.defineProperties(Card, {
 	
 		value: function() {
 		
-				console.log("Returning to source position...");
-				this.container.x = Card['oldPosition'][0]; 
-				this.container.y = Card['oldPosition'][1]; 
+				console.log("Returning card to old position...");
+				this.container.x = this.oldPosition[0]; 
+				this.container.y = this.oldPosition[1]; 
 				
 		}, enumerable: true
 	},

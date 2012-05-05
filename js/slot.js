@@ -20,7 +20,8 @@ Object.defineProperties(Slot, {
 			this.container = new CAAT.ActorContainer()
 				.setId(id)
 				.setAlpha(this.alphaValue);
-				
+			
+			/*
 			var cellCoverBackgroundImage = window['director'].getImage('cell-cover');
 							
 			this.butSprite = new CAAT.SpriteImage()
@@ -37,9 +38,7 @@ Object.defineProperties(Slot, {
 					}
 				)
 				.setVisible( false );
-
-			
-			//this.container.addChild( this.cellCover );
+			*/
 			
 			this.cards = [];
 		
@@ -61,27 +60,17 @@ Object.defineProperties(Slot, {
 
 				this.cards.push(card);
 				this.container.addChild(card.container);
-				card.container.setLocation(1,1);
+				card.container.setLocation(0,0);
+				card.oldPosition[0] = 0;
+				card.oldPosition[1] = 0;
 				
 				if (this.cards.length == 2) {
-					console.log("Current cards location: " +
-					this.cards[0].container.x + "-" +
-					this.cards[1].container.x
-					);
 							
-					this.cards[0].container.setLocation(0,0);
-					this.cards[1].container.setLocation(8,5);	
-				/*								
-					var cardsParent = this.cards[1].container.parent;
-					this.container.addChild( this.cellCover );
-					//cardsParent.setZOrder(this.cards[1].container, 5);
-					this.cellCover.setVisible(true);
-					this.cellCover.mouseUp = function( event ) {
-					
-						console.log("Showing cards inside this cell");
-					}
-				*/
+					this.cards[1].container.setLocation(5,5);	
+					this.cards[1].oldPosition[0] = this.cards[1].container.x;
+					this.cards[1].oldPosition[1] = this.cards[1].container.y;											
 				}
+						
 		
 		}, enumerable: true
 	}
