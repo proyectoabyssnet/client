@@ -52,35 +52,26 @@ Object.defineProperties(Card, {
 			var thisCard = this;
 						
 			this.container.mouseDown = function(event) {
-
-				console.log(container.id + " mouseDown: I belong to panel " +
-					container.parent.parent.getId());
 					
 				Card['isMoving'] = true;
 			}
 					
 			this.container.mouseUp = function(event) {
-
-				console.log(container.id + " mouseUp: I belong to panel " +
-					container.parent.parent.getId());					
-					
+				
 				Card['isMoving'] = false;
 				
 				// Get reference to EquipedCardsPanel
 				var equipedCardsPanel = window['equiped_cards_panel'];
 				var cardsOnHandPanel = window['cards_on_hand_panel'];
 				
-				// Convert card coordinates to EquipedCardsPanel coordinates but
-				// before doing this, find out who card's parent is
-				
-				console.log("Child of cardsonhandpanel: " +
-					cardsOnHandPanel.container.findChild(container));
 				
 				// Get panel where this card is
 				var panelWhereThisCardBelongsTo = container.parent.parent.getId();
 				
 				if (panelWhereThisCardBelongsTo == "cards_on_hand_panel") {
-				
+
+				// Convert card coordinates to EquipedCardsPanel coordinates but
+				// before doing this, find out who card's parent is				
 				var convertedPoint = container.modelToModel( 
 					new CAAT.Point(0,0), 
 					equipedCardsPanel.container

@@ -66,9 +66,7 @@ function initGame() {
 		card.init("card_on_hand_" + cardIndex);
 		card['name'] = "card_" + cardIndex;
 		var cardType = randomCardType();
-		console.log("#");
 		console.log("# Created " + cardType + " card type");	
-		console.log("#");
 		card.setElementType(cardType);
 		card.setImage("card1-small");
 
@@ -220,7 +218,9 @@ function loadImages() {
 			{id:'card2-small',				url:'img/card2-small.jpg'},
 			{id:'card1-big',				url:'img/card1.jpg'},
 			{id:'card2-big',				url:'img/card2.jpg'},
-			{id:'roulette',					url:'img/roulette.png'}												
+			{id:'roulette',					url:'img/roulette.png'},
+			{id:'cell-cover',				url:'img/cell-cover.jpg'},
+			{id:'cell-cover-sprite',		url:'img/cell-cover.png'},														
 		],
 		function(counter,images) {
 			

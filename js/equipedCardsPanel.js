@@ -157,17 +157,6 @@ Object.defineProperties(EquipedCardsPanel, {
 				// Put card inside cell 1
 				slotElementCell[0].addCard( card );					
 				
-				console.log(card.container.getId() + " was equipped and belongs to panel " +
-					card.container.parent.parent.parent.getId());
-							
-				card.container.setLocation(
-					1,1
-				);	
-					
-				
-				console.log("First cell: " +
-					slotElementCell[0].cards.length + " cards");
-				
 				if (slotElementCell[0].cards.length == slotElementCell[0].MAX_CARDS)
 					slotElementCell[0].isFree = false;
 					
@@ -177,20 +166,6 @@ Object.defineProperties(EquipedCardsPanel, {
 				
 				// Put card inside cell 2
 				slotElementCell[1].addCard( card );				
-				
-				console.log(card.container.getId() + " was equipped and belongs to second cell " +
-					card.container.parent.getId() + " at position " +
-					card.container.parent.x + "," + card.container.parent.y);
-									
-				
-				card.container.setLocation(
-					1,1
-				);	
-				
-				console.log("Second cell at: " +
-					slotElementCell[1].container.x + "," +
-					slotElementCell[1].container.y + ": " + 
-					slotElementCell[1].cards.length + " cards");
 				
 				if (slotElementCell[1].cards.length == slotElementCell[1].MAX_CARDS)
 					slotElementCell[1].isFree = false;				
