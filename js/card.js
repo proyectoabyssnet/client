@@ -50,22 +50,7 @@ Object.defineProperties(Card, {
 		
 			var container = this.container;
 			var thisCard = this;
-			
-			/*
-			this.container.mouseEnter = function(event) {
-				
-				var tag = window['Tag'];		
-				tag.setTitle(container.getId());
-				tag.setDescription("This is a card " + container.getId());		
-				tag.container.setVisible(true);
-			}
-			
-			this.container.mouseExit = function(event) {
-			
-				window['Tag'].container.setVisible(false);
-			}
-			*/
-			
+						
 			this.container.mouseDown = function(event) {
 
 				console.log(container.id + " mouseDown: I belong to panel " +
@@ -91,8 +76,10 @@ Object.defineProperties(Card, {
 				console.log("Child of cardsonhandpanel: " +
 					cardsOnHandPanel.container.findChild(container));
 				
+				// Get panel where this card is
+				var panelWhereThisCardBelongsTo = container.parent.parent.getId();
 				
-				if (container.parent.parent.getId() == "cards_on_hand_panel") {
+				if (panelWhereThisCardBelongsTo == "cards_on_hand_panel") {
 				
 				var convertedPoint = container.modelToModel( 
 					new CAAT.Point(0,0), 
@@ -117,7 +104,8 @@ Object.defineProperties(Card, {
 					// Tell EquipedCardsPanel to equip this card but first of all
 					equipedCardsPanel.equipCard( thisCard );
 					
-				} else {
+				} 
+				else {
 					
 					// No collision with any other panel so 
 					// return to original position
@@ -126,6 +114,10 @@ Object.defineProperties(Card, {
 				}
 				
 				} // ..parent.parent.getId()...
+				else {
+				
+					thisCard.returnToSourcePosition();
+				}
 				
 			}					
 			

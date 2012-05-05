@@ -83,57 +83,6 @@ function initGame() {
 	
 	scene_1.setZOrder(window['Tag'].container, Number.MAX_VALUE);
 	
-	/*
-	var actor1 = new CAAT.ActorContainer()
-		.setId("actor1")
-		.setSize(100,100)
-		.setFillStyle("#ff0000")
-		.setLocation(10,10)
-		.enableDrag();
-		
-	var actor2 = new CAAT.Actor()
-		.setId("actor2")
-		.setSize(50,50)
-		.setFillStyle("#00ff00")
-		.setLocation(200,200)
-		.enableDrag();
-		
-	actor2.mouseUp = function(event) {
-	
-		// If actor1 is not my parent yet...
-		if (actor1.findChild(this) == -1) {
-		
-			console.log("mouse up");
-			scene_1.removeChild(this);
-			actor1.addChild(this);
-			actor2.setLocation(1,1);
-		}
-		else {
-			
-			console.log(actor1.getId() + 
-				" is already my parent");
-		}
-		
-		console.log("green square x,y: " + this.x + "," + this.y +
-			"parent red square x,y: " + 
-			actor1.x + "," +
-			actor1.y);
-	}
-
-	var actor3 = new CAAT.ActorContainer()
-		.setId("actor3")
-		.setSize(100,100)
-		.setFillStyle("#ff0000")
-		.setLocation(150,10)
-		.enableDrag();
-
-	// actor2 is child of actor1
-	//actor1.addChild(actor2);
-	
-	scene_1.addChild(actor1);
-	scene_1.addChild(actor2);
-	scene_1.addChild(actor3);
-	*/
 	CAAT.loop(60);
 }
 
