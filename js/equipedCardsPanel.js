@@ -21,6 +21,8 @@ Object.defineProperties(EquipedCardsPanel, {
 				 "card-fire-elements"],
 			writable: false
 	},
+	// Object to show equiped cards for each slot element
+	cardsDisplayer: { value: {}, writable: true },
 	
 	// Each slot contains two cells
     slotElements: { 
@@ -43,6 +45,48 @@ Object.defineProperties(EquipedCardsPanel, {
 			this.CELL_LEFT_MARGIN = 10; // Horizontal separation
 			this.SLOT_PADDING = 2; // Vertical separation between slots
 			this.slotElementSize = [0,0]; // width, height
+			
+			// Define properties for the comboCard object
+			Object.defineProperties( this.cardsDisplayer, {
+				
+				container: { value: null, writable: true },
+				
+				init: {
+					
+					value: function(x,y) {
+						
+						this.comboCard = new CAAT.Actor()
+							.setSize(30, 30)
+							.setLocation(x,y)
+							.setFillStyle("#00ff00");							
+					
+					}, enumerable: true
+				},
+				
+				displayCardsForSlot: {
+				
+					value: function(slotElement) {
+						
+						var numberOfCards = 0;
+						var cardContainer = null;
+						
+						// Run through cells
+						for (var cell = 0; cell < 2; cell++) {
+						
+							numberOfCards = slotElement.cells[cell].cards.length;
+							
+							// Run through list of cards contained in a cell
+							for (var card = 0; card < numberOfCards; card++) {
+								 
+								 // Display cards horizontally
+								 cardContainer = slotElement.cells[cell].cards[card].container;
+								 //cardContainer.setLocation();
+							}
+						}
+						
+					}, enumerable: true
+				}
+			});
 
 		}, writable: false
 	
