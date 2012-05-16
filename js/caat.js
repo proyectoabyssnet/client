@@ -21,11 +21,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-Version: 0.4 build: 68
+Version: 0.4 build: 97
 
 Created on:
-DATE: 2012-05-01
-TIME: 01:03:47
+DATE: 2012-05-10
+TIME: 18:35:28
 */
 
 
@@ -1018,7 +1018,7 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
             1.0,0.0,0.0,
             0.0,1.0,0.0, 0.0,0.0,1.0 ];
 
-        if ( Float32Array ) {
+        if ( typeof Float32Array!=="undefined" ) {
             this.matrix= new Float32Array(this.matrix);
         }
 
@@ -3702,9 +3702,10 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
 		},
 
         fireBehaviorStartedEvent : function(actor,time) {
-            for( var i=0; i<this.lifecycleListenerList.length; i++ )	{
-                if ( this.lifecycleListenerList[i].behaviorStarted ) {
-                    this.lifecycleListenerList[i].behaviorStarted(this,time,actor);
+            for( var i= 0, l=this.lifecycleListenerList.length; i<l; i++ )	{
+                var b=this.lifecycleListenerList[i];
+                if ( b.behaviorStarted ) {
+                    b.behaviorStarted(this,time,actor);
                 }
             }
         },
@@ -3714,11 +3715,14 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
          * @param actor a CAAT.Actor instance
          * @param time an integer with the scene time the behavior was expired at.
          */
-		fireBehaviorExpiredEvent : function(actor,time)	{
-			for( var i=0; i<this.lifecycleListenerList.length; i++ )	{
-				this.lifecycleListenerList[i].behaviorExpired(this,time,actor);
-			}
-		},
+        fireBehaviorExpiredEvent:function (actor, time) {
+            for (var i = 0, l = this.lifecycleListenerList.length; i < l; i++) {
+                var b=this.lifecycleListenerList[i];
+                if (b.behaviorExpired) {
+                    b.behaviorExpired(this, time, actor);
+                }
+            }
+        },
         /**
          * Notify observers about behavior being applied.
          * @param actor a CAAT.Actor instance the behavior is being applied to.
@@ -3728,9 +3732,10 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
          * @param value the value being set for actor properties. each behavior will supply with its own value version.
          */
         fireBehaviorAppliedEvent : function(actor,time,normalizedTime,value)	{
-            for( var i=0; i<this.lifecycleListenerList.length; i++ )	{
-                if (this.lifecycleListenerList[i].behaviorApplied) {
-                    this.lifecycleListenerList[i].behaviorApplied(this,time,normalizedTime,actor,value);
+            for( var i= 0, l=this.lifecycleListenerList.length; i<l; i++ )	{
+                var b= this.lifecycleListenerList[i];
+                if (b.behaviorApplied) {
+                    b.behaviorApplied(this,time,normalizedTime,actor,value);
                 }
             }
         },
@@ -4332,7 +4337,7 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
          * 
          * @param time the time to apply the scale for.
          * @param actor the target actor to Scale.
-         * @return {object} an object of the form <code>{ scaleX: {float}, scaleY: {float}Ê}</code>
+         * @return {object} an object of the form <code>{ scaleX: {float}, scaleY: {float}ï¿½}</code>
          */
 		setForTime : function(time,actor) {
 
@@ -4644,7 +4649,7 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
          * If autoRotate=true, the actor is rotated as well. The rotation anchor will (if set) always be ANCHOR_CENTER.
          * @param time an integer indicating the time the behavior is being applied at.
          * @param actor a CAAT.Actor instance to be translated.
-         * @return {object} an object of the form <code>{ x: {float}, y: {float}Ê}</code>.
+         * @return {object} an object of the form <code>{ x: {float}, y: {float}ï¿½}</code>.
          */
 		setForTime : function(time,actor) {
 
@@ -4791,7 +4796,7 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
          *
          * @param time the time to apply the scale for.
          * @param actor the target actor to Scale.
-         * @return {object} an object of the form <code>{ scaleX: {float}, scaleY: {float}Ê}</code>
+         * @return {object} an object of the form <code>{ scaleX: {float}, scaleY: {float}ï¿½}</code>
          */
 		setForTime : function(time,actor) {
 
@@ -4888,7 +4893,8 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
     };
 
     extend( CAAT.Scale1Behavior, CAAT.Behavior );
-})();/**
+})();
+/**
  * See LICENSE file.
  *
  * This object manages CSS3 transitions reflecting applying behaviors.
@@ -5613,6 +5619,9 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
 
 (function() {
 
+
+    var __index= 0;
+
     /**
      * This class is the base for all animable entities in CAAT.
      * It defines an entity able to:
@@ -5651,6 +5660,8 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
         this.resetTransform();
         this.setScale(1,1);
         this.setRotation(0);
+
+        this.id= __index++;
 
 		return this;
 	};
@@ -5789,6 +5800,28 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
         isAA                :   true,   // is this actor/container Axis aligned ? if so, much faster inverse matrices
                                         // can be calculated.
 
+        /**
+         * Touch Start only received when CAAT.TOUCH_BEHAVIOR= CAAT.TOUCH_AS_MULTITOUCH
+         * @param e <CAAT.TouchEvent>
+         */
+        touchStart : function(e) {
+        },
+        touchMove : function(e) {
+        },
+        touchEnd : function(e) {
+        },
+        gestureStart : function(rotation, scaleX, scaleY) {
+        },
+        gestureChange : function( rotation, scaleX, scaleY ) {
+            if ( this.gestureEnabled ) {
+                this.setRotation( rotation );
+                this.setScale( scaleX, scaleY );
+            }
+            return this;
+        },
+        gestureEnd : function( rotation, scaleX, scaleY ) {
+        },
+
         isVisible : function() {
             return this.isVisible;
         },
@@ -5801,6 +5834,7 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
         },
         setGestureEnabled : function( enable ) {
             this.gestureEnabled= !!enable;
+            return this;
         },
         isGestureEnabled : function() {
             return this.gestureEnabled;
@@ -7353,9 +7387,9 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
             this.setBackgroundImage(buttonImage, true);
 
             this.iNormal=       iNormal || 0;
-            this.iOver=         iOver || iNormal;
-            this.iPress=        iPress || iNormal;
-            this.iDisabled=     iDisabled || iNormal;
+            this.iOver=         iOver || this.iNormal;
+            this.iPress=        iPress || this.iNormal;
+            this.iDisabled=     iDisabled || this.iNormal;
             this.fnOnClick=     fn;
             this.enabled=       true;
 
@@ -7465,10 +7499,10 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
             };
 
             this.setButtonImageIndex= function(_normal, _over, _press, _disabled ) {
-                this.iNormal=    _normal;
-                this.iOver=      _over;
-                this.iPress=     _press;
-                this.iDisabled=  _disabled;
+                this.iNormal=    _normal || 0;
+                this.iOver=      _over || this.iNormal;
+                this.iPress=     _press || this.iNormal;
+                this.iDisabled=  _disabled || this.iNormal;
                 this.setSpriteIndex( this.iNormal );
                 return this;
             };
@@ -9557,10 +9591,14 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
             this.dirtyRects.push( new CAAT.Rectangle() );
         }
         this.dirtyRectsIndex=   0;
+        this.touches= {};
 
         return this;
     };
 
+
+    CAAT.Director.RENDER_MODE_CONTINUOUS=    1;              // redraw every frame
+    CAAT.Director.RENDER_MODE_DIRTY=         2;              // suitable for evented CAAT.
 
     CAAT.Director.CLEAR_DIRTY_RECTS= 1;
     CAAT.Director.CLEAR_ALL=         true;
@@ -9569,6 +9607,9 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
     CAAT.Director.prototype = {
 
         debug:              false,  // flag indicating debug mode. It will draw affedted screen areas.
+
+        renderMode      :   CAAT.Director.RENDER_MODE_CONTINUOUS,
+
 
         onRenderStart:      null,
         onRenderEnd:        null,
@@ -9586,7 +9627,9 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
         scenes:             null,   // Scenes collection. An array.
         currentScene:       null,   // The current Scene. This and only this will receive events.
         canvas:             null,   // The canvas the Director draws on.
-        crc:                null,    // @deprecated. canvas rendering context
+
+        // @deprecated
+        crc:                null,   // canvas rendering context
         ctx:                null,   // refactoring crc for a more convenient name
         time:               0,      // virtual actor time.
         timeline:           0,      // global director timeline.
@@ -9643,6 +9686,21 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
         nDirtyRects         :   0,
 
         stopped             :   false,  // is stopped, this director will do nothing.
+
+        needsRepaint        : false,    // for rendering mode = dirty, this flags means, paint another frame
+
+        touches             : null,
+
+        requestRepaint : function() {
+            this.needsRepaint= true;
+        },
+
+        setRenderMode : function( mode ) {
+            if ( mode===CAAT.Director.RENDER_MODE_CONTINUOUS || mode===CAAT.Director.RENDER_MODE_DIRTY ) {
+                this.renderMode= mode;
+            }
+            return this;
+        },
 
         checkDebug : function() {
             if ( CAAT.DEBUG ) {
@@ -10872,10 +10930,8 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
          * expense of cpu power at least until hardware accelerated canvas rendering
          * context are available). A value of 60 is a high frame rate and should not be exceeded.
          *
-         * @param fps {number} integer value indicating the target frames per second to run
-         * the animation at.
          */
-        renderFrame : function(fps, callback) {
+        renderFrame : function() {
 
             if (this.stopped) {
                 return;
@@ -10902,13 +10958,23 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
             if ( this.debugInfo ) {
                 this.debugInfo(this.statistics);
             }
-            
+
             this.timeline = t;
 
             if (this.onRenderEnd) {
                 this.onRenderEnd(delta);
             }
+
+            this.needsRepaint= false;
         },
+
+        /**
+         * If the director has renderingMode: DIRTY, the timeline must be reset to register accurate frame measurement.
+         */
+        resetTimeline : function() {
+            this.timeline= new Date().getTime();
+        },
+
         endLoop : function () {
         },
         /**
@@ -10921,7 +10987,7 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
          *    will have their areas redrawn.
          *  + CAAT.Director.CLEAR_NONE. clears nothing.
          *
-         * @param clear {CAAT.Director.CLEAR_ALL |ÊCAAT.Director.CLEAR_NONE | CAAT.Director.CLEAR_DIRTY_RECTS}
+         * @param clear {CAAT.Director.CLEAR_ALL |ï¿½CAAT.Director.CLEAR_NONE | CAAT.Director.CLEAR_DIRTY_RECTS}
          * @return this.
          */
         setClear : function(clear) {
@@ -11425,6 +11491,299 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
             this.__gestureScale= 0;
         },
 
+        /**
+         * Touches information.
+         * associate touch.id with an actor and original touch info.
+         */
+        touches : null,
+
+        __touchEndHandlerMT : function(e) {
+
+            e.preventDefault();
+
+            var i,j;
+            var recent= [];
+
+            /**
+             * extrae actores afectados, y coordenadas relativas para ellos.
+             * crear una coleccion touch-id : { actor, touch-event }
+             */
+            for( i=0; i< e.changedTouches.length; i++ ) {
+                var _touch= e.changedTouches[i];
+                var id= _touch.identifier;
+                recent.push( id );
+            }
+
+
+            /**
+             * para los touch identificados, extraer que actores se han afectado.
+             * crear eventos con la info de touch para cada uno.
+             */
+
+            var actors= {};
+            for( i=0; i<recent.length; i++ ) {
+                var touchId= recent[ i ];
+                if ( this.touches[ touchId ] ) {
+                    var actor= this.touches[ touchId ].actor;
+
+                    if ( !actors[actor.id] ) {
+                        actors[actor.id]= {
+                            actor: actor,
+                            touch: new CAAT.TouchEvent().init( e, actor, this.currentScene.time )
+                        };
+                    }
+
+                    var ev= actors[ actor.id ].touch;
+                    ev.addChangedTouch( this.touches[ touchId ].touch );
+                }
+            }
+
+            /**
+             * remove ended touch info.
+             */
+            for( i=0; i< e.changedTouches.length; i++ ) {
+                var touch= e.changedTouches[i];
+                var id= touch.identifier;
+                delete this.touches[id];
+            }
+
+            /**
+             * notificar a todos los actores.
+             */
+            for( var pr in actors ) {
+                var data= actors[pr];
+                var actor= data.actor;
+                var touch= data.touch;
+
+                for( var actorId in this.touches ) {
+                    var tt= this.touches[actorId]
+                    if ( tt.actor.id===actor.id ) {
+                        touch.addTouch( tt.touch );
+                    }
+                }
+
+                actor.touchEnd( touch );
+            }
+        },
+
+        __touchMoveHandlerMT : function(e) {
+
+            e.preventDefault();
+
+            var i;
+            var recent= [];
+
+            /**
+             * extrae actores afectados, y coordenadas relativas para ellos.
+             * crear una coleccion touch-id : { actor, touch-event }
+             */
+            for( i=0; i< e.changedTouches.length; i++ ) {
+                var touch= e.changedTouches[i];
+                var id= touch.identifier;
+
+                if ( this.touches[ id ] ) {
+                    var mp= this.mousePoint;
+                    this.getCanvasCoord(mp, touch);
+
+                    var actor= this.touches[ id ].actor;
+                    mp= actor.viewToModel(mp);
+
+                    this.touches[ id ]= {
+                        actor: actor,
+                        touch: new CAAT.TouchInfo( id, mp.x, mp.y, actor )
+                    };
+
+                    recent.push( id );
+                }
+            }
+
+            /**
+             * para los touch identificados, extraer que actores se han afectado.
+             * crear eventos con la info de touch para cada uno.
+             */
+
+            var actors= {};
+            for( i=0; i<recent.length; i++ ) {
+                var touchId= recent[ i ];
+                var actor= this.touches[ touchId ].actor;
+
+                if ( !actors[actor.id] ) {
+                    actors[actor.id]= {
+                        actor: actor,
+                        touch: new CAAT.TouchEvent().init( e, actor, this.currentScene.time )
+                    };
+                }
+
+                var ev= actors[ actor.id ].touch;
+                ev.addTouch( this.touches[ touchId ].touch );
+                ev.addChangedTouch( this.touches[ touchId ].touch );
+            }
+
+            /**
+             * notificar a todos los actores.
+             */
+            for( var pr in actors ) {
+                var data= actors[pr];
+                var actor= data.actor;
+                var touch= data.touch;
+
+                for( var actorId in this.touches ) {
+                    var tt= this.touches[actorId]
+                    if ( tt.actor.id===actor.id ) {
+                        touch.addTouch( tt.touch );
+                    }
+                }
+
+                actor.touchMove( touch );
+            }
+        },
+
+        __touchCancelHandleMT : function(e) {
+            this.__touchEndHandlerMT(e);
+        },
+
+        __touchStartHandlerMT : function(e) {
+            e.preventDefault();
+
+
+            var i;
+            var recent= [];
+            var allInCanvas= true;
+
+            /**
+             * extrae actores afectados, y coordenadas relativas para ellos.
+             * crear una coleccion touch-id : { actor, touch-event }
+             */
+            for( i=0; i< e.changedTouches.length; i++ ) {
+                var touch= e.changedTouches[i];
+                var id= touch.identifier;
+                var mp= this.mousePoint;
+                this.getCanvasCoord(mp, touch);
+                if ( mp.x<0 || mp.y<0 || mp.x>=this.width || mp.y>=this.height ) {
+                    allInCanvas= false;
+                    continue;
+                }
+
+                var actor= this.findActorAtPosition(mp);
+                if ( actor!==null ) {
+                    mp= actor.viewToModel(mp);
+
+                    if ( !this.touches[ id ] ) {
+
+                        this.touches[ id ]= {
+                            actor: actor,
+                            touch: new CAAT.TouchInfo( id, mp.x, mp.y, actor )
+                        };
+
+                        recent.push( id );
+                    }
+
+                }
+            }
+
+            /**
+             * para los touch identificados, extraer que actores se han afectado.
+             * crear eventos con la info de touch para cada uno.
+             */
+
+            var actors= {};
+            for( i=0; i<recent.length; i++ ) {
+                var touchId= recent[ i ];
+                var actor= this.touches[ touchId ].actor;
+
+                if ( !actors[actor.id] ) {
+                    actors[actor.id]= {
+                        actor: actor,
+                        touch: new CAAT.TouchEvent().init( e, actor, this.currentScene.time )
+                    };
+                }
+
+                var ev= actors[ actor.id ].touch;
+                ev.addTouch( this.touches[ touchId ].touch );
+                ev.addChangedTouch( this.touches[ touchId ].touch );
+            }
+
+            /**
+             * notificar a todos los actores.
+             */
+            for( var pr in actors ) {
+                var data= actors[pr];
+                var actor= data.actor;
+                var touch= data.touch;
+
+                for( var actorId in this.touches ) {
+                    var tt= this.touches[actorId]
+                    if ( tt.actor.id===actor.id ) {
+                        touch.addTouch( tt.touch );
+                    }
+                }
+
+                actor.touchStart( touch );
+            }
+
+        },
+
+        __findTouchFirstActor : function() {
+
+            var t= Number.MAX_VALUE;
+            var actor= null;
+            for( var pr in this.touches ) {
+
+                var touch= this.touches[pr];
+
+                if ( touch.touch.time && touch.touch.time < t && touch.actor.isGestureEnabled() ) {
+                    actor= touch.actor;
+                    t= touch.touch.time;
+                }
+            }
+            return actor;
+        },
+
+        __gesturedActor : null,
+        __touchGestureStartHandleMT : function( e ) {
+            var actor= this.__findTouchFirstActor();
+
+            if ( actor!==null && actor.isGestureEnabled() ) {
+                this.__gesturedActor= actor;
+                this.__gestureRotation= actor.rotationAngle;
+                this.__gestureSX= actor.scaleX - 1;
+                this.__gestureSY= actor.scaleY - 1;
+
+
+                actor.gestureStart(
+                    e.rotation* Math.PI / 180,
+                    e.scale + this.__gestureSX,
+                    e.scale + this.__gestureSY );
+            }
+        },
+
+        __touchGestureEndHandleMT : function( e ) {
+
+            if ( null!==this.__gesturedActor && this.__gesturedActor.isGestureEnabled()) {
+                this.__gesturedActor.gestureEnd(
+                    e.rotation* Math.PI / 180,
+                    e.scale + this.__gestureSX,
+                    e.scale + this.__gestureSY );
+            }
+
+            this.__gestureRotation= 0;
+            this.__gestureScale= 0;
+
+
+        },
+
+        __touchGestureChangeHandleMT : function( e ) {
+
+            if (this.__gesturedActor!== null && this.__gesturedActor.isGestureEnabled()) {
+                this.__gesturedActor.gestureChange(
+                    e.rotation* Math.PI / 180,
+                    this.__gestureSX + e.scale,
+                    this.__gestureSY + e.scale);
+            }
+        },
+
+
+
         addHandlers: function(canvas) {
 
             var me= this;
@@ -11488,8 +11847,7 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
                 }
             }, false);
 
-            window.addEventListener('mousemove',
-                function(e) {
+            window.addEventListener('mousemove', function(e) {
                     e.preventDefault();
                     e.cancelBubble = true;
                     if (e.stopPropagation) e.stopPropagation();
@@ -11500,8 +11858,7 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
                         return;
                     }
                     me.__mouseMoveHandler(e);
-                },
-                false);
+                }, false);
 
             window.addEventListener("dblclick", function(e) {
                 if ( e.target===canvas ) {
@@ -11518,27 +11875,39 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
                 }
             }, false);
 
-            window.addEventListener("touchstart",   this.__touchStartHandler.bind(this), false);
-            window.addEventListener("touchmove",    this.__touchMoveHandler.bind(this), false);
-            window.addEventListener("touchend",     this.__touchEndHandler.bind(this), false);
-            window.addEventListener("gesturestart", function(e) {
-                if ( e.target===canvas ) {
-                    e.preventDefault();
-                    me.__gestureStart( e.scale, e.rotation );
-                }
-            }, false );
-            window.addEventListener("gestureend", function(e) {
-                if ( e.target===canvas ) {
-                    e.preventDefault();
-                    me.__gestureEnd( e.scale, e.rotation );
-                }
-            }, false );
-            window.addEventListener("gesturechange", function(e) {
-                if ( e.target===canvas ) {
-                    e.preventDefault();
-                    me.__gestureChange( e.scale, e.rotation );
-                }
-            }, false );
+            if ( CAAT.TOUCH_BEHAVIOR === CAAT.TOUCH_AS_MOUSE ) {
+                this.canvas.addEventListener("touchstart",   this.__touchStartHandler.bind(this), false);
+                this.canvas.addEventListener("touchmove",    this.__touchMoveHandler.bind(this), false);
+                this.canvas.addEventListener("touchend",     this.__touchEndHandler.bind(this), false);
+                this.canvas.addEventListener("gesturestart", function(e) {
+                    if ( e.target===canvas ) {
+                        e.preventDefault();
+                        me.__gestureStart( e.scale, e.rotation );
+                    }
+                }, false );
+                this.canvas.addEventListener("gestureend", function(e) {
+                    if ( e.target===canvas ) {
+                        e.preventDefault();
+                        me.__gestureEnd( e.scale, e.rotation );
+                    }
+                }, false );
+                this.canvas.addEventListener("gesturechange", function(e) {
+                    if ( e.target===canvas ) {
+                        e.preventDefault();
+                        me.__gestureChange( e.scale, e.rotation );
+                    }
+                }, false );
+            } else if ( CAAT.TOUCH_BEHAVIOR === CAAT.TOUCH_AS_MULTITOUCH ) {
+                this.canvas.addEventListener("touchstart", this.__touchStartHandlerMT.bind(this), false );
+                this.canvas.addEventListener("touchmove", this.__touchMoveHandlerMT.bind(this), false );
+                this.canvas.addEventListener("touchend", this.__touchEndHandlerMT.bind(this), false );
+                this.canvas.addEventListener("touchcancel", this.__touchCancelHandleMT.bind(this), false );
+
+                this.canvas.addEventListener("gesturestart", this.__touchGestureStartHandleMT.bind(this), false );
+                this.canvas.addEventListener("gestureend", this.__touchGestureEndHandleMT.bind(this), false );
+                this.canvas.addEventListener("gesturechange", this.__touchGestureChangeHandleMT.bind(this), false );
+            }
+
         },
 
         enableEvents : function( onElement ) {
@@ -11710,6 +12079,97 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
  *
  **/
 
+CAAT.TouchInfo= function( id, x, y, target ) {
+
+    this.identifier= id;
+    this.clientX= x;
+    this.pageX= x;
+    this.clientY= y;
+    this.pageY= y;
+    this.target= target;
+    this.time= new Date().getTime();
+
+    return this;
+};
+
+(function() {
+    /**
+     * This function creates a mouse event that represents a touch or mouse event.
+     * @constructor
+     */
+	CAAT.TouchEvent = function() {
+        this.touches= [];
+        this.changedTouches= [];
+		return this;
+	};
+
+	CAAT.TouchEvent.prototype= {
+
+		time:			0,
+		source:			null,
+        sourceEvent:    null,
+
+        shift:          false,
+        control:        false,
+        alt:            false,
+        meta:           false,
+
+
+        touches         : null,
+        changedTouches  : null,
+
+		init : function( sourceEvent,source,time ) {
+
+			this.source=        source;
+            this.alt =          sourceEvent.altKey;
+            this.control =      sourceEvent.ctrlKey;
+            this.shift =        sourceEvent.shiftKey;
+            this.meta =         sourceEvent.metaKey;
+            this.sourceEvent=   sourceEvent;
+            this.time=          time;
+
+			return this;
+		},
+        /**
+         *
+         * @param touchInfo
+         *  <{
+         *      id : <number>,
+         *      point : {
+         *          x: <number>,
+         *          y: <number> }ï¿½
+         *  }>
+         * @return {*}
+         */
+        addTouch : function( touchInfo ) {
+            if ( -1===this.touches.indexOf( touchInfo ) ) {
+                this.touches.push( touchInfo );
+            }
+            return this;
+        },
+        addChangedTouch : function( touchInfo ) {
+            if ( -1===this.changedTouches.indexOf( touchInfo ) ) {
+                this.changedTouches.push( touchInfo );
+            }
+            return this;
+        },
+		isAltDown : function() {
+			return this.alt;
+		},
+		isControlDown : function() {
+			return this.control;
+		},
+		isShiftDown : function() {
+			return this.shift;
+		},
+        isMetaDown: function() {
+            return this.meta;
+        },
+        getSourceEvent : function() {
+            return this.sourceEvent;
+        }
+	};
+})();
 
 (function() {
     /**
@@ -11719,6 +12179,7 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
 	CAAT.MouseEvent = function() {
 		this.point= new CAAT.Point(0,0,0);
 		this.screenPoint= new CAAT.Point(0,0,0);
+        this.touches= [];
 		return this;
 	};
 	
@@ -11734,6 +12195,8 @@ function proxyObject(object, preMethod, postMethod, errorMethod, getter, setter)
         meta:           false,
 
         sourceEvent:    null,
+
+        touches     :   null,
 
 		init : function( x,y,sourceEvent,source,screenPoint,time ) {
 			this.point.set(x,y);
@@ -11777,10 +12240,10 @@ CAAT.setCoordinateClamping= function( clamp ) {
     }
 };
 
+CAAT.TOUCH_AS_MOUSE=        1;
+CAAT.TOUCH_AS_MULTITOUCH=   2;
 
-CAAT.RENDER_MODE_CONTINUOUS=    1;              // redraw every frame
-CAAT.RENDER_MODE_DIRTY=         2;              // suitable for evented CAAT.
-CAAT.RENDER_MODE= CAAT.RENDER_MODE_CONTINUOUS;
+CAAT.TOUCH_BEHAVIOR= CAAT.TOUCH_AS_MOUSE;
 
 /**
  * Box2D point meter conversion ratio.
@@ -12166,7 +12629,10 @@ CAAT.REQUEST_ANIMATION_FRAME_TIME=   0;
 CAAT.renderFrame= function() {
     var t= new Date().getTime();
     for( var i=0, l=CAAT.director.length; i<l; i++ ) {
-        CAAT.director[i].renderFrame();
+        var dr= CAAT.director[i];
+        if ( dr.renderMode===CAAT.Director.RENDER_MODE_CONTINUOUS || dr.needsRepaint ) {
+            dr.renderFrame();
+        }
     }
     t= new Date().getTime()-t;
     CAAT.FRAME_TIME= t;

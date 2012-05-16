@@ -1,7 +1,7 @@
 /*
 * EQUIPED CARDS PANEL OBJECT
 */
-
+		
 var EquipedCardsPanel = Object.create( Panel );
 
 Object.defineProperties(EquipedCardsPanel, { 
@@ -45,48 +45,6 @@ Object.defineProperties(EquipedCardsPanel, {
 			this.CELL_LEFT_MARGIN = 10; // Horizontal separation
 			this.SLOT_PADDING = 2; // Vertical separation between slots
 			this.slotElementSize = [0,0]; // width, height
-			
-			// Define properties for the comboCard object
-			Object.defineProperties( this.cardsDisplayer, {
-				
-				container: { value: null, writable: true },
-				
-				init: {
-					
-					value: function(x,y) {
-						
-						this.comboCard = new CAAT.Actor()
-							.setSize(30, 30)
-							.setLocation(x,y)
-							.setFillStyle("#00ff00");							
-					
-					}, enumerable: true
-				},
-				
-				displayCardsForSlot: {
-				
-					value: function(slotElement) {
-						
-						var numberOfCards = 0;
-						var cardContainer = null;
-						
-						// Run through cells
-						for (var cell = 0; cell < 2; cell++) {
-						
-							numberOfCards = slotElement.cells[cell].cards.length;
-							
-							// Run through list of cards contained in a cell
-							for (var card = 0; card < numberOfCards; card++) {
-								 
-								 // Display cards horizontally
-								 cardContainer = slotElement.cells[cell].cards[card].container;
-								 //cardContainer.setLocation();
-							}
-						}
-						
-					}, enumerable: true
-				}
-			});
 
 		}, writable: false
 	
@@ -117,7 +75,8 @@ Object.defineProperties(EquipedCardsPanel, {
 			var slotElement = null;
 			var cells = null;
 			var element = 0;
-		
+			var cDisplayer = null;
+			
 			for(; element < this.MAX_SLOT_ELEMENTS; element++) {
 						
 				maxNumberOfCards = 2; // Cards per slot
@@ -137,13 +96,19 @@ Object.defineProperties(EquipedCardsPanel, {
 					
 				slotElement.setId("slot-" + 
 					this.slotBackgroundImages[ element ]);
-					
-									
-				slotElement.mouseUp = function(event) {
-				
-					console.log(event.source.id);
-				}
-			
+
+				/*
+				* Create a card displayer for each slot
+				*/
+				cDisplayer = Object.create(CardsDisplayer);
+				cDisplayer.init("card_displayer_" + element,
+					slotElement.width - 20, 
+					slotElement.y
+				);
+				//window['director'].getScene(0).addChild( cDisplayer.container );
+				slotElement.addChild( cDisplayer.container );
+				cDisplayer.container.setPosition(slotElement.width-30, cDisplayer.container.y);
+																		
 				var elementId = this.slotBackgroundImages[ element ];
 							
 				// Create 2 cells
@@ -158,12 +123,11 @@ Object.defineProperties(EquipedCardsPanel, {
 
 				// Store cells (Object) inside each slot				
 				this.slotElements[elementId][0] = cells[0];
-				this.slotElements[elementId][1] = cells[1];
-										
-					
+				this.slotElements[elementId][1] = cells[1];								
+									
 				// Add slot element to panel
 				this.addSlotElement(slotElement);							
-			
+					
 				// Calculate Y position for next slot element
 				nextSlotY += this.slotElementSize[1] + this.SLOT_PADDING;
 			
@@ -283,3 +247,57 @@ Object.defineProperties(EquipedCardsPanel, {
 	} // end createCells
 
 }); // end EquipedCardsPanel object
+
+
+/*
+* Object to display all cards contained in a slotElement
+*/
+var CardsDisplayer = {};
+
+Object.defineProperties( CardsDisplayer, {
+	
+	container: { value: null, writable: true },
+	
+	init: {
+		
+		value: function(id,x,y) {
+									
+			this.container = new CAAT.Actor()
+				.setId(id)
+				.setSize(30,60)
+				.setFillStyle("#00ff00");							
+		
+		}, enumerable: true
+	},
+	
+	displayCardsForSlot: {
+	
+		value: function(slotElement) {
+			
+			var numberOfCards = 0;
+			var cardContainer = null;
+			var nextCardPosition = this.container.x;
+			var cardPadding = 4;
+			
+			// Run through cells
+			for (var cell = 0; cell < 2; cell++) {
+			
+				numberOfCards = slotElement.cells[cell].cards.length;
+				
+				// Run through list of cards contained in a cell
+				for (var card = 0; card < numberOfCards; card++) {
+					 
+					 // Display cards horizontally
+					 cardContainer = slotElement.cells[cell].cards[card].container;
+					 cardContainer.setLocation(
+					 	nextCardPosition, 
+					 	this.container.y
+					 );
+					 
+					 nextCardPosition += cardContainer.width + cardPadding;
+				}
+			}
+			
+		}, enumerable: true
+	}
+});

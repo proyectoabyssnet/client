@@ -20,6 +20,7 @@ Object.defineProperties(Slot, {
 			this.container = new CAAT.ActorContainer()
 				.setId(id)
 				.setAlpha(this.alphaValue);
+				
 			
 			/*
 			var cellCoverBackgroundImage = window['director'].getImage('cell-cover');
