@@ -63,13 +63,13 @@ Object.defineProperties(EquipedCardsPanel, {
 	
 		value: function() {
 					
-		var nextSlotY = this.container.y;
+			var nextSlotY = this.container.y;
 	
 			// Get first image to read it's size
 			var image = window['director'].getImage(this.slotBackgroundImages[0]);
 			this.slotElementSize[0] = image.width;
 			this.slotElementSize[1] = image.height;
-	
+			
 			var maxNumberOfCards = 2;
 			var slotElementBackground = "";
 			var slotElement = null;
@@ -96,26 +96,13 @@ Object.defineProperties(EquipedCardsPanel, {
 					
 				slotElement.setId("slot-" + 
 					this.slotBackgroundImages[ element ]);
-
-				/*
-				* Create a card displayer for each slot
-				*/
-				cDisplayer = Object.create(CardsDisplayer);
-				cDisplayer.init("card_displayer_" + element,
-					slotElement.width - 20, 
-					slotElement.y
-				);
-				//window['director'].getScene(0).addChild( cDisplayer.container );
-				slotElement.addChild( cDisplayer.container );
-				cDisplayer.container.setPosition(slotElement.width-30, cDisplayer.container.y);
 																		
 				var elementId = this.slotBackgroundImages[ element ];
 							
 				// Create 2 cells
 				cells = this.createCells(2);
 				cells[0]["name"] = "cell_0_" + elementId;
-				cells[1]["name"] = "cell_1_" + elementId;
-				
+				cells[1]["name"] = "cell_1_" + elementId;				
 			
 				// Add cells to slot element (containers only)
 				slotElement.addChild(cells[0].container); // Left cell
@@ -124,7 +111,19 @@ Object.defineProperties(EquipedCardsPanel, {
 				// Store cells (Object) inside each slot				
 				this.slotElements[elementId][0] = cells[0];
 				this.slotElements[elementId][1] = cells[1];								
-									
+					
+				/*
+				* Create a card displayer for each slot
+				*/
+				cDisplayer = Object.create(CardsDisplayer);
+				cDisplayer.init("card_displayer_" + element);
+				slotElement.addChild( cDisplayer.container );			
+				cDisplayer.container.setLocation(
+					slotElement.width, 
+					cDisplayer.container.y
+					);
+					
+										
 				// Add slot element to panel
 				this.addSlotElement(slotElement);							
 					
@@ -262,11 +261,30 @@ Object.defineProperties( CardsDisplayer, {
 		
 		value: function(id,x,y) {
 									
+			/*
 			this.container = new CAAT.Actor()
 				.setId(id)
 				.setSize(30,60)
-				.setFillStyle("#00ff00");							
-		
+				.setFillStyle("#00ff00");		
+			*/
+										
+			var buttonSprite = new CAAT.SpriteImage()
+				.initialize(window['director'].getImage('stars'),
+				1,6);
+
+			
+			var actorButton = new CAAT.Actor()
+				.setAsButton(
+					buttonSprite.getRef(),
+					0,1,2,0, 
+					function( button ) {
+					
+						console.log("Clicked over button");
+					}
+				);
+				
+			this.container = actorButton;
+						
 		}, enumerable: true
 	},
 	

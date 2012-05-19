@@ -31,11 +31,11 @@ function initGame() {
 		.setFillStyle('#000');
 		
 	/* CREATE GAME UI OBJECTS */
-
 	
+	/*
 	window['Tag'] = createTag();
 	scene_1.addChild(window['Tag'].container);
-	
+	*/
 	window['equiped_cards_panel'] = createEquipedCardsPanel();
 	scene_1.addChild(window['equiped_cards_panel'].container);
 
@@ -51,6 +51,10 @@ function initGame() {
 	var rouletteOptions = createRouletteOptions();
 	scene_1.addChild(rouletteOptions.container);
 		
+
+	/*
+	* INIT GAME PROCEDURES (giveAwayCards, initPlayers,....)
+	*/
 	// Create cards
 	scene_1.enableInputList(5);	// panel and numberOfCards
 		
@@ -76,9 +80,9 @@ function initGame() {
 	}
 	
 	scene_1.addActorToInputList(window['cards_on_hand_panel'].container, cardsOnHandCount);
-	scene_1.addActorToInputList(window['equiped_cards_panel'].container, cardsOnHandCount + 1);
-	
-	scene_1.setZOrder(window['Tag'].container, Number.MAX_VALUE);
+	//scene_1.addActorToInputList(window['equiped_cards_panel'].container, cardsOnHandCount + 1);
+		
+	//scene_1.setZOrder(window['Tag'].container, Number.MAX_VALUE);
 	
 	CAAT.loop(60);
 }

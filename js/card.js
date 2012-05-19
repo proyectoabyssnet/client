@@ -67,9 +67,9 @@ Object.defineProperties(Card, {
 							
 				// Get reference to EquipedCardsPanel
 				var equipedCardsPanel = window['equiped_cards_panel'];
-				var cardsOnHandPanel = window['cards_on_hand_panel'];				
+				var cardsOnHandPanel = window['cards_on_hand_panel'];		
 				
-				// Get panel where this card is
+				// Get panel which this card belongs to
 				var panelWhereThisCardBelongsTo = container.parent.parent.getId();
 				
 				if (panelWhereThisCardBelongsTo == "cards_on_hand_panel") {
