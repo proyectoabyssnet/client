@@ -138,8 +138,8 @@ function createEquipedCardsPanel() {
 	equipedCardsPanel.initPanel();
 	equipedCardsPanel.setTitle("Equiped cards");	
 	equipedCardsPanel.container.setLocation(10,10)
-		.setSize(100,400)
-		.setAlpha(0.5)
+		.setSize(160,430)
+		.setAlpha(0.0)
 		.setId("equiped_cards_panel");
 
 	equipedCardsPanel.container.setId("equiped_cards_panel");

@@ -118,8 +118,8 @@ Object.defineProperties(EquipedCardsPanel, {
 				cDisplayer = Object.create(CardsDisplayer);
 				cDisplayer.init("card_displayer_" + element);
 				slotElement.addChild( cDisplayer.container );			
-				cDisplayer.container.setLocation(
-					slotElement.width, 
+				cDisplayer.container.setPosition(
+					slotElement.width-30, 
 					cDisplayer.container.y
 					);
 					
