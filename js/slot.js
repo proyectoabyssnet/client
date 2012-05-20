@@ -65,11 +65,20 @@ Object.defineProperties(Slot, {
 				card.oldPosition[0] = 0;
 				card.oldPosition[1] = 0;
 				
+				
 				if (this.cards.length == 2) {
 							
 					this.cards[1].container.setLocation(5,5);	
 					this.cards[1].oldPosition[0] = this.cards[1].container.x;
-					this.cards[1].oldPosition[1] = this.cards[1].container.y;											
+					this.cards[1].oldPosition[1] = this.cards[1].container.y;
+					
+					var cardDisplayer = this.container.parent.findActorById(
+						"slot-card-" + card.elementType + "-elements-cd"
+					);
+
+					if (cardDisplayer != null) {
+						cardDisplayer.setVisible(true);
+					}
 				}
 						
 		

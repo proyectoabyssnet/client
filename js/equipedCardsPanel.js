@@ -92,10 +92,8 @@ Object.defineProperties(EquipedCardsPanel, {
 						)
 					.setBackgroundImage(
 							window['director'].getImage(slotElementBackground)
-							);
-					
-				slotElement.setId("slot-" + 
-					this.slotBackgroundImages[ element ]);
+							)
+					.setId("slot-" + this.slotBackgroundImages[ element ]);
 																		
 				var elementId = this.slotBackgroundImages[ element ];
 							
@@ -121,8 +119,11 @@ Object.defineProperties(EquipedCardsPanel, {
 				cDisplayer.container.setPosition(
 					slotElement.width-30, 
 					cDisplayer.container.y
-					);
+					)
+					.setId(slotElement.getId() + "-cd") // -cd: card displayer
+					.setVisible(false);
 					
+				console.log("Setting id for cardDisplayer: " + cDisplayer.container.getId());
 										
 				// Add slot element to panel
 				this.addSlotElement(slotElement);							
@@ -146,7 +147,7 @@ Object.defineProperties(EquipedCardsPanel, {
 				
 			// What sort of card is it? (land, air,...)
 			var cardType = card.elementType;
-			
+
 			// Ok, got it. Now find out if slotElement contains a free cell for
 			// this card
 			var slotElementId = "card-" + cardType + "-elements";		
@@ -164,8 +165,16 @@ Object.defineProperties(EquipedCardsPanel, {
 				// Put card inside cell 1
 				slotElementCell[0].addCard( card );					
 				
-				if (slotElementCell[0].cards.length == slotElementCell[0].MAX_CARDS)
+				if (slotElementCell[0].cards.length == slotElementCell[0].MAX_CARDS) {
 					slotElementCell[0].isFree = false;
+					// Set card-displayer to visible
+					var cardDisplayer = cardParent.parent.findActorById(cardParent.parent.getId() + "-cd");
+
+					if (cardDisplayer != null) {
+						
+						cardDisplayer.setVisible( true );
+					}
+				}
 					
 			} else if (slotElementCell[1].isFree == true) {
 					
