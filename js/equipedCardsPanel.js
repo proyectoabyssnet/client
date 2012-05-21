@@ -283,6 +283,8 @@ Object.defineProperties( CardsDisplayer, {
 
 			
 			this.container = new CAAT.Actor().setPosition(x,y);	
+			this.position[0] = this.container.x;
+			this.position[1] = this.container.y;
 			var cont = this.container;	
 			var slotId = this.slotId;	
 			var displayCardsFunction = this.displayCardsForSlot;
@@ -298,8 +300,12 @@ Object.defineProperties( CardsDisplayer, {
 						
 						if (equipedCardsPanel != null) {
 							
+							var startX = equipedCardsPanel.container
+								.findActorById("slot-" + slotId).width;
+								
 							displayCardsFunction(
-								equipedCardsPanel.slotElements[slotId]
+								equipedCardsPanel.slotElements[slotId],
+								startX
 							);														
 						}
 					}
@@ -311,13 +317,13 @@ Object.defineProperties( CardsDisplayer, {
 	
 	displayCardsForSlot: {
 	
-		value: function(slotElement) { // (slotElement["slot-..."]
+		value: function(slotElement, startX) { 
 			
 			var numberOfCards = 0;
 			var cardContainer = null;
-			var nextCardPosition = slotElement[0].cards[0].container.x;
+			var nextCardPositionX = startX; //slotElement[0].cards[0].container.x;
+			var nextCardPositionY = slotElement[0].cards[0].container.y;
 			var cardPadding = 4;
-		
 			
 			// Run through cells
 			for (var cell = 0; cell < 2; cell++) {
@@ -329,15 +335,15 @@ Object.defineProperties( CardsDisplayer, {
 					 
 					 // Display cards horizontally
 					 cardContainer = slotElement[cell].cards[card].container;
-					 /*
+					 
 					 cardContainer.setLocation(
-					 	nextCardPosition, 
-					 	this.container.y
+					 	nextCardPositionX, 
+					 	nextCardPositionY
 					 );
-					 */
+					 
 					 console.log("Displaying card: " + cardContainer.getId());
 					 
-					 nextCardPosition += cardContainer.width + cardPadding;
+					 nextCardPositionX += cardContainer.width + cardPadding;
 				}
 			}
 			
