@@ -63,6 +63,7 @@ Object.defineProperties( CardsOnHandPanel, {
 				this.container.addChild(cell.container);
 			}
 			
+			// This could be used to add more actors to this panel
 			this.lastObjectPosition[0] = nextCellXPosition + this.CELL_PADDING;
 			this.lastObjectPosition[1] = 1 + this.CELL_PADDING;
 		

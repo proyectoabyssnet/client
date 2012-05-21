@@ -187,7 +187,7 @@ function createAtkDefPanel() {
 	atkDefPanel.setTitle("Atk / Def");
 	atkDefPanel.container.setLocation(130, window['director'].canvas.height - 100)
 		.setSize(80,80)
-		.setAlpha(0.50);		
+		.setAlpha(0.0);		
 	
 	return atkDefPanel;
 }
