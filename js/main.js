@@ -223,7 +223,8 @@ function loadImages() {
 			{id:'card2-big',				url:'img/card2.jpg'},
 			{id:'roulette',					url:'img/roulette.png'},
 			{id:'cell-cover',				url:'img/cell-cover.jpg'},
-			{id:'cell-cover-sprite',		url:'img/cell-cover.png'},														
+			{id:'cell-cover-sprite',		url:'img/cell-cover.png'},	
+			{id:'card-displayer-button',	url:'img/right_arrow.png'},	
 		],
 		function(counter,images) {
 			

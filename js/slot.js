@@ -72,10 +72,12 @@ Object.defineProperties(Slot, {
 					this.cards[1].oldPosition[0] = this.cards[1].container.x;
 					this.cards[1].oldPosition[1] = this.cards[1].container.y;
 					
+					// Find cardDisplayer belonging to slotElement (cell's parent)
 					var cardDisplayer = this.container.parent.findActorById(
 						"slot-card-" + card.elementType + "-elements-cd"
 					);
 
+					// If it's found then make it visible
 					if (cardDisplayer != null) {
 						cardDisplayer.setVisible(true);
 					}

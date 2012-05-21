@@ -13,6 +13,7 @@ Object.defineProperties( CardsOnHandPanel, {
 	lastUpdatedCell: 	{ value: 0, writable: true }, 
 	draggedCardId:		{ value: 0, writable: true }, // Cards being dragged
 	cells: 				{ value: [], writable: true },
+	lastObjectPosition: { value: [0,0], writable: true },
 			
 	init: {
 	
@@ -61,6 +62,9 @@ Object.defineProperties( CardsOnHandPanel, {
 		
 				this.container.addChild(cell.container);
 			}
+			
+			this.lastObjectPosition[0] = nextCellXPosition + this.CELL_PADDING;
+			this.lastObjectPosition[1] = 1 + this.CELL_PADDING;
 		
 		}, enumerable: false
 	},
