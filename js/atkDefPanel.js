@@ -27,7 +27,7 @@ Object.defineProperties( AtkDefPanel, {
 				.setFont(this.titleFont)
 				.setText("0")
 				.setTextAlign("center")
-				.setTextFillStyle("#fff")
+				.setTextFillStyle("#0f0")
 				.setTextBaseline("bottom")
 				.setLocation(1,45);
 				
@@ -46,7 +46,7 @@ Object.defineProperties( AtkDefPanel, {
 				.setFont(this.titleFont)
 				.setText("0")
 				.setTextAlign("center")
-				.setTextFillStyle("#fff")
+				.setTextFillStyle("#0f0")
 				.setTextBaseline("bottom")
 				.setLocation(1,85);
 						    

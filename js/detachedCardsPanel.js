@@ -10,6 +10,7 @@ Object.defineProperties( DetachedCardsPanel, {
 	cellWidth:		{ value: 0, writable: true },
 	cellHeight:		{ value: 0, writable: true },
 	cellPadding:	{ value: 4, writable: true },
+	panelPadding:	{ value: 4, writable: true },
 	
 	init: {
 	
@@ -56,12 +57,11 @@ Object.defineProperties( DetachedCardsPanel, {
 			}
 			
 			// Reset panel width and location
-			var panelPadding = 4;			
 			this.container.setSize(
 				this.maxCards * this.cellWidth + (this.maxCards * this.cellPadding) + this.cellPadding, 
 				this.container.height
 			)
-			.setLocation(this.container.x + panelPadding, this.container.y);
+			.setLocation(this.container.x + this.panelPadding, this.container.y);
 			
 						
 		}, enumerable: true
