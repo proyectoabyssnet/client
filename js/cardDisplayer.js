@@ -26,7 +26,7 @@ Object.defineProperties( CardsDisplayer, {
 			this.position[1] = this.container.y;
 			var cont = this.container;	
 			var slotId = this.slotId;	
-			var displayCardsFunction = this.displayCardsForSlot;
+			var unfoldCardsFunction = this.unfoldCardsForSlot;
 			
 			this.container.setAsButton(
 					buttonSprite.getRef(),
@@ -42,7 +42,7 @@ Object.defineProperties( CardsDisplayer, {
 							var startX = equipedCardsPanel.container
 								.findActorById("slot-" + slotId).width;
 								
-							displayCardsFunction(
+							unfoldCardsFunction(
 								equipedCardsPanel.slotElements[slotId],
 								startX
 							);														
@@ -54,7 +54,7 @@ Object.defineProperties( CardsDisplayer, {
 		}, enumerable: true
 	},
 	
-	displayCardsForSlot: {
+	unfoldCardsForSlot: {
 	
 		value: function(slotElement, startX) { 
 			
@@ -81,7 +81,8 @@ Object.defineProperties( CardsDisplayer, {
 					 );
 					 
 					 console.log("Displaying card: " + cardContainer.getId() +
-					 	+ ", x =  " + nextCardPositionX);					
+					 	+ ", x =  " + nextCardPositionX);
+					 						
 					 nextCardPositionX += cardContainer.width + cardPadding;
 
 				}				
@@ -89,5 +90,32 @@ Object.defineProperties( CardsDisplayer, {
 			}
 			
 		}, enumerable: true
+	},
+	
+	foldCardsForSlot: {
+	
+		value: function( slotElement ) {
+		
+			var cardContainer = null;
+			var oldX = 0;
+			var oldY = 0;
+			
+			for (var cell = 0; cell < 2; cell++) {
+				
+				for (var card = 0; card < 2; card++) {
+					
+					// Get previous position
+					oldX = slotElement[0].cards[card].oldPosition[0];
+					oldY = slotElement[0].cards[card].oldPosition[1];	
+									
+					cardContainer = slotElement[0].cards[card].container;
+					
+					cardContainer.setLocation(oldX, oldY);
+				}
+			}
+			
+		}, enumerable: true
 	}
+	
+	
 });

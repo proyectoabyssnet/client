@@ -66,14 +66,14 @@ function initGame() {
 		
 	var card = null;
 	var cardIndex = 0;
-	var cardsOnHandCount = 4;
+	var cardsOnHandCount = 5;
 		
 	for(; cardIndex < cardsOnHandCount; cardIndex++) {
 	
 		card = Object.create( Card );	
 		card.init("card_on_hand_" + cardIndex);
 		card['name'] = "card_" + cardIndex;
-		var cardType = randomCardType();
+		var cardType = "water";//randomCardType();
 		console.log("# Created " + cardType + " card type");	
 		card.setElementType(cardType);
 		card.setImage("card1-small");

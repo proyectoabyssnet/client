@@ -37,7 +37,7 @@ Object.defineProperties( PlayerAchievements, {
 			this.warriorSoulCount = new CAAT.TextActor()
 				.setFont(this.titleFont)
 				.setText("0")
-				.setTextAlign("left")
+				.setTextAlign("right")
 				.setTextFillStyle("#0f0")
 				.setTextBaseline("bottom")
 				.setLocation(30,25);
@@ -53,7 +53,7 @@ Object.defineProperties( PlayerAchievements, {
 			this.elementalSoulCount = new CAAT.TextActor()
 				.setFont(this.titleFont)
 				.setText("0")
-				.setTextAlign("center")
+				.setTextAlign("right")
 				.setTextFillStyle("#0f0")
 				.setTextBaseline("bottom")
 				.setLocation(30,45);
@@ -66,7 +66,6 @@ Object.defineProperties( PlayerAchievements, {
 				.setTextBaseline("bottom")
 				.setLocation(1,65);				
 							
-			console.log("Hability. " + typeof(this.habilities["a"]));
 			this.container.addChild(this.labelWarriorSoul);
 			this.container.addChild(this.warriorSoulCount);
 			this.container.addChild(this.labelElementalSoul);
