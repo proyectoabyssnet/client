@@ -57,8 +57,7 @@ Object.defineProperties( CardsOnHandPanel, {
 		
 				// Calculate next cell position				
 				nextCellXPosition += cell.container.width +
-					this.CELL_LEFT_MARGIN + 
-					this.CELL_PADDING; 
+					this.CELL_LEFT_MARGIN;
 		
 				this.container.addChild(cell.container);
 			}
@@ -66,6 +65,15 @@ Object.defineProperties( CardsOnHandPanel, {
 			// This could be used to add more actors to this panel
 			this.lastObjectPosition[0] = nextCellXPosition + this.CELL_PADDING;
 			this.lastObjectPosition[1] = 1 + this.CELL_PADDING;
+			
+			
+			// Define panel size based on number of cells  and their width
+			var slotCellWidth = slotBackgroundImage.width;
+			var panelWidth = slotCellWidth * this.MAX_CARDS_ON_HAND +
+				(this.CELL_LEFT_MARGIN * this.MAX_CARDS_ON_HAND) +
+				this.CELL_PADDING;
+			this.container.setSize( panelWidth, this.container.height);
+			
 		
 		}, enumerable: false
 	},

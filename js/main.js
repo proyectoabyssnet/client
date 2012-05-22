@@ -39,17 +39,20 @@ function initGame() {
 	window['equiped_cards_panel'] = createEquipedCardsPanel();
 	scene_1.addChild(window['equiped_cards_panel'].container);
 
-	var playerLifePanel = createPlayerLifePanel();
-	scene_1.addChild(playerLifePanel.container);
+	window['player_life_panel'] = createPlayerLifePanel();
+	scene_1.addChild(window['player_life_panel'].container);
 	
+	window['atk_def_panel'] = createAtkDefPanel();
+	scene_1.addChild(window['atk_def_panel'].container);
+		
 	window['cards_on_hand_panel'] = createCardsOnHandPanel();
 	scene_1.addChild(window['cards_on_hand_panel'].container);
 	
-	var atkDefPanel = createAtkDefPanel();
-	scene_1.addChild(atkDefPanel.container);
+	window['detached_cards_panel'] = createDetachedCardsPanel();
+	scene_1.addChild( window['detached_cards_panel'].container );
 			
-	var rouletteOptions = createRouletteOptions();
-	scene_1.addChild(rouletteOptions.container);
+	window['roulette_options'] = createRouletteOptions();
+	scene_1.addChild(window['roulette_options'].container);
 		
 
 	/*
@@ -60,7 +63,7 @@ function initGame() {
 		
 	var card = null;
 	var cardIndex = 0;
-	var cardsOnHandCount = 5;
+	var cardsOnHandCount = 4;
 	
 	
 	for(; cardIndex < cardsOnHandCount; cardIndex++) {
@@ -165,11 +168,17 @@ function createPlayerLifePanel() {
 }
 
 function createCardsOnHandPanel() {
-
+	
+	// Get atk/def panel location and width
+	var atkdefPanelWidth = window['atk_def_panel'].container.width;
+	var atkdefPanelLocationX = window['atk_def_panel'].container.x;
+	var atkdefPanelLocationY = window['atk_def_panel'].container.y;
+	
 	var cardsOnHandPanel = Object.create( CardsOnHandPanel );
 	cardsOnHandPanel.init();
-	cardsOnHandPanel.container.setLocation(230, 500)
-		.setSize(500, 80)
+	cardsOnHandPanel.container
+		.setLocation(atkdefPanelLocationX + atkdefPanelWidth, atkdefPanelLocationY)
+		.setSize(50, 80)
 		.setAlpha(0.50);
 	
 	cardsOnHandPanel.container.setId("cards_on_hand_panel");
@@ -177,6 +186,24 @@ function createCardsOnHandPanel() {
 	cardsOnHandPanel.initCells();
 		
 	return cardsOnHandPanel;
+}
+
+function createDetachedCardsPanel() {
+	
+	var panelPositionY = window['cards_on_hand_panel'].container.x + 
+		window['cards_on_hand_panel'].container.width;
+	
+	var detachedCardsPanel = Object.create( DetachedCardsPanel );
+	detachedCardsPanel.init();
+	detachedCardsPanel.container.setLocation( panelPositionY, 500)
+		.setSize(100, 80)
+		.setAlpha(0.50)
+		.setId("detached_cards_panel");
+	
+	detachedCardsPanel.setTitle("Detached cards");
+	detachedCardsPanel.initCells();
+		
+	return detachedCardsPanel;
 }
 
 function createAtkDefPanel() {
