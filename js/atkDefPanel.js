@@ -22,6 +22,15 @@ Object.defineProperties( AtkDefPanel, {
 				.setTextFillStyle("#fff")
 				.setTextBaseline("bottom")
 				.setLocation(1,25);
+				
+			this.atkValue = new CAAT.TextActor()
+				.setFont(this.titleFont)
+				.setText("0")
+				.setTextAlign("center")
+				.setTextFillStyle("#fff")
+				.setTextBaseline("bottom")
+				.setLocation(1,45);
+				
 
 			// def label
 			this.defLabel = new CAAT.TextActor()
@@ -30,10 +39,21 @@ Object.defineProperties( AtkDefPanel, {
 				.setTextAlign("left")
 				.setTextFillStyle("#fff")
 				.setTextBaseline("bottom")
-				.setLocation(1,50);	
+				.setLocation(1,65);	
 		    
+				
+			this.defValue = new CAAT.TextActor()
+				.setFont(this.titleFont)
+				.setText("0")
+				.setTextAlign("center")
+				.setTextFillStyle("#fff")
+				.setTextBaseline("bottom")
+				.setLocation(1,85);
+						    
 			this.container.addChild(this.atkLabel);
+			this.container.addChild(this.atkValue);
 			this.container.addChild(this.defLabel);
+			this.container.addChild(this.defValue);
 			
 		}, enumerable: false
 		
@@ -42,6 +62,9 @@ Object.defineProperties( AtkDefPanel, {
 	// Draw images depending on value
 	setAtkValue: {
 		value: function(value) {
+		
+			this.atkValue.setText( value );
+			
 		}, enumerable: false
 	
 	},
@@ -49,6 +72,9 @@ Object.defineProperties( AtkDefPanel, {
 	// Draw images depending on value
 	setDefValue: {
 		value: function(value) {
+		
+			this.defValue.setText( value );
+			
 		}, enumerable: false,
 	
 	}
