@@ -51,6 +51,9 @@ function initGame() {
 	window['detached_cards_panel'] = createDetachedCardsPanel();
 	scene_1.addChild( window['detached_cards_panel'].container );
 			
+	window['player_achievements_panel'] = createPlayerAchievementsPanel();
+	scene_1.addChild( window['player_achievements_panel'].container );
+			
 	window['roulette_options'] = createRouletteOptions();
 	scene_1.addChild(window['roulette_options'].container);
 		
@@ -205,6 +208,25 @@ function createDetachedCardsPanel() {
 		
 	return detachedCardsPanel;
 }
+
+function createPlayerAchievementsPanel() {
+	
+	var panelPositionY = window['detached_cards_panel'].container.x + 
+		window['detached_cards_panel'].container.width;
+	
+	var playerAchievementsPanel = Object.create( PlayerAchievements );
+	playerAchievementsPanel.init();
+	playerAchievementsPanel.container.setLocation( panelPositionY, 500)
+		.setSize(100, 80)
+		.setAlpha(0.50)
+		.setId("player_achievements_panel");
+	
+	playerAchievementsPanel.setTitle("Habilities & souls");
+	//playerAchievementsPanel.initCells();
+		
+	return playerAchievementsPanel;
+}
+
 
 function createAtkDefPanel() {
 	
