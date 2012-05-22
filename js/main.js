@@ -273,6 +273,8 @@ function loadImages() {
 			{id:'cell-cover',				url:'img/cell-cover.jpg'},
 			{id:'cell-cover-sprite',		url:'img/cell-cover.png'},	
 			{id:'card-displayer-button',	url:'img/right_arrow.png'},	
+			{id:'active-hability',			url:'img/active_hability.png'},	
+			{id:'pasive-hability',			url:'img/pasive_hability.png'},				
 		],
 		function(counter,images) {
 			

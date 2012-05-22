@@ -65,6 +65,14 @@ Object.defineProperties( DetachedCardsPanel, {
 			
 						
 		}, enumerable: true
+	},
+	
+	detachCard: {
+	
+		value: function( card ) {
+		
+			
+		}, enumerable: true
 	}
 	
 });
