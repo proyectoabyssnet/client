@@ -67,8 +67,7 @@ function initGame() {
 	var card = null;
 	var cardIndex = 0;
 	var cardsOnHandCount = 4;
-	
-	
+		
 	for(; cardIndex < cardsOnHandCount; cardIndex++) {
 	
 		card = Object.create( Card );	

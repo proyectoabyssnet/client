@@ -15,6 +15,7 @@ Object.defineProperties( PlayerAchievements, {
 		value: function() {
 		
 			this.initPanel();
+			this.container.setFillStyle("#ccf");
 			//this.habilityImage = window['director'].getImage("hability");
 			//this.soulImage = window['director'].getImage("soul");
 			

@@ -55,9 +55,13 @@ Object.defineProperties( DetachedCardsPanel, {
 				this.container.addChild(cell.container);
 			}
 			
-			// Reset panel width
-			
-			this.container.setSize(this.maxCards * this.cellWidth);
+			// Reset panel width and location
+			var panelPadding = 4;			
+			this.container.setSize(
+				this.maxCards * this.cellWidth + (this.maxCards * this.cellPadding) + this.cellPadding, 
+				this.container.height
+			)
+			.setLocation(this.container.x + panelPadding, this.container.y);
 			
 						
 		}, enumerable: true
