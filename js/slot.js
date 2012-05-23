@@ -42,15 +42,15 @@ Object.defineProperties(Slot, {
 				this.cards.push(card);
 				this.container.addChild(card.container);
 				card.container.setLocation(0,0);
-				card.oldPosition[0] = card.container.x;
-				card.oldPosition[1] = card.container.y;
+				card.oldPosition[0] = 0;
+				card.oldPosition[1] = 0;
 				
 				if (this.cards.length == 2) {
 							
 					// Move second card 5 units on x and y
 					this.cards[1].container.setLocation(5,5);	
-					this.cards[1].oldPosition[0] = this.cards[1].container.x;
-					this.cards[1].oldPosition[1] = this.cards[1].container.y;
+					this.cards[1].oldPosition[0] = 5;
+					this.cards[1].oldPosition[1] = 5;
 					
 					// Find cardDisplayer belonging to slotElement (cell's parent)
 					var cardDisplayer = this.container.parent.findActorById(

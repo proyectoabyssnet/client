@@ -11,7 +11,7 @@ Object.defineProperties(Card, {
 	bigImage: 		{ value: "bigImage.png", writable: true },
 	container:		{ value: null, writable: true },
 	isMoving:		{ value: false, writable: true }, // Is card moving?
-	oldPosition:	{ value: [0,0], writable: true },	
+	oldPosition:	{ value: [], writable: true },	
 	collision:		{ value: false, writable: true },
 	state:			{ value: "none", writable: true },
 	slotElements: 	{ 
@@ -32,6 +32,7 @@ Object.defineProperties(Card, {
 		
 			this.container = new CAAT.Actor().setId(id);
 			this.container.enableDrag();
+			this.oldPosition = [0,0];
 			this.initEvents();
 						
 		}, enumerable: false
