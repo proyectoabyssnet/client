@@ -57,6 +57,8 @@ function initGame() {
 	window['roulette_options'] = createRouletteOptions();
 	scene_1.addChild(window['roulette_options'].container);
 		
+	window['player_browser_panel'] = createPlayerBrowserPanel();
+	scene_1.addChild(window['player_browser_panel'].container);	
 
 	/*
 	* INIT GAME PROCEDURES (giveAwayCards, initPlayers,....)
@@ -135,6 +137,23 @@ function createTag() {
 	tag.init("Tag", "Object ID", "Game object description");
 	
 	return tag;
+}
+
+function createPlayerBrowserPanel() {
+
+	var equipedCardsPanel = window['equiped_cards_panel'].container;
+	var posX = equipedCardsPanel.x;
+	var posY = equipedCardsPanel.y + equipedCardsPanel.height;
+	
+	var playerBrowserPanel = Object.create( PlayerBrowser );
+	playerBrowserPanel.init();
+	playerBrowserPanel.setTitle("Players");	
+	playerBrowserPanel.container.setLocation(posX, posY)
+		.setSize(70,30)
+		.setAlpha(0.5)
+		.setId("player_browser_panel");
+	
+	return playerBrowserPanel;
 }
 
 function createEquipedCardsPanel() {

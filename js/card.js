@@ -132,8 +132,7 @@ Object.defineProperties(Card, {
 						
 						thisCard.returnToSourcePosition();
 					}
-					
-					
+										
 				}
 				else {
 				

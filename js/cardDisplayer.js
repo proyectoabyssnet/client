@@ -48,7 +48,7 @@ Object.defineProperties( CardsDisplayer, {
 							);														
 						}
 					}
-				);
+			);
 			
 						
 		}, enumerable: true
