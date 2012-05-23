@@ -147,9 +147,8 @@ function createPlayerBrowserPanel() {
 	
 	var playerBrowserPanel = Object.create( PlayerBrowser );
 	playerBrowserPanel.init();
-	playerBrowserPanel.setTitle("Players");	
+	playerBrowserPanel.setTitle("Player: <none>");	
 	playerBrowserPanel.container.setLocation(posX, posY)
-		.setSize(70,30)
 		.setAlpha(0.5)
 		.setId("player_browser_panel");
 	
