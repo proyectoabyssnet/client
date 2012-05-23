@@ -20,27 +20,7 @@ Object.defineProperties(Slot, {
 			this.container = new CAAT.ActorContainer()
 				.setId(id)
 				.setAlpha(this.alphaValue);
-				
-			
-			/*
-			var cellCoverBackgroundImage = window['director'].getImage('cell-cover');
 							
-			this.butSprite = new CAAT.SpriteImage()
-				.initialize(window['director'].getImage('cell-cover-sprite'),
-				1,2);
-
-			
-			this.cellCover = new CAAT.Actor()
-				.setAsButton(
-					this.butSprite.getRef(),
-					0,1,1,0, 
-					function( button ) {
-						console.log("Clicked over cellCover");
-					}
-				)
-				.setVisible( false );
-			*/
-			
 			this.cards = [];
 		
 		}, enumerable: true
@@ -62,12 +42,12 @@ Object.defineProperties(Slot, {
 				this.cards.push(card);
 				this.container.addChild(card.container);
 				card.container.setLocation(0,0);
-				card.oldPosition[0] = 0;
-				card.oldPosition[1] = 0;
-				
+				card.oldPosition[0] = card.container.x;
+				card.oldPosition[1] = card.container.y;
 				
 				if (this.cards.length == 2) {
 							
+					// Move second card 5 units on x and y
 					this.cards[1].container.setLocation(5,5);	
 					this.cards[1].oldPosition[0] = this.cards[1].container.x;
 					this.cards[1].oldPosition[1] = this.cards[1].container.y;
@@ -77,7 +57,7 @@ Object.defineProperties(Slot, {
 						"slot-card-" + card.elementType + "-elements-cd"
 					);
 
-					// If it's found then make it visible
+					// ...and make it visible
 					if (cardDisplayer != null) {
 						cardDisplayer.setVisible(true);
 					}

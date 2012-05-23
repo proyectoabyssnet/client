@@ -81,8 +81,7 @@ Object.defineProperties( PlayerAchievements, {
 		
 			if (typeof(this.habilities[hability]) == "undefined") {
 				this.habilities.push( hability );
-				
-				
+								
 			}
 			
 		}, enumerable: true

@@ -13,6 +13,24 @@ Object.defineProperties(EquipedCardsPanel, {
 	slotElementSize: 	{ value: [0,0], writable: true }, // width, height
 	cells:				{ value: [], writable: true }, // Cells inside elements
 	selected:			{ value: false, writable: true }, // Used to select panel1
+	elements:			{ 
+		value: [ "mascot", "air", "water", "land", "fire"], 
+		writable: true 
+	},
+	
+	cardDisplayers:		{ 
+	
+		value: {
+			
+			"card-displayer-mascot":	null,
+			"card-displayer-air": 		null,
+			"card-displayer-water":		null,
+			"card-displayer-land": 		null,
+			"card-displayer-fire": 		null
+			
+		}, writable: true 
+		
+	},
 	slotBackgroundImages: { 
 		value: ["card-mascot-elements",
 				 "card-air-elements",
@@ -77,6 +95,7 @@ Object.defineProperties(EquipedCardsPanel, {
 			var element = 0;
 			var cDisplayer = null;
 			var slotId = "";
+			var cardDisplayerId = "";
 			
 			for(; element < this.MAX_SLOT_ELEMENTS; element++) {
 						
@@ -125,7 +144,11 @@ Object.defineProperties(EquipedCardsPanel, {
 				cDisplayer.container
 					.setId(slotElement.getId() + "-cd") // -cd: card displayer
 					.setVisible(false);
-					
+				
+				// Store cardDisplayer object
+				cardDisplayerId = "card-displayer-" + this.elements[element];
+				this.cardDisplayers[ cardDisplayerId ] = cDisplayer;
+				
 				console.log("Setting id for cardDisplayer: " + cDisplayer.container.getId());
 										
 				// Add slot element to panel

@@ -13,6 +13,7 @@ Object.defineProperties(Card, {
 	isMoving:		{ value: false, writable: true }, // Is card moving?
 	oldPosition:	{ value: [0,0], writable: true },	
 	collision:		{ value: false, writable: true },
+	state:			{ value: "none", writable: true },
 	slotElements: 	{ 
 	
 		value: ["slot-card-mascot-elements",
@@ -70,9 +71,11 @@ Object.defineProperties(Card, {
 				var cardsOnHandPanel = window['cards_on_hand_panel'];		
 				
 				// Get panel which this card belongs to
-				var panelWhereThisCardBelongsTo = container.parent.parent.getId();
+				var panelWhereThisCardBelongsTo = container.parent.parent;
 				
-				if (panelWhereThisCardBelongsTo == "cards_on_hand_panel") {
+				console.log("??? " + container.parent.parent.parent.getId());
+				
+				if (panelWhereThisCardBelongsTo.getId() == "cards_on_hand_panel") {
 
 					// Convert card coordinates to EquipedCardsPanel coordinates but
 					// before doing this, find out who card's parent is				
@@ -107,11 +110,24 @@ Object.defineProperties(Card, {
 						thisCard.returnToSourcePosition();					
 					}
 				
-				} else if (panelWhereThisCardBelongsTo == "equiped_cards_panel") {
+				} else if (panelWhereThisCardBelongsTo.parent.getId() == "equiped_cards_panel") {
 				
 					var slotElement = container.parent.parent;
+					var cardDisplayer = null;
 					
-					console.log("slotElement: " + slotElement.getId());
+					console.log("slotElement: folding cards... ");
+					
+					if (thisCard.state == "unfolded") {
+					
+						var cardDisplayerId = "card-displayer-" + thisCard.elementType;
+						var slotElementId = "card-" + thisCard.elementType + "-elements";
+						
+						equipedCardsPanel.cardDisplayers[ cardDisplayerId ]
+							.foldCardsForSlot(
+								equipedCardsPanel.slotElements[slotElementId]
+							);
+					}
+					
 					
 				}
 				else {

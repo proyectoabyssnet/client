@@ -68,20 +68,26 @@ Object.defineProperties( CardsDisplayer, {
 			for (var cell = 0; cell < 2; cell++) {
 
 				numberOfCards = slotElement[cell].cards.length;
-				
+
 				// Run through list of cards contained in a cell
 				for (var card = 0; card < numberOfCards; card++) {
 					 
 					 // Display cards horizontally
 					 cardContainer = slotElement[cell].cards[card].container;
 					 
+					 // Card is unfolded like the other ones
+					 slotElement[cell].cards[card].state = "unfolded";
+					 
 					 cardContainer.setLocation(
 					 	nextCardPositionX, 
 					 	nextCardPositionY
 					 );
 					 
-					 console.log("Displaying card: " + cardContainer.getId() +
-					 	+ ", x =  " + nextCardPositionX);
+					 console.log("Displaying card: " + 
+					 	cardContainer.getId() +
+					 	", x =  " + nextCardPositionX) + 
+					 	" with state " +
+					 	slotElement[cell].cards[card].sate;
 					 						
 					 nextCardPositionX += cardContainer.width + cardPadding;
 
@@ -102,15 +108,19 @@ Object.defineProperties( CardsDisplayer, {
 			
 			for (var cell = 0; cell < 2; cell++) {
 				
-				for (var card = 0; card < 2; card++) {
+				numberOfCards = slotElement[cell].cards.length;
+				
+				for (var card = 0; card < numberOfCards; card++) {
 					
-					// Get previous position
-					oldX = slotElement[0].cards[card].oldPosition[0];
-					oldY = slotElement[0].cards[card].oldPosition[1];	
-									
-					cardContainer = slotElement[0].cards[card].container;
-					
+					console.log(slotElement[cell].cards[card].container.getId());
+					// Get previous position and set it
+					oldX = slotElement[cell].cards[card].oldPosition[0];
+					oldY = slotElement[cell].cards[card].oldPosition[1];										
+					cardContainer = slotElement[cell].cards[card].container;					
 					cardContainer.setLocation(oldX, oldY);
+					
+					// Set card state as "folded"
+					slotElement[cell].cards[card].state = "folded";
 				}
 			}
 			
