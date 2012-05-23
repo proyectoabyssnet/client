@@ -127,6 +127,10 @@ Object.defineProperties(Card, {
 							.foldCardsForSlot(
 								equipedCardsPanel.slotElements[slotElementId]
 							);
+							
+					} else {
+						
+						thisCard.returnToSourcePosition();
 					}
 					
 					
