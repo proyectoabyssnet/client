@@ -116,10 +116,26 @@ Object.defineProperties(Card, {
 					var slotElement = container.parent.parent;
 					var cardDisplayer = null;
 					
-					console.log("slotElement: folding cards... ");
+					//console.log("slotElement: folding cards... ");
 					
 					if (thisCard.state == "unfolded") {
-					
+						/*
+						var actions = window['card_actions'];
+						
+						if (actions != null) {	
+							
+							var p = new CAAT.Point(0,0);
+							
+							var transformedPoint = thisCard.container.modelToView(p);
+							
+							actions.container.setPosition(
+								transformedPoint.x, 
+								transformedPoint.y - actions.container.height
+							);
+							actions.container.setVisible( true );
+							actions.equipAction.setVisible( false ); 
+						}*/
+						
 						var cardDisplayerId = "card-displayer-" + thisCard.elementType;
 						var slotElementId = "card-" + thisCard.elementType + "-elements";
 						
@@ -127,7 +143,7 @@ Object.defineProperties(Card, {
 							.foldCardsForSlot(
 								equipedCardsPanel.slotElements[slotElementId]
 							);
-							
+						
 					} else {
 						
 						thisCard.returnToSourcePosition();

@@ -8,14 +8,17 @@ Object.defineProperties( CardsDisplayer, {
 	
 	slotId:		{ value: "<empty>", writable: true },
 	container:	{ value: null, writable: true },
+	
 	position:	{ value: [0,0], writable: true },
+	state:		{ value: "", writable: true },
 	
 	init: {
 		
 		value: function(id, slotId, x, y) {
 													
 			this.slotId = slotId;
-								
+			this.state = "folded";
+				
 			var buttonSprite = new CAAT.SpriteImage()
 				.initialize(window['director'].getImage('stars'),
 				1,6);
@@ -122,7 +125,7 @@ Object.defineProperties( CardsDisplayer, {
 					// Set card state as "folded"
 					slotElement[cell].cards[card].state = "folded";
 				}
-			}
+			}	
 			
 		}, enumerable: true
 	}

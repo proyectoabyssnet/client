@@ -60,6 +60,9 @@ function initGame() {
 	window['player_browser_panel'] = createPlayerBrowserPanel();
 	scene_1.addChild(window['player_browser_panel'].container);	
 
+	window['card_actions'] = createCardActions();
+	scene_1.addChild(window['card_actions'].container);	
+	
 	/*
 	* INIT GAME PROCEDURES (giveAwayCards, initPlayers,....)
 	*/
@@ -131,6 +134,14 @@ function randomCardType() {
 	return cardType;
 }
 
+function createCardActions() {
+	
+	var cardActions = Object.create( CardActions );
+	cardActions.init();
+	
+	return cardActions;
+}
+
 function createTag() {
 
 	var tag = Object.create(Tag);
@@ -148,8 +159,8 @@ function createPlayerBrowserPanel() {
 	var playerBrowserPanel = Object.create( PlayerBrowser );
 	playerBrowserPanel.init();
 	playerBrowserPanel.setTitle("Player: <none>");	
-	playerBrowserPanel.container.setLocation(posX, posY)
-		.setAlpha(0.5)
+	playerBrowserPanel.container.setLocation(1,20)
+		.setAlpha(0.0)
 		.setId("player_browser_panel");
 	
 	return playerBrowserPanel;
@@ -158,14 +169,13 @@ function createPlayerBrowserPanel() {
 function createEquipedCardsPanel() {
 	
 	var equipedCardsPanel = Object.create( EquipedCardsPanel );
-	equipedCardsPanel.initPanel();
+	equipedCardsPanel.init();
 	equipedCardsPanel.setTitle("Equiped cards");	
-	equipedCardsPanel.container.setLocation(10,10)
+	equipedCardsPanel.container.setLocation(5,65)
 		.setSize(160,430)
 		.setAlpha(0.0)
 		.setId("equiped_cards_panel");
 
-	equipedCardsPanel.container.setId("equiped_cards_panel");
 	equipedCardsPanel.initElementSlots();
 	
 	return equipedCardsPanel;

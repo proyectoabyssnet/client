@@ -58,6 +58,7 @@ Object.defineProperties(EquipedCardsPanel, {
 	
 		value: function() {
 			
+			this.initPanel();
 			this.MAX_SLOT_ELEMENTS = 5; // Number of elements (land, air,...)
 			this.CELL_PADDING = 2; // Separating between cell and borders
 			this.CELL_LEFT_MARGIN = 10; // Horizontal separation
@@ -81,7 +82,7 @@ Object.defineProperties(EquipedCardsPanel, {
 	
 		value: function() {
 					
-			var nextSlotY = this.container.y;
+			var nextSlotY = 2;
 	
 			// Get first image to read it's size
 			var image = window['director'].getImage(this.slotBackgroundImages[0]);
@@ -104,12 +105,11 @@ Object.defineProperties(EquipedCardsPanel, {
 			
 				slotElement = new CAAT.ActorContainer();
 
-				slotElement.setBounds(
-						this.container.x,
-						nextSlotY,
+				slotElement.setSize(
 						this.slotElementSize[0], // width
 						this.slotElementSize[1] // height
 						)
+					.setLocation(1, nextSlotY)
 					.setBackgroundImage(
 							window['director'].getImage(slotElementBackground)
 							)
@@ -153,7 +153,7 @@ Object.defineProperties(EquipedCardsPanel, {
 										
 				// Add slot element to panel
 				this.addSlotElement(slotElement);							
-					
+				
 				// Calculate Y position for next slot element
 				nextSlotY += this.slotElementSize[1] + this.SLOT_PADDING;
 			

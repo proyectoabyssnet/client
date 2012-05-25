@@ -6,11 +6,13 @@ var DetachedCardsPanel = Object.create( Panel );
 
 Object.defineProperties( DetachedCardsPanel, {
 
-	maxCards:		{ value: 0, writable: true },
-	cellWidth:		{ value: 0, writable: true },
-	cellHeight:		{ value: 0, writable: true },
-	cellPadding:	{ value: 4, writable: true },
-	panelPadding:	{ value: 4, writable: true },
+	maxCards:			{ value: 0, writable: true },
+	cellWidth:			{ value: 0, writable: true },
+	cellHeight:			{ value: 0, writable: true },
+	cellPadding:		{ value: 4, writable: true },
+	panelPadding:		{ value: 4, writable: true },
+	cells:				{ value: [], writable: true },
+	lastUpdatedCell: 	{ value: 0, writable: true },
 	
 	init: {
 	
@@ -47,7 +49,7 @@ Object.defineProperties( DetachedCardsPanel, {
 					.setAlpha(0.5);
 	
 				// Store cell... 	
-				//this.cells.push( cell );				
+				this.cells.push( cell );				
 		
 				// Calculate next cell position				
 				nextCellXPosition += cell.container.width +
@@ -71,6 +73,16 @@ Object.defineProperties( DetachedCardsPanel, {
 	
 		value: function( card ) {
 		
+			var foundCell = 0;
+			var found = false;
+			
+			// Look for a free cell and put it in here		
+			if (this.cells[this.lastUpdatedCell].isFree == true) {
+			
+				this.cells[this.lastUpdatedCell].addChild( card.container );
+				this.lastUpdatedCell++;
+			}
+			
 			
 		}, enumerable: true
 	}
