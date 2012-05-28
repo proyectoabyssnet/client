@@ -59,9 +59,9 @@ function initGame() {
 		
 	window['player_browser_panel'] = createPlayerBrowserPanel();
 	scene_1.addChild(window['player_browser_panel'].container);	
-
-	window['card_actions'] = createCardActions();
-	scene_1.addChild(window['card_actions'].container);	
+	
+	window['card_details_panel'] = createCardDetailsPanel();
+	scene_1.addChild(window['card_details_panel'].container);	
 	
 	/*
 	* INIT GAME PROCEDURES (giveAwayCards, initPlayers,....)
@@ -134,20 +134,23 @@ function randomCardType() {
 	return cardType;
 }
 
-function createCardActions() {
-	
-	var cardActions = Object.create( CardActions );
-	cardActions.init();
-	
-	return cardActions;
-}
-
 function createTag() {
 
 	var tag = Object.create(Tag);
 	tag.init("Tag", "Object ID", "Game object description");
 	
 	return tag;
+}
+
+function createCardDetailsPanel() {
+
+	var cardDetailsPanel = Object.create( CardDetails );
+	cardDetailsPanel.init();
+	cardDetailsPanel.setTitle("Card details")
+	cardDetailsPanel.container
+		.setId("card_details_panel");
+	
+	return cardDetailsPanel;
 }
 
 function createPlayerBrowserPanel() {
@@ -295,7 +298,7 @@ function loadImages() {
 			{id:'slot-bg',					url:'img/slot-bg.jpg'},
 			{id:'card1-small',				url:'img/card1-small.jpg'},
 			{id:'card2-small',				url:'img/card2-small.jpg'},
-			{id:'card1-big',				url:'img/card1.jpg'},
+			{id:'card1-img-big',			url:'img/card-image.png'},
 			{id:'card2-big',				url:'img/card2.jpg'},
 			{id:'roulette',					url:'img/roulette.png'},
 			{id:'cell-cover',				url:'img/cell-cover.jpg'},

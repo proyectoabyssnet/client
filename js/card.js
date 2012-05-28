@@ -136,6 +136,8 @@ Object.defineProperties(Card, {
 							actions.equipAction.setVisible( false ); 
 						}*/
 						
+						window['card_details_panel'].container.setVisible(true);
+						
 						var cardDisplayerId = "card-displayer-" + thisCard.elementType;
 						var slotElementId = "card-" + thisCard.elementType + "-elements";
 						
