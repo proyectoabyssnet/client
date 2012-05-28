@@ -10,6 +10,7 @@ Object.defineProperties( CardDetails, {
 	description:	{ value: null, writable: true },
 	image:			{ value: null, writable: true },
 	padding:		{ value: 10, writable: true },
+	cardId:			{ value: "", writable: true },
 	
 	init: {
 	
@@ -20,10 +21,7 @@ Object.defineProperties( CardDetails, {
 			
 			//var cardId = id;
 			var cardId = "card1";
-			var cardImg = window['director'].getImage(cardId + "-img-big");
-			this.image = new CAAT.Actor()
-				.setSize(cardImg.width, cardImg.height)
-				.setBackgroundImage( cardImg );
+			this.setCard(cardId);
 				
 			this.actions = Object.create( CardActions );
 			this.actions.init();
@@ -45,8 +43,8 @@ Object.defineProperties( CardDetails, {
 			
 			// Reset panel size
 			this.container.setSize(
-				cardImg.width + this.actions.container.width, 
-				cardImg.height + this.description.height
+				this.image.width + this.actions.container.width, 
+				this.image.height + this.description.height
 			);
 			
 			var posX = (window['director'].width / 2) - (this.container.width / 2);
@@ -55,5 +53,17 @@ Object.defineProperties( CardDetails, {
 			this.container.setPosition(posX,posY);			
 			
 		}, enumerable:true
+	},
+	
+	setCard: {
+	
+		value: function(cardId) {
+		
+			var cardImg = window['director'].getImage(cardId + "-img-big");
+			this.image = new CAAT.Actor()
+				.setSize(cardImg.width, cardImg.height)
+				.setBackgroundImage( cardImg );		
+			
+		}, enumerable: true
 	}
 });
