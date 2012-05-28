@@ -12,7 +12,7 @@ Object.defineProperties( CardActions, {
 	
 	init: {
 	
-		value: function() {
+		value: function(card) {
 		
 			this.container = new CAAT.ActorContainer()
 				.setSize(60,20);
@@ -24,7 +24,7 @@ Object.defineProperties( CardActions, {
 				.initialize(window['director'].getImage('stars'),
 				1,6);
 				
-			
+						
 			this.detachAction.setAsButton(
 					buttonSprite.getRef(),
 					0,1,3,0, 
@@ -32,6 +32,7 @@ Object.defineProperties( CardActions, {
 			
 						console.log("Detach card action");
 						window['card_details_panel'].container.setVisible(false);
+						//window['detached_cards_panel'].detachCard( card );
 					}
 			);
 			
@@ -41,7 +42,7 @@ Object.defineProperties( CardActions, {
 					function (button) {
 			
 						console.log("Equip card");
-						window['card_details_panel'].container.setVisible(false);
+						window['card_details_panel'].container.setVisible(false);						
 					}
 			);							
 									

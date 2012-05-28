@@ -70,14 +70,14 @@ function initGame() {
 	scene_1.enableInputList(5);	// panel and numberOfCards
 		
 	var card = null;
-	var cardIndex = 0;
-	var cardsOnHandCount = 5;
+	var cardIndex = 1;
+	var cardsOnHandCount = 6;
 		
 	for(; cardIndex < cardsOnHandCount; cardIndex++) {
 	
 		card = Object.create( Card );	
 		card.init("card_on_hand_" + cardIndex);
-		card['name'] = "card_" + cardIndex;
+		card['cName'] = "card" + cardIndex;
 		var cardType = "water";//randomCardType();
 		console.log("# Created " + cardType + " card type");	
 		card.setElementType(cardType);

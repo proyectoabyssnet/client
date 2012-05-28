@@ -6,6 +6,7 @@ var Card = {};
 
 Object.defineProperties(Card, {
 
+	cName:			{ value: "", writable: true },
 	elementType: 	{ value: "", writable: true },
 	tagVisible:		{ value: false, writable: true },
 	bigImage: 		{ value: "bigImage.png", writable: true },
@@ -119,23 +120,8 @@ Object.defineProperties(Card, {
 					//console.log("slotElement: folding cards... ");
 					
 					if (thisCard.state == "unfolded") {
-						/*
-						var actions = window['card_actions'];
 						
-						if (actions != null) {	
-							
-							var p = new CAAT.Point(0,0);
-							
-							var transformedPoint = thisCard.container.modelToView(p);
-							
-							actions.container.setPosition(
-								transformedPoint.x, 
-								transformedPoint.y - actions.container.height
-							);
-							actions.container.setVisible( true );
-							actions.equipAction.setVisible( false ); 
-						}*/
-						
+						window['card_details_panel'].setCard( thisCard );
 						window['card_details_panel'].container.setVisible(true);
 						
 						var cardDisplayerId = "card-displayer-" + thisCard.elementType;
