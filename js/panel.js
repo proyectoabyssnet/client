@@ -28,6 +28,8 @@ Object.defineProperties(Panel, {
 				.setTextFillStyle(this.titleColor)
 				.setTextBaseline("bottom");
 				
+			this.container.addChild(this.titleObject);				
+				
         }, enumerable: false
         
 	}, // end initPanel
@@ -38,7 +40,6 @@ Object.defineProperties(Panel, {
 		
 			this.titleObject.setText(theTitle);
 			this.titleObject.setLocation(1,1); // Top left position
-			this.container.addChild(this.titleObject);
 				
 		}, enumerable: true
 		

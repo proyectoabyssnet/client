@@ -64,6 +64,12 @@ function initGame() {
 	scene_1.addChild(window['card_details_panel'].container);	
 	
 	/*
+	*	Load players
+	*/
+	var players = initPlayers();
+	window['player_browser_panel'].loadPlayers( players );
+	
+	/*
 	* INIT GAME PROCEDURES (giveAwayCards, initPlayers,....)
 	*/
 	// Create cards
@@ -132,6 +138,22 @@ function randomCardType() {
 	}
 	
 	return cardType;
+}
+
+function initPlayers() {
+	
+	var players = [];
+	var player = null;
+	
+	for (var i=0; i < 4; i++) {
+		
+		player = Object.create( Player );
+		player.init("player_" + i);
+		
+		players[i] = player;
+	}
+	
+	return players;
 }
 
 function createTag() {

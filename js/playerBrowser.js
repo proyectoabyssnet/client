@@ -12,7 +12,8 @@ Object.defineProperties( PlayerBrowser, {
 	atkLabel:		{ value: "", writable: true },
 	defLabel:		{ value: "", writable: true },			
 	atkValue:		{ value: 0, writable: true },
-	defValue:		{ value: 0, writable: true },		
+	defValue:		{ value: 0, writable: true },	
+	currentPlayer:	{ value: 0, writable: true },	
 	
 	init: {
 	
@@ -28,12 +29,14 @@ Object.defineProperties( PlayerBrowser, {
 			// Init buttons for navigation
 			this.butNext = new CAAT.Actor();
 			
+			var thisObject = this;
+			
 			this.butNext.setAsButton(
 					buttonSprite.getRef(),
 					0,1,2,0, 
 					function (button) {
 			
-						console.log("Next player");
+						thisObject.nextPlayer();
 					}
 			);
 						
@@ -44,7 +47,7 @@ Object.defineProperties( PlayerBrowser, {
 					0,1,2,0, 
 					function (button) {
 			
-						console.log("Previous player");
+						thisObject.previousPlayer();
 					}
 			);			
 			
@@ -97,6 +100,52 @@ Object.defineProperties( PlayerBrowser, {
 			var panelHeight = this.atkLabel.height + 10;
 				
 			this.container.setSize(panelWidth, panelHeight);
+			
+		}, enumerable: true
+	},
+	
+	nextPlayer: {
+	
+		value: function() {
+			
+			this.currentPlayer++;
+			
+			if (this.currentPlayer >= this.players.length)
+				this.currentPlayer = 0;
+				
+			this.setTitle("Player: " +
+				this.players[this.currentPlayer].playerName );
+							
+			console.log("Next player: " + 
+				this.players[this.currentPlayer].playerName)
+			
+		}, enumerable: true
+	},
+	
+	previousPlayer: {
+	
+		value: function() {
+			
+			this.currentPlayer--;
+			
+			if (this.currentPlayer < 0)
+				this.currentPlayer = this.players.length - 1;
+			
+			this.setTitle( "Player: " + 
+				this.players[this.currentPlayer].playerName );
+			
+			console.log("Previous player: " + 
+				this.players[this.currentPlayer].playerName)				
+							
+		}, enumerable: true
+	},
+		
+	loadPlayers: {
+	
+		value: function(players) {
+			
+			this.players = players;
+			this.setTitle("Player: " + players[0].playerName );
 			
 		}, enumerable: true
 	}
