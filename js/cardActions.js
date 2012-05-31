@@ -32,7 +32,7 @@ Object.defineProperties( CardActions, {
 			
 						console.log("Detach card action");
 						window['card_details_panel'].container.setVisible(false);
-						//window['detached_cards_panel'].detachCard( card );
+						window['detached_cards_panel'].detachCard( card );
 					}
 			);
 			

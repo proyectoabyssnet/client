@@ -145,7 +145,7 @@ Object.defineProperties( PlayerBrowser, {
 		value: function(players) {
 			
 			this.players = players;
-			this.setTitle("Player: " + players[0].playerName );
+			// Load 
 			
 		}, enumerable: true
 	}
