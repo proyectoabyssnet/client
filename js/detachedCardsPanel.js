@@ -79,7 +79,7 @@ Object.defineProperties( DetachedCardsPanel, {
 			// Look for a free cell and put it in here		
 			var cell = this.cells[this.lastUpdatedCell];
 			var cardParent = card.container.parent;
-			console.log("Got card parent for detaching it: " + cardParent.getId());
+			//console.log("Got card parent for detaching it: " + cardParent.getId());
 			
 			if (cell.isFree == true) {
 				
