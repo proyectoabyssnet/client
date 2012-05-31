@@ -6,6 +6,7 @@ var Card = {};
 
 Object.defineProperties(Card, {
 
+	cId:			{ value: 0, writable:true },
 	cName:			{ value: "", writable: true },
 	elementType: 	{ value: "", writable: true },
 	tagVisible:		{ value: false, writable: true },

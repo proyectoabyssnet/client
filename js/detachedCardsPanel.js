@@ -79,10 +79,14 @@ Object.defineProperties( DetachedCardsPanel, {
 			// Look for a free cell and put it in here		
 			var cell = this.cells[this.lastUpdatedCell];
 			var cardParent = card.container.parent;
+			var equipedCardsPanel = window['equiped_cards_panel'];
 			//console.log("Got card parent for detaching it: " + cardParent.getId());
+			var slotId = "card-" + card.elementType + "-elements";
+			//var previousSlot = equipedCardsPanel.slotElements[slotId][0];
 			
 			if (cell.isFree == true) {
 				
+				//equipedCardsPanel.unequipCard( card );
 				cardParent.removeChild( card.container );
 				cell.addCard( card );
 				this.lastUpdatedCell++;
