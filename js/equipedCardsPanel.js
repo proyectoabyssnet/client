@@ -174,7 +174,7 @@ Object.defineProperties(EquipedCardsPanel, {
 			// What sort of card is it? (land, air,...)
 			var cardType = card.elementType;
 
-			// Ok, got it. Now find out if slotElement contains a free cell for
+			// Ok, got it. Now find out whether the slotElement contains a free cell for
 			// this card
 			var slotElementId = "card-" + cardType + "-elements";		
 			console.log("Getting reference to slot: " + slotElementId);

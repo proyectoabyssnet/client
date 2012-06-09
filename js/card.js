@@ -16,6 +16,7 @@ Object.defineProperties(Card, {
 	oldPosition:	{ value: [], writable: true },	
 	collision:		{ value: false, writable: true },
 	state:			{ value: "none", writable: true },
+	cellParent:		{ value: "", writable: true },
 	slotElements: 	{ 
 	
 		value: ["slot-card-mascot-elements",

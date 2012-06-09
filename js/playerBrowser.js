@@ -148,7 +148,26 @@ Object.defineProperties( PlayerBrowser, {
 			// Load 
 			
 		}, enumerable: true
-	}
+	},
 
+	showPlayerCards: {
+	
+		value: function(player) {
+			
+			var i = 0;
+			var equipedCards = this.players[player].equipedCards;
+			var equipedCardsPanel = window['equiped_cards_panel'];
+			var cardType = null;
+			
+			for (i=0; i < equipedCards.length; i++) {
+				
+				cardType = equipedCardsPanel[i].elementType;
+				
+				// Draw card in the right cell with right position
+				//equipedCards[i].setPosition();
+			}
+			
+		}, enumerable: true
+	}
 		
 });
