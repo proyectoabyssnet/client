@@ -15,8 +15,6 @@ Object.defineProperties(EquipedCardsPanel, {
 	selected:			{ value: false, writable: true }, // Used to select panel1
 	cardsDisplayer: 	{ value: {}, writable: true }, // Object to show equiped cards for each slot element		
 	elements:			{ value: [ "mascot", "air", "water", "land", "fire"],  writable: true },
-	CELL_ONE:			{ value: 0, writable: false },
-	CELL_TWO:			{ value: 1, writable: false },
 	cardDisplayers:		{ 
 	
 		value: {			
@@ -74,18 +72,23 @@ Object.defineProperties(EquipedCardsPanel, {
 		}, enumerable: true
 	},
 	
-	clear: {
+	emptyCells: {
 	
-		var: function() {
+		value: function() {
 			
 			var element = 0;
 			var slotElement = null;
+			var CELL_1 = 0;
+			var CELL_2 = 1;
+			var elementId = "";
 			
 			for (; element < this.MAX_SLOT_ELEMENTS; element++) {
 				
-				slotElement = this.slotElement[i];
-				slotElement[CELL_ONE].container.emptyChildren();
-				slotElement[CELL_TWO].cards = [];
+				elementId = "card-" + this.elements[element] + "-elements";
+				slotElement = this.slotElements[elementId];
+				console.log(typeof(slotElement));
+				slotElement[CELL_1].container.emptyChildren();
+				slotElement[CELL_2].cards = [];
 			}
 			
 		}, enumerable: true

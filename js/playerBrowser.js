@@ -118,7 +118,9 @@ Object.defineProperties( PlayerBrowser, {
 							
 			console.log("Next player: " + 
 				this.players[this.currentPlayer].playerName)
-			
+						
+			this.showPlayerCards(this.players[this.currentPlayer]);
+						
 		}, enumerable: true
 	},
 	
@@ -136,7 +138,9 @@ Object.defineProperties( PlayerBrowser, {
 			
 			console.log("Previous player: " + 
 				this.players[this.currentPlayer].playerName)				
-							
+														
+			this.showPlayerCards(this.players[this.currentPlayer]);
+			
 		}, enumerable: true
 	},
 		
@@ -145,7 +149,6 @@ Object.defineProperties( PlayerBrowser, {
 		value: function(players) {
 			
 			this.players = players;
-			// Load 
 			
 		}, enumerable: true
 	},
@@ -155,15 +158,15 @@ Object.defineProperties( PlayerBrowser, {
 		value: function(player) {
 			
 			var i = 0;
-			var equipedCards = this.players[player].equipedCards;
 			var equipedCardsPanel = window['equiped_cards_panel'];
 			var cardType = null;
 			
-			equipedCardsPanel.clear(); // Delete all cards from the panel
+			equipedCardsPanel.emptyCells(); // Delete all cards from the panel
+			console.log("Showing (equip) equiped cards for player: " + player.playerName);
 							
-			for (i=0; i < equipedCards.length; i++) {
+			for (i=0; i < player.equipedCards.length; i++) {
 				
-				equipedCardsPanel.equipCard(equipedCards[i]);
+				//equipedCardsPanel.equipCard(equipedCards[i]);
 				
 			}
 			
