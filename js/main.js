@@ -7,6 +7,15 @@ window.onload = init;
 
 function init() {
 
+	// Browser detection - TESTING PURPOSES -
+	if (navigator.userAgent.toLowerCase().indexOf('chrome') == -1) {
+		document.write('<h1>This is a work in progress</h1>');
+		document.write("<p style='font-family:Tahoma, Verdana, sans-serif;'>For the time being, this game is being tested under Chrome browser.<br/>");
+		document.write("If it doesn't work out in your browser, please, try it out with Chrome browser.<br/><br/>");
+		document.write("Sorry for the inconvenience.</p>");
+		return;
+	}
+				
 	var canvasObject = document.getElementById('canvas1');
 	
 	if (!canvasObject) {		
@@ -68,6 +77,7 @@ function initGame() {
 	*/
 	var players = initPlayers();
 	window['player_browser_panel'].loadPlayers( players );
+	createEquipedCardsForPlayers(players);
 	
 	/*
 	* INIT GAME PROCEDURES (giveAwayCards, initPlayers,....)
@@ -157,26 +167,28 @@ function initPlayers() {
 
 /* ONLY FOR TESTING PURPOSES */
 function createEquipedCardsForPlayers(players) {
-	
-	var card = Object.create( Card );
+
+	var card = null;	
 	var cardType = "";
-	var randomCardsCount = 0;
-	
+	var randomCardsCount = -1;
+
 	for (var i=0; i < players.length; i++) {
 	
 		randomCardsCount = Math.round(1 + (Math.random() * (20 - 1)) );	
-		
+		console.log("Creating " + randomCardsCount + " cards for player...");
 		for (var card = 0; card < randomCardsCount; card++) {
-			card.init("equiped_card_" + i);
-			card['cName'] = "card" + i;
+			card = Object.create(Card);
+			card.init("equiped_card_" + card);
+			card['cName'] = "card" + card;
 			cardType = randomCardType();
 			card.setElementType(cardType);
 			card.setImage("card1-small");
-			
+			console.log("[*] ");
 			players[i].equipedCards.push(card);
 		}	
 		
-		player
+		console.log("Player: " + players[i].playerName + " was equiped with: " +
+			players[i].equipedCards.length + " cards");
 	}
 }
 /* END TESTING */
