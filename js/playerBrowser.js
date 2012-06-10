@@ -159,12 +159,12 @@ Object.defineProperties( PlayerBrowser, {
 			var equipedCardsPanel = window['equiped_cards_panel'];
 			var cardType = null;
 			
+			equipedCardsPanel.clear(); // Delete all cards from the panel
+							
 			for (i=0; i < equipedCards.length; i++) {
 				
-				cardType = equipedCardsPanel[i].elementType;
+				equipedCardsPanel.equipCard(equipedCards[i]);
 				
-				// Draw card in the right cell with right position
-				//equipedCards[i].setPosition();
 			}
 			
 		}, enumerable: true

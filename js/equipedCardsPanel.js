@@ -13,15 +13,13 @@ Object.defineProperties(EquipedCardsPanel, {
 	slotElementSize: 	{ value: [0,0], writable: true }, // width, height
 	cells:				{ value: [], writable: true }, // Cells inside elements
 	selected:			{ value: false, writable: true }, // Used to select panel1
-	elements:			{ 
-		value: [ "mascot", "air", "water", "land", "fire"], 
-		writable: true 
-	},
-	
+	cardsDisplayer: 	{ value: {}, writable: true }, // Object to show equiped cards for each slot element		
+	elements:			{ value: [ "mascot", "air", "water", "land", "fire"],  writable: true },
+	CELL_ONE:			{ value: 0, writable: false },
+	CELL_TWO:			{ value: 1, writable: false },
 	cardDisplayers:		{ 
 	
-		value: {
-			
+		value: {			
 			"card-displayer-mascot":	null,
 			"card-displayer-air": 		null,
 			"card-displayer-water":		null,
@@ -39,9 +37,7 @@ Object.defineProperties(EquipedCardsPanel, {
 				 "card-fire-elements"],
 			writable: false
 	},
-	// Object to show equiped cards for each slot element
-	cardsDisplayer: { value: {}, writable: true },
-	
+
 	// Each slot contains two cells
     slotElements: { 
     	value: { 
@@ -75,6 +71,23 @@ Object.defineProperties(EquipedCardsPanel, {
 			
 			return this.cells;
 		
+		}, enumerable: true
+	},
+	
+	clear: {
+	
+		var: function() {
+			
+			var element = 0;
+			var slotElement = null;
+			
+			for (; element < this.MAX_SLOT_ELEMENTS; element++) {
+				
+				slotElement = this.slotElement[i];
+				slotElement[CELL_ONE].container.emptyChildren();
+				slotElement[CELL_TWO].cards = [];
+			}
+			
 		}, enumerable: true
 	},
 	
