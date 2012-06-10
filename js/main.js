@@ -85,7 +85,6 @@ function initGame() {
 		card.init("card_on_hand_" + cardIndex);
 		card['cName'] = "card" + cardIndex;
 		var cardType = "water";//randomCardType();
-		console.log("# Created " + cardType + " card type");	
 		card.setElementType(cardType);
 		card.setImage("card1-small");
 
@@ -155,6 +154,32 @@ function initPlayers() {
 	
 	return players;
 }
+
+/* ONLY FOR TESTING PURPOSES */
+function createEquipedCardsForPlayers(players) {
+	
+	var card = Object.create( Card );
+	var cardType = "";
+	var randomCardsCount = 0;
+	
+	for (var i=0; i < players.length; i++) {
+	
+		randomCardsCount = Math.round(1 + (Math.random() * (20 - 1)) );	
+		
+		for (var card = 0; card < randomCardsCount; card++) {
+			card.init("equiped_card_" + i);
+			card['cName'] = "card" + i;
+			cardType = randomCardType();
+			card.setElementType(cardType);
+			card.setImage("card1-small");
+			
+			players[i].equipedCards.push(card);
+		}	
+		
+		player
+	}
+}
+/* END TESTING */
 
 function createTag() {
 
