@@ -73,7 +73,7 @@ Object.defineProperties(Card, {
 						
 			this.container.mouseUp = function(event) {
 							
-				// Get reference to EquipedCardsPanel
+				// Get a reference to EquipedCardsPanel
 				var equipedCardsPanel = window['equiped_cards_panel'];
 				var cardsOnHandPanel = window['cards_on_hand_panel'];		
 				

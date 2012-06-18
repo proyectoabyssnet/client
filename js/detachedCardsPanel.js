@@ -76,6 +76,11 @@ Object.defineProperties( DetachedCardsPanel, {
 			var foundCell = 0;
 			var found = false;
 			
+			if (this.lastUpdatedCell == this.maxCards) {
+				console.log("No free space in this panels. You must do something with any of the detached cards.");
+				return;
+			}
+			
 			// Look for a free cell and put it in here		
 			var cell = this.cells[this.lastUpdatedCell];
 			var cardParent = card.container.parent;
