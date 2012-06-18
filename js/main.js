@@ -7,7 +7,7 @@ window.onload = init;
 
 function init() {
 
-	// Browser detection - TESTING PURPOSES -
+	/* TESTING PURPOSES */
 	if (navigator.userAgent.toLowerCase().indexOf('chrome') == -1) {
 		document.write('<h1>This is a work in progress</h1>');
 		document.write("<p style='font-family:Tahoma, Verdana, sans-serif;'>For the time being, this game is being tested under Chrome browser.<br/>");
@@ -15,6 +15,7 @@ function init() {
 		document.write("Sorry for the inconvenience.</p>");
 		return;
 	}
+	/* END TESTING */
 				
 	var canvasObject = document.getElementById('canvas1');
 	
@@ -93,8 +94,9 @@ function initGame() {
 	
 		card = Object.create( Card );	
 		card.init("card_on_hand_" + cardIndex);
+		card.slotIndex = cardIndex; // To identify the cell where card is contained
 		card['cName'] = "card" + cardIndex;
-		var cardType = "water";//randomCardType();
+		var cardType = randomCardType();
 		card.setElementType(cardType);
 		card.setImage("card1-small");
 
@@ -176,14 +178,14 @@ function createEquipedCardsForPlayers(players) {
 	
 		randomCardsCount = Math.round(1 + (Math.random() * (20 - 1)) );	
 		console.log("Creating " + randomCardsCount + " cards for player...");
-		for (var card = 0; card < randomCardsCount; card++) {
+		
+		for (var cardIndex = 0; cardIndex < randomCardsCount; cardIndex++) {
 			card = Object.create(Card);
-			card.init("equiped_card_" + card);
-			card['cName'] = "card" + card;
+			card.init("equiped_card_" + cardIndex);
+			card['cName'] = "card" + cardIndex;
 			cardType = randomCardType();
 			card.setElementType(cardType);
 			card.setImage("card1-small");
-			console.log("[*] ");
 			players[i].equipedCards.push(card);
 		}	
 		

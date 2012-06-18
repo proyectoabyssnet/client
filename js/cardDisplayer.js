@@ -64,7 +64,7 @@ Object.defineProperties( CardsDisplayer, {
 			var numberOfCards = 0;
 			var cardContainer = null;
 			var nextCardPositionX = startX; //slotElement[0].cards[0].container.x;
-			var nextCardPositionY = slotElement[0].cards[0].container.y;
+			var nextCardPositionY = 0;//slotElement[0].cards[0].container.y;
 			var cardPadding = 4;
 			
 			// Run through cells
@@ -74,6 +74,8 @@ Object.defineProperties( CardsDisplayer, {
 
 				// Run through list of cards contained in a cell
 				for (var card = 0; card < numberOfCards; card++) {
+					 
+					 if (slotElement[cell].cards[card] != null) {
 					 
 					 // Display cards horizontally
 					 cardContainer = slotElement[cell].cards[card].container;
@@ -93,7 +95,8 @@ Object.defineProperties( CardsDisplayer, {
 					 	slotElement[cell].cards[card].sate;
 					 						
 					 nextCardPositionX += cardContainer.width + cardPadding;
-
+		
+					}
 				}				
 				
 			}
@@ -115,6 +118,8 @@ Object.defineProperties( CardsDisplayer, {
 				
 				for (var card = 0; card < numberOfCards; card++) {
 					
+					if (slotElement[cell].cards[card] != null) {
+					
 					console.log(slotElement[cell].cards[card].container.getId());
 					// Get previous position and set it
 					oldX = slotElement[cell].cards[card].oldPosition[0];
@@ -124,6 +129,8 @@ Object.defineProperties( CardsDisplayer, {
 					
 					// Set card state as "folded"
 					slotElement[cell].cards[card].state = "folded";
+					
+					}
 				}
 			}	
 			

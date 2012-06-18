@@ -133,7 +133,7 @@ Object.defineProperties(EquipedCardsPanel, {
 																		
 				var elementId = this.slotBackgroundImages[ element ];
 							
-				// Create 2 cells
+				// Create 2 cells (slots)
 				cells = this.createCells(2);
 				cells[0]["name"] = "cell_0_" + elementId;
 				cells[1]["name"] = "cell_1_" + elementId;				
@@ -203,8 +203,9 @@ Object.defineProperties(EquipedCardsPanel, {
 				// Remove current parent relationship (cards_on_hand_panel, 
 				// equiped_cards_panel,...)
 				cardParent.removeChild( card.container );
-				
+								
 				// Put card inside cell 1
+				card.slotIndex = 0;				
 				slotElementCell[0].addCard( card );					
 				
 				if (slotElementCell[0].cards.length == slotElementCell[0].MAX_CARDS) {
@@ -223,6 +224,7 @@ Object.defineProperties(EquipedCardsPanel, {
 				cardParent.removeChild( card.container );
 				
 				// Put card inside cell 2
+				card.slotIndex = 1;
 				slotElementCell[1].addCard( card );				
 				
 				if (slotElementCell[1].cards.length == slotElementCell[1].MAX_CARDS)
@@ -270,6 +272,7 @@ Object.defineProperties(EquipedCardsPanel, {
 			
 				cell = Object.create(Slot);				
 				cell.init("ecp_cell_" + slotCell);
+				cell.slotIndex = slotCell;
 				cell["name"] = "Cell_" + slotCell;
 				cell.setMaxCards(2); // Cell can store 2 cards
 				cell.container.setBounds(

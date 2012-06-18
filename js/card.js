@@ -17,6 +17,8 @@ Object.defineProperties(Card, {
 	collision:		{ value: false, writable: true },
 	state:			{ value: "none", writable: true },
 	cellParent:		{ value: "", writable: true },
+	cardIndex:		{ value: -1, writable: true },
+	slotIndex:		{ value: -1, writable: true },
 	slotElements: 	{ 
 	
 		value: ["slot-card-mascot-elements",
@@ -37,6 +39,7 @@ Object.defineProperties(Card, {
 			this.container.enableDrag();
 			this.oldPosition = [0,0];
 			this.initEvents();
+			this.slotIndex = -1; // It does not belong to any slot (cell) by default
 						
 		}, enumerable: false
 	},

@@ -6,6 +6,7 @@ var Slot = {};
 Object.defineProperties(Slot, {
 
 	isFree: 	{ value: true, writable: true },
+	slotIndex:	{ value: -1, writable: true },
 	alphaValue: { value: 0.5, writable: true },
 	MAX_CARDS: 	{ value: 0, writable: false },
 	container:	{ value: null, writable: false },
@@ -22,6 +23,7 @@ Object.defineProperties(Slot, {
 				.setAlpha(this.alphaValue);
 							
 			this.cards = [];
+			this.slotIndex -1;
 		
 		}, enumerable: true
 	},
@@ -40,6 +42,8 @@ Object.defineProperties(Slot, {
 		value: function(card) {
 
 				this.cards.push(card);
+				card.cardIndex = this.cards.length - 1;
+				card.slotIndex = this.slotIndex;
 				this.container.addChild(card.container);
 				card.container.setLocation(0,0);
 				card.oldPosition[0] = 0;

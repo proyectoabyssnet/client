@@ -159,15 +159,16 @@ Object.defineProperties( PlayerBrowser, {
 			
 			var i = 0;
 			var equipedCardsPanel = window['equiped_cards_panel'];
-			var cardType = null;
+			var cardType = "";
+			
+			console.log(player.equipedCards.length + " equiped ");
 			
 			equipedCardsPanel.emptyCells(); // Delete all cards from the panel
 			console.log("Showing (equip) equiped cards for player: " + player.playerName);
 							
 			for (i=0; i < player.equipedCards.length; i++) {
 				
-				//equipedCardsPanel.equipCard(equipedCards[i]);
-				
+				equipedCardsPanel.equipCard(player.equipedCards[i]);				
 			}
 			
 		}, enumerable: true

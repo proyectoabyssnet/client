@@ -80,16 +80,26 @@ Object.defineProperties( DetachedCardsPanel, {
 			var cell = this.cells[this.lastUpdatedCell];
 			var cardParent = card.container.parent;
 			var equipedCardsPanel = window['equiped_cards_panel'];
-			//console.log("Got card parent for detaching it: " + cardParent.getId());
 			var slotId = "card-" + card.elementType + "-elements";
-			//var previousSlot = equipedCardsPanel.slotElements[slotId][0];
-			
+			var sourceCell = equipedCardsPanel.slotElements[slotId][card.slotIndex];
+			 
 			if (cell.isFree == true) {
+
+				// Remove card from the current cell
+				//sourceCell.cards[card.cardIndex] = null;
 				
-				//equipedCardsPanel.unequipCard( card );
+				if (card.cardIndex == 0)
+					sourceCell.cards.shift(); // Remove first
+				else
+					sourceCell.cards.pop(); // Remove the last one
+					
 				cardParent.removeChild( card.container );
 				cell.addCard( card );
 				this.lastUpdatedCell++;
+				cell.isFree = false;
+				
+				if (sourceCell.cards.length < 2)
+					sourceCell.isFree = true;
 			}
 			
 			
