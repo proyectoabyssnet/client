@@ -86,9 +86,28 @@ Object.defineProperties(EquipedCardsPanel, {
 				
 				elementId = "card-" + this.elements[element] + "-elements";
 				slotElement = this.slotElements[elementId];
-				console.log(typeof(slotElement));
-				slotElement[CELL_1].container.emptyChildren();
+				
+				for(var x=0; x < slotElement[CELL_1].cards.length; x++) {
+					slotElement[CELL_1].container.removeChild(
+						slotElement[CELL_1].cards[x].container
+					);
+				}
+				slotElement[CELL_1].cards = [];
+				
+				for(var i=0; i < slotElement[CELL_2].cards.length; i++) {
+					slotElement[CELL_2].container.removeChild(
+						slotElement[CELL_2].cards[i].container
+					);
+				}				
 				slotElement[CELL_2].cards = [];
+				/*
+				slotElement[CELL_1].container.emptyChildren();						
+				slotElement[CELL_1].cards = [];
+				slotElement[CELL_1].isFree = true;
+				slotElement[CELL_2].container.emptyChildren();				
+				slotElement[CELL_2].cards = [];
+				slotElement[CELL_2].isFree = true;			
+				*/
 			}
 			
 		}, enumerable: true
@@ -183,45 +202,56 @@ Object.defineProperties(EquipedCardsPanel, {
 	equipCard: {
 	
 		value: function( card ) {
-			
-			console.log("Current card x,y: " + card.container.x + "," +
-				card.container.y);
-				
+						
 			// What sort of card is it? (land, air,...)
 			var cardType = card.elementType;
 
 			// Ok, got it. Now find out whether the slotElement contains a free cell for
 			// this card
 			var slotElementId = "card-" + cardType + "-elements";		
-			console.log("Getting reference to slot: " + slotElementId);
-			var slotElementCell = this.slotElements[slotElementId];
-			
-			var cardParent = card.container.parent;
+			var slotElementCell = this.slotElements[slotElementId];			
+			var cardParent = card.container.parent; // Cell where it belongs to
 
 			if (slotElementCell[0].isFree == true) {
 				
 				// Remove current parent relationship (cards_on_hand_panel, 
-				// equiped_cards_panel,...)
-				cardParent.removeChild( card.container );
+				// equiped_cards_panel,...) whether exists
+				if (cardParent != null) {
+					console.log("Removing current parent relationship: " +
+								cardParent.getId());
+					cardParent.removeChild( card.container );
+				}
 								
 				// Put card inside cell 1
 				card.slotIndex = 0;				
 				slotElementCell[0].addCard( card );					
-				
-				if (slotElementCell[0].cards.length == slotElementCell[0].MAX_CARDS) {
-					slotElementCell[0].isFree = false;
-					// Set card-displayer to visible
-					var cardDisplayer = cardParent.parent.findActorById(cardParent.parent.getId() + "-cd");
 
-					if (cardDisplayer != null) {
+				if (slotElementCell[0].cards.length == slotElementCell[0].MAX_CARDS) {
+				
+					slotElementCell[0].isFree = false;
+					
+					// Find cardDisplayer and set it to visible
+					if (cardParent != null) {
+						var cardDisplayer = cardParent.parent
+											.findActorById(cardParent.parent.getId() + "-cd");
+					} else {
 						
+						var cardDisplayer = window['equiped_cards_panel'].container
+											.findActorById('card-displayer-' + 
+											card.elementType);
+						
+					}
+
+					if (cardDisplayer != null) {						
 						cardDisplayer.setVisible( true );
 					}
 				}
 					
 			} else if (slotElementCell[1].isFree == true) {
 					
-				cardParent.removeChild( card.container );
+				if (cardParent != null) {
+					cardParent.removeChild( card.container );
+				}
 				
 				// Put card inside cell 2
 				card.slotIndex = 1;

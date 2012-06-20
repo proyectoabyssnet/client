@@ -115,9 +115,6 @@ Object.defineProperties( PlayerBrowser, {
 				
 			this.setTitle("Player: " +
 				this.players[this.currentPlayer].playerName );
-							
-			console.log("Next player: " + 
-				this.players[this.currentPlayer].playerName)
 						
 			this.showPlayerCards(this.players[this.currentPlayer]);
 						
@@ -134,10 +131,7 @@ Object.defineProperties( PlayerBrowser, {
 				this.currentPlayer = this.players.length - 1;
 			
 			this.setTitle( "Player: " + 
-				this.players[this.currentPlayer].playerName );
-			
-			console.log("Previous player: " + 
-				this.players[this.currentPlayer].playerName)				
+				this.players[this.currentPlayer].playerName );			
 														
 			this.showPlayerCards(this.players[this.currentPlayer]);
 			
@@ -160,15 +154,20 @@ Object.defineProperties( PlayerBrowser, {
 			var i = 0;
 			var equipedCardsPanel = window['equiped_cards_panel'];
 			var cardType = "";
+			var card = null;
+
+			console.log("Player [" + player.playerName + "], equiped cards: [" +
+				player.equipedCards.length + "]");
 			
-			console.log(player.equipedCards.length + " equiped ");
-			
-			equipedCardsPanel.emptyCells(); // Delete all cards from the panel
-			console.log("Showing (equip) equiped cards for player: " + player.playerName);
 							
 			for (i=0; i < player.equipedCards.length; i++) {
 				
-				equipedCardsPanel.equipCard(player.equipedCards[i]);				
+				card = player.equipedCards[i];
+				
+				if (card.container.parent != null)
+					console.log(card.container.getId() + " has a parent!");
+				
+				//equipedCardsPanel.equipCard(card);				
 			}
 			
 		}, enumerable: true

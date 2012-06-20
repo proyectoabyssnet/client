@@ -173,25 +173,33 @@ function createEquipedCardsForPlayers(players) {
 	var card = null;	
 	var cardType = "";
 	var randomCardsCount = -1;
+	var newIndex = 10;
 
+	console.log("******************************************************");
 	for (var i=0; i < players.length; i++) {
 	
-		randomCardsCount = Math.round(1 + (Math.random() * (20 - 1)) );	
-		console.log("Creating " + randomCardsCount + " cards for player...");
+		randomCardsCount = Math.round(1 + (Math.random() * (5 - 1)) );	
+		//console.log("Creating " + randomCardsCount + " cards for player...");
 		
 		for (var cardIndex = 0; cardIndex < randomCardsCount; cardIndex++) {
 			card = Object.create(Card);
-			card.init("equiped_card_" + cardIndex);
+			card.init("equiped_card_" + cardIndex + newIndex);
 			card['cName'] = "card" + cardIndex;
 			cardType = randomCardType();
 			card.setElementType(cardType);
 			card.setImage("card1-small");
 			players[i].equipedCards.push(card);
+			console.log("Player: " + players[i].playerName + ": " + card.container.getId());
 		}	
-		
+
+				
+		newIndex += 10;
+		/*
 		console.log("Player: " + players[i].playerName + " was equiped with: " +
 			players[i].equipedCards.length + " cards");
+		*/
 	}
+	console.log("******************************************************");	
 }
 /* END TESTING */
 
