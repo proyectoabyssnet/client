@@ -155,20 +155,18 @@ Object.defineProperties( PlayerBrowser, {
 			var equipedCardsPanel = window['equiped_cards_panel'];
 			var cardType = "";
 			var card = null;
-
-			console.log("Player [" + player.playerName + "], equiped cards: [" +
-				player.equipedCards.length + "]");
-			
+		
+			equipedCardsPanel.emptyCells();
 							
+			console.log("#####################################");		
 			for (i=0; i < player.equipedCards.length; i++) {
 				
 				card = player.equipedCards[i];
+				console.log("card type: " + card.elementType);
 				
-				if (card.container.parent != null)
-					console.log(card.container.getId() + " has a parent!");
-				
-				//equipedCardsPanel.equipCard(card);				
+				equipedCardsPanel.equipCard(card);				
 			}
+			console.log("#####################################");					
 			
 		}, enumerable: true
 	}

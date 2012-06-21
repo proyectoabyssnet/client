@@ -189,7 +189,7 @@ function createEquipedCardsForPlayers(players) {
 			card.setElementType(cardType);
 			card.setImage("card1-small");
 			players[i].equipedCards.push(card);
-			console.log("Player: " + players[i].playerName + ": " + card.container.getId());
+			console.log("Player: " + players[i].playerName + ": " + card.elementType);
 		}	
 
 				

@@ -86,28 +86,12 @@ Object.defineProperties(EquipedCardsPanel, {
 				
 				elementId = "card-" + this.elements[element] + "-elements";
 				slotElement = this.slotElements[elementId];
-				
-				for(var x=0; x < slotElement[CELL_1].cards.length; x++) {
-					slotElement[CELL_1].container.removeChild(
-						slotElement[CELL_1].cards[x].container
-					);
-				}
-				slotElement[CELL_1].cards = [];
-				
-				for(var i=0; i < slotElement[CELL_2].cards.length; i++) {
-					slotElement[CELL_2].container.removeChild(
-						slotElement[CELL_2].cards[i].container
-					);
-				}				
-				slotElement[CELL_2].cards = [];
-				/*
 				slotElement[CELL_1].container.emptyChildren();						
 				slotElement[CELL_1].cards = [];
 				slotElement[CELL_1].isFree = true;
 				slotElement[CELL_2].container.emptyChildren();				
 				slotElement[CELL_2].cards = [];
 				slotElement[CELL_2].isFree = true;			
-				*/
 			}
 			
 		}, enumerable: true
@@ -217,8 +201,6 @@ Object.defineProperties(EquipedCardsPanel, {
 				// Remove current parent relationship (cards_on_hand_panel, 
 				// equiped_cards_panel,...) whether exists
 				if (cardParent != null) {
-					console.log("Removing current parent relationship: " +
-								cardParent.getId());
 					cardParent.removeChild( card.container );
 				}
 								
