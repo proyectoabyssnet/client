@@ -30,6 +30,8 @@ Object.defineProperties( CardsDisplayer, {
 			var cont = this.container;	
 			var slotId = this.slotId;	
 			var unfoldCardsFunction = this.unfoldCardsForSlot;
+			var foldeCardsFunction = this.foldCardsForSlot;
+			var state = this.state;
 			
 			this.container.setAsButton(
 					buttonSprite.getRef(),
@@ -44,11 +46,17 @@ Object.defineProperties( CardsDisplayer, {
 							
 							var startX = equipedCardsPanel.container
 								.findActorById("slot-" + slotId).width;
+							
+							if (state == "folded") {
+
+								unfoldCardsFunction(
+									equipedCardsPanel.slotElements[slotId],
+									startX
+								);	
 								
-							unfoldCardsFunction(
-								equipedCardsPanel.slotElements[slotId],
-								startX
-							);														
+							} else {
+								foldCardsForSlot(equipedCardsPanel.slotElements[slotId]);
+							}													
 						}
 					}
 			);
@@ -77,29 +85,29 @@ Object.defineProperties( CardsDisplayer, {
 					 
 					 if (slotElement[cell].cards[card] != null) {
 					 
-					 // Display cards horizontally
-					 cardContainer = slotElement[cell].cards[card].container;
-					 
-					 // Card is unfolded like the other ones
-					 slotElement[cell].cards[card].state = "unfolded";
-					 
-					 cardContainer.setLocation(
-					 	nextCardPositionX, 
-					 	nextCardPositionY
-					 );
-					 
-					 console.log("Displaying card: " + 
-					 	cardContainer.getId() +
-					 	", x =  " + nextCardPositionX) + 
-					 	" with state " +
-					 	slotElement[cell].cards[card].sate;
-					 						
-					 nextCardPositionX += cardContainer.width + cardPadding;
-		
+						 // Display cards horizontally
+						 cardContainer = slotElement[cell].cards[card].container;
+						 
+						 // Card is unfolded like the other ones
+						 slotElement[cell].cards[card].state = "unfolded";
+						 
+						 cardContainer.setLocation(
+						 	nextCardPositionX, 
+						 	nextCardPositionY
+						 );
+						 
+						 console.log("Displaying card: " + 
+						 	cardContainer.getId() +
+						 	", x =  " + nextCardPositionX) + 
+						 	" with state " +
+						 	slotElement[cell].cards[card].sate;
+						 						
+						 nextCardPositionX += cardContainer.width + cardPadding;
 					}
-				}				
-				
+				}								
 			}
+			
+			this.state = "unfolded";
 			
 		}, enumerable: true
 	},
@@ -133,6 +141,8 @@ Object.defineProperties( CardsDisplayer, {
 					}
 				}
 			}	
+			
+			this.state = "folded";
 			
 		}, enumerable: true
 	}

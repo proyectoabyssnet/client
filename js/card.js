@@ -55,7 +55,7 @@ Object.defineProperties(Card, {
 	initEvents: {
 	
 		value: function() {
-		
+
 			var container = this.container;
 			var thisCard = this;
 

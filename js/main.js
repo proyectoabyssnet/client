@@ -84,13 +84,13 @@ function initGame() {
 	* INIT GAME PROCEDURES (giveAwayCards, initPlayers,....)
 	*/
 	// Create cards
-	scene_1.enableInputList(5);	// panel and numberOfCards
+	scene_1.enableInputList(5);	// panel + numberOfCards
 		
 	var card = null;
-	var cardIndex = 1;
-	var cardsOnHandCount = 6;
+	var cardIndex = 0;
+	var cardsOnHandCount = 5;
 		
-	for(; cardIndex < cardsOnHandCount; cardIndex++) {
+	for(; cardIndex != cardsOnHandCount; cardIndex++) {
 	
 		card = Object.create( Card );	
 		card.init("card_on_hand_" + cardIndex);
@@ -178,7 +178,6 @@ function createEquipedCardsForPlayers(players) {
 	for (var i=0; i < players.length; i++) {
 	
 		randomCardsCount = Math.round(1 + (Math.random() * (5 - 1)) );	
-		//console.log("Creating " + randomCardsCount + " cards for player...");
 		
 		for (var cardIndex = 0; cardIndex < randomCardsCount; cardIndex++) {
 			card = Object.create(Card);
@@ -188,13 +187,9 @@ function createEquipedCardsForPlayers(players) {
 			card.setElementType(cardType);
 			card.setImage("card1-small");
 			players[i].equipedCards.push(card);
-			console.log("Player: " + players[i].playerName + ": " + card.elementType);
+			console.log("Player: " + players[i].playerName + ": " + card.elementType);;
 		}	
 
-		/*
-		console.log("Player: " + players[i].playerName + " was equiped with: " +
-			players[i].equipedCards.length + " cards");
-		*/
 	}
 	console.log("******************************************************");	
 }
