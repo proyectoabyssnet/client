@@ -154,6 +154,7 @@ Object.defineProperties( PlayerBrowser, {
 			var i = 0;
 			var cardType = "";
 			var card = null;
+			var cardParent = null;
 			
 			window['equiped_cards_panel'].emptyCells();
 
@@ -161,6 +162,13 @@ Object.defineProperties( PlayerBrowser, {
 			for (i=0; i < player.equipedCards.length; i++) {
 		
 				card = player.equipedCards[i];
+				/*cardParent = card.container.parent;
+				
+				if (cardParent != null) {
+					cardParent.removeChild(card.container);
+					card.container.setParent(null);
+				}*/
+					
 				console.log("card type: " + card.elementType + 
 							" id: " + card.container.getId());
 		

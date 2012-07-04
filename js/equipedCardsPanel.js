@@ -193,7 +193,7 @@ Object.defineProperties(EquipedCardsPanel, {
 							" belongs to " + card.container.parent.parent.getId());
 				var cardParent = card.container.parent;
 				cardParent.removeChild(card.container);
-				//card.container.setParent(null);		
+				card.container.setParent(null);		
 			}
 			
 			

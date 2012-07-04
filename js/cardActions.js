@@ -18,9 +18,7 @@ Object.defineProperties( CardActions, {
 				.setSize(60,20);
 				
 			this.detachAction = new CAAT.Actor();
-			this.equipAction = new CAAT.Actor().setVisible(
-				card.state == "equiped" ? true: false
-			);
+			this.equipAction = new CAAT.Actor();
 						
 			var buttonSprite = new CAAT.SpriteImage()
 				.initialize(window['director'].getImage('stars'),

@@ -79,7 +79,6 @@ Object.defineProperties(Card, {
 				
 				// Get panel which this card belongs to
 				var panelWhereThisCardBelongsTo = container.parent.parent;
-
 								
 				if (panelWhereThisCardBelongsTo.getId() == "cards_on_hand_panel") {
 				
@@ -110,7 +109,7 @@ Object.defineProperties(Card, {
 								
 						// Tell EquipedCardsPanel to equip this card but first of all
 						equipedCardsPanel.equipCard( thisCard );
-					
+						window['card_details_panel'].container.setVisible(false);
 					} 
 					else {
 					
