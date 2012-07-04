@@ -23,7 +23,7 @@ Object.defineProperties(Slot, {
 				.setAlpha(this.alphaValue);
 							
 			this.cards = [];
-			this.slotIndex -1;
+			this.slotIndex = -1;
 		
 		}, enumerable: true
 	},

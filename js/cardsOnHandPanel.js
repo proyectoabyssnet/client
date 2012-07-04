@@ -51,9 +51,11 @@ Object.defineProperties( CardsOnHandPanel, {
 						)
 					.setFillStyle("#aabb00")
 					.setAlpha(0.5);
-	
+					
+				cell.slotIndex = i;
+				
 				// Store cell... 	
-				this.cells.push( cell );				
+				this.cells.push(cell);				
 		
 				// Calculate next cell position				
 				nextCellXPosition += cell.container.width +
@@ -96,7 +98,7 @@ Object.defineProperties( CardsOnHandPanel, {
 			// If cell is not null and is free...
 			if (cell.isFree == true) {
 			
-				cell.addCard( card );
+				cell.addCard(card);
 				cell.isFree = false;
 				this.lastUpdatedCell++;												
 			} 

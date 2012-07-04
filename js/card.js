@@ -72,18 +72,20 @@ Object.defineProperties(Card, {
 			};
 						
 			this.container.mouseUp = function(event) {
-							
+				
 				// Get a reference to EquipedCardsPanel
 				var equipedCardsPanel = window['equiped_cards_panel'];
 				var cardsOnHandPanel = window['cards_on_hand_panel'];		
 				
 				// Get panel which this card belongs to
 				var panelWhereThisCardBelongsTo = container.parent.parent;
-				
-				console.log("??? " + container.parent.parent.parent.getId());
-				
-				if (panelWhereThisCardBelongsTo.getId() == "cards_on_hand_panel") {
 
+								
+				if (panelWhereThisCardBelongsTo.getId() == "cards_on_hand_panel") {
+				
+					window['card_details_panel'].setCard(thisCard);
+					window['card_details_panel'].container.setVisible(true);
+										
 					// Convert card coordinates to EquipedCardsPanel coordinates but
 					// before doing this, find out who card's parent is				
 					var convertedPoint = container.modelToModel( 

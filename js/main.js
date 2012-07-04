@@ -173,7 +173,6 @@ function createEquipedCardsForPlayers(players) {
 	var card = null;	
 	var cardType = "";
 	var randomCardsCount = -1;
-	var newIndex = 10;
 
 	console.log("******************************************************");
 	for (var i=0; i < players.length; i++) {
@@ -183,8 +182,8 @@ function createEquipedCardsForPlayers(players) {
 		
 		for (var cardIndex = 0; cardIndex < randomCardsCount; cardIndex++) {
 			card = Object.create(Card);
-			card.init("equiped_card_" + cardIndex + newIndex);
-			card['cName'] = "card" + cardIndex;
+			card.init("equiped_card_" + cardIndex + "-" + i);
+			card['cName'] = "card_" + cardIndex + "-" + i;
 			cardType = randomCardType();
 			card.setElementType(cardType);
 			card.setImage("card1-small");
@@ -192,8 +191,6 @@ function createEquipedCardsForPlayers(players) {
 			console.log("Player: " + players[i].playerName + ": " + card.elementType);
 		}	
 
-				
-		newIndex += 10;
 		/*
 		console.log("Player: " + players[i].playerName + " was equiped with: " +
 			players[i].equipedCards.length + " cards");

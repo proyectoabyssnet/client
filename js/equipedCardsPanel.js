@@ -186,7 +186,17 @@ Object.defineProperties(EquipedCardsPanel, {
 	equipCard: {
 	
 		value: function( card ) {
-						
+			
+			
+			if (card.container.parent != null) {
+				console.log("WARNING: " + card.container.getId() +
+							" belongs to " + card.container.parent.parent.getId());
+				var cardParent = card.container.parent;
+				cardParent.removeChild(card.container);
+				//card.container.setParent(null);		
+			}
+			
+			
 			// What sort of card is it? (land, air,...)
 			var cardType = card.elementType;
 
@@ -203,6 +213,7 @@ Object.defineProperties(EquipedCardsPanel, {
 				if (cardParent != null) {
 					cardParent.removeChild( card.container );
 				}
+				
 								
 				// Put card inside cell 1
 				card.slotIndex = 0;				

@@ -47,7 +47,9 @@ Object.defineProperties( DetachedCardsPanel, {
 						)
 					.setFillStyle("#ccc")
 					.setAlpha(0.5);
-	
+				
+				cell.slotIndex = i;
+							
 				// Store cell... 	
 				this.cells.push( cell );				
 		
@@ -77,7 +79,7 @@ Object.defineProperties( DetachedCardsPanel, {
 			var found = false;
 			
 			if (this.lastUpdatedCell == this.maxCards) {
-				console.log("No free space in this panels. You must do something with any of the detached cards.");
+				console.log("No free space in this panels.");
 				return;
 			}
 			
@@ -87,15 +89,22 @@ Object.defineProperties( DetachedCardsPanel, {
 			var equipedCardsPanel = window['equiped_cards_panel'];
 			var slotId = "card-" + card.elementType + "-elements";
 			var sourceCell = equipedCardsPanel.slotElements[slotId][card.slotIndex];
-			 
+			
+			// Not equiped yet so it must be detached from cardsOnHandPanel
+			if (typeof(sourceCell) == "undefined") {
+				// card.slotIndex is the same like cell index
+				console.log("Detaching from cardsOnHandPanel");
+				sourceCell = window['cards_on_hand_panel'].cells[card.slotIndex];
+			}			
+
 			if (cell.isFree == true) {
 
 				// Remove card from the current cell
 				//sourceCell.cards[card.cardIndex] = null;
-				
+								
 				if (card.cardIndex == 0)
 					sourceCell.cards.shift(); // Remove first
-				else
+				else // == 1
 					sourceCell.cards.pop(); // Remove the last one
 					
 				cardParent.removeChild( card.container );

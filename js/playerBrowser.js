@@ -110,11 +110,11 @@ Object.defineProperties( PlayerBrowser, {
 			
 			this.currentPlayer++;
 			
-			if (this.currentPlayer >= this.players.length)
+			if (this.currentPlayer > this.players.length - 1)
 				this.currentPlayer = 0;
 				
 			this.setTitle("Player: " +
-				this.players[this.currentPlayer].playerName );
+							this.players[this.currentPlayer].playerName );
 						
 			this.showPlayerCards(this.players[this.currentPlayer]);
 						
@@ -152,21 +152,22 @@ Object.defineProperties( PlayerBrowser, {
 		value: function(player) {
 			
 			var i = 0;
-			var equipedCardsPanel = window['equiped_cards_panel'];
 			var cardType = "";
 			var card = null;
-		
-			equipedCardsPanel.emptyCells();
-							
+			
+			window['equiped_cards_panel'].emptyCells();
+
 			console.log("#####################################");		
 			for (i=0; i < player.equipedCards.length; i++) {
-				
+		
 				card = player.equipedCards[i];
-				console.log("card type: " + card.elementType);
-				
-				equipedCardsPanel.equipCard(card);				
+				console.log("card type: " + card.elementType + 
+							" id: " + card.container.getId());
+		
+				window['equiped_cards_panel'].equipCard(card);				
 			}
-			console.log("#####################################");					
+			console.log("#####################################");
+
 			
 		}, enumerable: true
 	}

@@ -42,6 +42,9 @@ Object.defineProperties( CardActions, {
 					function (button) {
 			
 						console.log("Equip card");
+						if (card.container.parent.parent.getId() != "equiped_cards_panel") 
+							window['equiped_cards_panel'].equipCard(card);
+						
 						window['card_details_panel'].container.setVisible(false);						
 					}
 			);							
@@ -51,7 +54,7 @@ Object.defineProperties( CardActions, {
 			this.equipAction.setLocation(1,1);
 			this.detachAction.setLocation(1 + this.equipAction.width, 1);
 			
-		}, writable: true
+		}, enumerable: true
 	}
 
 });
