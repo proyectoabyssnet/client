@@ -18,7 +18,9 @@ Object.defineProperties( CardActions, {
 				.setSize(60,20);
 				
 			this.detachAction = new CAAT.Actor();
-			this.equipAction = new CAAT.Actor();
+			this.equipAction = new CAAT.Actor().setVisible(
+				card.state == "equiped" ? true: false
+			);
 						
 			var buttonSprite = new CAAT.SpriteImage()
 				.initialize(window['director'].getImage('stars'),
@@ -48,8 +50,8 @@ Object.defineProperties( CardActions, {
 						window['card_details_panel'].container.setVisible(false);						
 					}
 			);							
-									
-			this.container.addChild( this.equipAction );
+						
+			this.container.addChild( this.equipAction );			
 			this.container.addChild( this.detachAction );
 			this.equipAction.setLocation(1,1);
 			this.detachAction.setLocation(1 + this.equipAction.width, 1);

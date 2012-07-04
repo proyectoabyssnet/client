@@ -213,12 +213,12 @@ Object.defineProperties(EquipedCardsPanel, {
 				if (cardParent != null) {
 					cardParent.removeChild( card.container );
 				}
-				
-								
+												
 				// Put card inside cell 1
-				card.slotIndex = 0;				
+				card.slotIndex = 0;
+				card.state = "equiped";				
 				slotElementCell[0].addCard( card );					
-
+		
 				if (slotElementCell[0].cards.length == slotElementCell[0].MAX_CARDS) {
 				
 					slotElementCell[0].isFree = false;
@@ -248,6 +248,7 @@ Object.defineProperties(EquipedCardsPanel, {
 				
 				// Put card inside cell 2
 				card.slotIndex = 1;
+				card.state = "equiped";
 				slotElementCell[1].addCard( card );				
 				
 				if (slotElementCell[1].cards.length == slotElementCell[1].MAX_CARDS)
